@@ -1,23 +1,16 @@
-import { StyleSheet, Text, StatusBar ,ScrollView, View, TextInput, Image } from 'react-native'
-import React from 'react'
-// import LinearGradient from 'react-native-linear-gradient';
-
+import { StyleSheet, Text, StatusBar, ScrollView, View, TextInput, Image } from 'react-native';
+import React from 'react';
 import SearchIcon from 'react-native-vector-icons/Feather';
-import FilterIcon from '../../assets/Icons/Vector.png'
-
-
+import FilterIcon from '../../assets/Icons/Vector.png';
 import Chat from '../../Components/Chats/Chat';
 
-
-
-
-const ChatScreen = () => {
+const ChatScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <StatusBar
-        barStyle="dark-content" // Options: 'default', 'light-content', 'dark-content'
-        hidden={false} // To hide/show the status bar
-        backgroundColor="#f8f8f8" // Android only
+        barStyle="dark-content"
+        hidden={false}
+        backgroundColor="#f8f8f8"
       />
       <View style={styles.topbar}>
         <View style={styles.searchbar}>
@@ -33,26 +26,25 @@ const ChatScreen = () => {
         </View>
       </View>
       <ScrollView>
-      <View style={styles.main}>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-        <Chat/>
-      </View>
+        <View style={styles.main}>
+          <Chat navigation={navigation} />
+          <Chat navigation={navigation} />
+          <Chat navigation={navigation} />
+          <Chat navigation={navigation} />
+          <Chat navigation={navigation} />
+          <Chat navigation={navigation} />
+          <Chat navigation={navigation} />
+          <Chat navigation={navigation} />
+          <Chat navigation={navigation} />
+          <Chat navigation={navigation} />
+          <Chat navigation={navigation} />
+        </View>
       </ScrollView>
-
     </View>
-  )
-}
+  );
+};
 
-export default ChatScreen
+export default ChatScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -63,11 +55,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#F8F8F8",
     paddingHorizontal: 20,
-    paddingVertical:15,
+    paddingVertical: 15,
     justifyContent: "space-between",
     gap: 10,
     alignItems: "center",
-    zIndex:10,
+    zIndex: 10,
   },
   searchbar: {
     backgroundColor: "#EAEAEA",
@@ -76,29 +68,29 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 20,
-    justifyContent:"flex-start",
-    gap:20,
-    alignItems: "center"
+    justifyContent: "flex-start",
+    gap: 20,
+    alignItems: "center",
+    flex:1
   },
   filter: {
-    flex: 1,
-    alignItems:"center"
+    // flex: 1,
+    alignItems: "center",
+    alignItems:"flex-end",
   },
-  filterImg:{
-    height:30,
-    width:30
+  filterImg: {
+    height: 30,
+    width: 30
   },
   main: {
     flex: 8,
     padding: 15,
-    gap:12
+    gap: 12
   },
   line: {
-    height:22,
+    height: 22,
     width: 1.5,
-    borderRadius:80,
+    borderRadius: 80,
     backgroundColor: "black"
   },
-  
-
-})
+});

@@ -5,7 +5,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TabNavigator from './src/Navigation/TabNavigator';
 import PersonalChat from './src/Screens/Chats/PersonalChat';
 
-
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -13,8 +12,8 @@ const App = () => {
     <NavigationContainer>
       <StatusBar barStyle="dark-content" backgroundColor="#6a51ae" />
       <Stack.Navigator>
-        {/* <Stack.Screen name="Home" component={TabNavigator} options={{ headerShown: false }} /> */}
-        <Stack.Screen name="personalChat" component={PersonalChat} options={{headerShown:false}}/>
+        <Stack.Screen name="Home" component={TabNavigator} options={{ headerShown: false }} />
+        <Stack.Screen name="personalChat" component={PersonalChat} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
