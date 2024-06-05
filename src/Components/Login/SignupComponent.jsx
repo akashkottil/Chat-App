@@ -12,7 +12,7 @@ import fbIcons from '../../assets/Icons/fb.png'
 import backIcon from "../../assets/Icons/backicon.png"
 
 
-const SignupComponent = ({switchToLogin, }) => {
+const SignupComponent = ({ switchToLogin, }) => {
     return (
         <View style={styles.container}>
             {/* <View style={styles.topbar}>
@@ -20,9 +20,9 @@ const SignupComponent = ({switchToLogin, }) => {
     </View> */}
             <View style={styles.wrapper}>
                 <TouchableOpacity >
-                <View style={styles.backBtn}>
-                    <Image source={backIcon} style={styles.backIcon} />
-                </View>
+                    <View style={styles.backBtn}>
+                        <Image source={backIcon} style={styles.backIcon} />
+                    </View>
                 </TouchableOpacity>
                 <View >
                     <Text style={styles.note}>Hello! Register to get started</Text>
@@ -32,9 +32,7 @@ const SignupComponent = ({switchToLogin, }) => {
                     <TextInput style={styles.textInput} placeholder="Email" />
                     <TextInput style={styles.textInput} placeholder="Password" secureTextEntry />
                     <TextInput style={styles.textInput} placeholder="Confirm Password" secureTextEntry />
-                    <TouchableOpacity style={styles.forgotPswrdBox}>
-                        <Text style={styles.forgotPswrd}>Forgot Password?</Text>
-                    </TouchableOpacity>
+                   
                 </View>
                 <TouchableOpacity style={styles.btnContainer}>
                     <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
@@ -78,12 +76,12 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderColor: '##E8ECF4',
         borderRadius: 15,
-        justifyContent:"center",
-        alignItems:"center"
+        justifyContent: "center",
+        alignItems: "center"
     },
-    backIcon:{
-        height:19,
-        width:19
+    backIcon: {
+        height: 19,
+        width: 19
     },
     wrapper: {
         flex: 12,

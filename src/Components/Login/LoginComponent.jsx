@@ -10,8 +10,12 @@ import appleIcons from '../../assets/Icons/apple.png'
 import googleIcons from '../../assets/Icons/google.png'
 import fbIcons from '../../assets/Icons/fb.png'
 import backIcon from "../../assets/Icons/backicon.png"
+import { Navigation } from 'swiper/modules'
 
-const LoginComponent = ({switchToSignup}) => {
+const LoginComponent = ({switchToSignup, switchToForgotPassword, navigation}) => {
+    const handleLogin= ()=>{
+        navigation.navigate('home')
+    }
     return (
         <View style={styles.container}>
             {/* <View style={styles.topbar}>
@@ -28,10 +32,10 @@ const LoginComponent = ({switchToSignup}) => {
                     <TextInput style={styles.textInput} placeholder="Enter Your Email" />
                     <TextInput style={styles.textInput} placeholder="Password" secureTextEntry />
                     <TouchableOpacity style={styles.forgotPswrdBox}>
-                        <Text style={styles.forgotPswrd}>Forgot Password?</Text>
+                        <Text style={styles.forgotPswrd} onPress={switchToForgotPassword}>Forgot Password?</Text>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.btnContainer}>
+                <TouchableOpacity style={styles.btnContainer} onPress={handleLogin}>
                     <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
                         <Text style={styles.btnText}>Login</Text>
                     </LinearGradient>

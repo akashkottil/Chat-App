@@ -52,7 +52,6 @@ const settingsData = [
     data: "toggle push notifications,  app sounds",
     icon: notificationImg,
     arrow: arrowIcon,
-    path:"login"
   },
   {
     id: 4,
