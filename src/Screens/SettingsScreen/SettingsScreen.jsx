@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, ScrollView } from 'react-native'
+import { Image, StyleSheet, Text, View, ScrollView, Touchable } from 'react-native'
 import React from 'react'
 import backIcon from '../../assets/Icons/backicon.png'
 
@@ -23,7 +23,10 @@ import termImg from "../../assets/SettingsIcons/terms.png"
 
 import logout from "../../assets/SettingsIcons/logout.png"
 import del from "../../assets/SettingsIcons/delete.png"
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
+
+//Personal and Security Settings icons datas
 
 const settingsData = [
   {
@@ -63,6 +66,8 @@ const settingsData = [
   },
 ]
 
+// Subscription and Support datas
+
 const support = [
   {
     id: 1,
@@ -87,6 +92,8 @@ const support = [
   },
 ]
 
+{/*  Account Management datas */}
+
 const account =[
   {
     id: 1,
@@ -103,14 +110,16 @@ const account =[
 ]
 
 
-const SettingsScreen = () => {
+const SettingsScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.topbar}>
         <View style={styles.topbarTitlebox}>
+        <TouchableOpacity onPress={() => navigation.navigate('home')}>
           <View>
             <Image source={backIcon} style={styles.backIcon} />
           </View>
+          </TouchableOpacity>
           <View>
             <Text style={styles.title}>
               Settings
@@ -119,7 +128,7 @@ const SettingsScreen = () => {
         </View>
       </View>
       <View style={styles.mainWrapper}>
-        <ScrollView>
+        <ScrollView >
         <View style={styles.main}>
 
           {/* Personal and Security Settings */}
@@ -139,7 +148,7 @@ const SettingsScreen = () => {
 
                   </View>
                   <View>
-                    <Image source={data.arrow} style={styles.arrowIcon} />
+                  <Image source={data.arrow} style={styles.arrowIcon} />
                   </View>
                 </View>
               ))
@@ -207,8 +216,6 @@ export default SettingsScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin:0,
-    padding:0
   },
   topbar: {
     alignItems: 'flex-start',
@@ -231,7 +238,6 @@ const styles = StyleSheet.create({
   },
   mainWrapper: {
     paddingHorizontal: 10,
-    paddingVertical:20,
     flex: 20,
     borderRadius: 50,
 

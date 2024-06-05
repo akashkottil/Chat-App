@@ -16,6 +16,7 @@ const App = () => {
     <NavigationContainer>
       <StatusBar barStyle="dark-content" backgroundColor="#6a51ae" />
       <Stack.Navigator>
+        
         <Stack.Screen name="home" component={TabNavigator} options={{ headerShown: false }} />
         <Stack.Screen name="settings" component={SettingsScreen} options={{ headerShown: false }} />
         

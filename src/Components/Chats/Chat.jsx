@@ -3,6 +3,8 @@ import React from 'react';
 import img1 from '../../assets/ProfilePics/trainDp.jpg';
 import LinearGradient from 'react-native-linear-gradient';
 
+import Colors from '../../Constants/Colors';
+
 const Chat = ({ navigation }) => {
   return (
     <View>
