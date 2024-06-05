@@ -8,7 +8,7 @@ import arrowIcon from '../../assets/SettingsIcons/arrow.png'
 //Personal and Security Settings icons
 
 import profileImg from "../../assets/SettingsIcons/profileIcon.png"
-import securityImg from "../../assets/SettingsIcons/security.png"
+// import securityImg from "../../assets/SettingsIcons/security.png"
 import notificationImg from "../../assets/SettingsIcons/notification.png"
 import interfaceImg from "../../assets/SettingsIcons/interface.png"
 import privacyImg from "../../assets/SettingsIcons/privacy.png"
@@ -36,22 +36,23 @@ const settingsData = [
     data: "Change personal details, update photos",
     icon: profileImg,
     arrow: arrowIcon,
-    path:"Editprofile"
+    path:"editprofile"
   },
-  {
-    id: 2,
-    title: "Security",
-    data: "Set password,  two-factor authentication",
-    icon: securityImg,
-    arrow: arrowIcon,
-    path:"personalChat"
-  },
+  // {
+  //   id: 2,
+  //   title: "Security",
+  //   data: "Set password,  two-factor authentication",
+  //   icon: securityImg,
+  //   arrow: arrowIcon,
+  //   path:"personalChat"
+  // },
   {
     id: 3,
     title: "Notification",
     data: "toggle push notifications,  app sounds",
     icon: notificationImg,
-    arrow: arrowIcon
+    arrow: arrowIcon,
+    path:"login"
   },
   {
     id: 4,
