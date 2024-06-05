@@ -17,6 +17,9 @@ const Home = () => {
         </LinearGradient>
       </View>
       <TrendingSwiper/>
+      <View style={styles.mainWrapper}>
+
+      </View>
     </View>
   )
 }
@@ -48,5 +51,8 @@ const styles = StyleSheet.create({
    title:{
     fontSize:26,
     color:"black"
+   },
+   mainWrapper:{
+    flex:2
    }
 })

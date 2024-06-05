@@ -4,6 +4,7 @@ import Swiper from 'react-native-swiper';
 
 const TrendingSwiper = () => {
   return (
+    
     <Swiper style={styles.wrapper} showsButtons={true}>
       <View style={styles.slide1}>
         <Text style={styles.text}>Hello Swiper</Text>
@@ -21,12 +22,15 @@ const TrendingSwiper = () => {
 export default TrendingSwiper
 
 const styles = StyleSheet.create({
-    wrapper: {},
+    wrapper: {
+        
+    },
   slide1: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#9DD6EB',
+    backgroundColor: 'red',
+    width:150
   },
   slide2: {
     flex: 1,
