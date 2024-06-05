@@ -11,29 +11,34 @@ import googleIcons from '../../assets/Icons/google.png'
 import fbIcons from '../../assets/Icons/fb.png'
 import backIcon from "../../assets/Icons/backicon.png"
 
-const LoginComponent = ({switchToSignup}) => {
+
+const SignupComponent = ({switchToLogin, }) => {
     return (
         <View style={styles.container}>
             {/* <View style={styles.topbar}>
 
-            </View> */}
+    </View> */}
             <View style={styles.wrapper}>
+                <TouchableOpacity >
                 <View style={styles.backBtn}>
-                    <Image source={backIcon} style={styles.backIcon}/>
+                    <Image source={backIcon} style={styles.backIcon} />
                 </View>
+                </TouchableOpacity>
                 <View >
-                    <Text style={styles.note}>Welcome back! Glad to see you, Again!</Text>
+                    <Text style={styles.note}>Hello! Register to get started</Text>
                 </View>
                 <View style={styles.inputs}>
-                    <TextInput style={styles.textInput} placeholder="Enter Your Email" />
+                    <TextInput style={styles.textInput} placeholder="Username" />
+                    <TextInput style={styles.textInput} placeholder="Email" />
                     <TextInput style={styles.textInput} placeholder="Password" secureTextEntry />
+                    <TextInput style={styles.textInput} placeholder="Confirm Password" secureTextEntry />
                     <TouchableOpacity style={styles.forgotPswrdBox}>
                         <Text style={styles.forgotPswrd}>Forgot Password?</Text>
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={styles.btnContainer}>
                     <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
-                        <Text style={styles.btnText}>Login</Text>
+                        <Text style={styles.btnText}>Register</Text>
                     </LinearGradient>
                 </TouchableOpacity>
                 <View style={styles.loginWithContainer}>
@@ -53,14 +58,14 @@ const LoginComponent = ({switchToSignup}) => {
                     </View>
                 </View>
                 <View >
-                    <Text style={styles.qstn} onPress={switchToSignup}>Don't have an account? Register Now</Text>
+                    <Text style={styles.qstn} onPress={switchToLogin}>Already have an account? Login Now</Text>
                 </View>
             </View>
         </View>
     )
 }
 
-export default LoginComponent
+export default SignupComponent
 
 const styles = StyleSheet.create({
     container: {
