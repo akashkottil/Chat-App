@@ -3,61 +3,45 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
 import Colors from '../../Constants/Colors'
-import { OtpInput } from 'react-native-otp-entry'
-import { useNavigation } from '@react-navigation/native'
-
 
 
 import backIcon from "../../assets/Icons/backicon.png"
-const OtpComponent = () => {
-    const navigation = useNavigation();
-    const handleBack= ()=>{
-        navigation.navigate('login')
-    }
+const CreatePassword = () => {
   return (
     <View style={styles.container}>
             {/* <View style={styles.topbar}>
 
     </View> */}
             <View style={styles.wrapper}>
-                <TouchableOpacity onPress={handleBack}>
+                <TouchableOpacity >
                     <View style={styles.backBtn}>
                         <Image source={backIcon} style={styles.backIcon} />
                     </View>
                 </TouchableOpacity>
                 <View >
-                    <Text style={styles.note}>OTP Verification</Text>
+                    <Text style={styles.note}>Create new password</Text>
                 </View>
                 <View >
-                    <Text style={styles.para}>Enter the verification code we just sent on your email address.</Text>
+                    <Text style={styles.para}>Your new password must be unique from those previously used.</Text>
                 </View>
-               
-
-                <OtpInput
-                numberOfDigits={4}
-                focusColor={Colors.solid}
-                focusStickBlinkingDuration={400}
-                containerStyle={styles.otpContainer}
-                inputsContainerStyle={styles.otpInputContainer}
-                inputStyle={styles.otpInput}
-                />
-
-                
+                <View style={styles.inputs}>
+                    <TextInput style={styles.textInput} placeholder="New Password" />
+                </View>
+                <View style={styles.inputs}>
+                    <TextInput style={styles.textInput} placeholder="Confirm Password" />
+                </View>
                 <TouchableOpacity style={styles.btnContainer}>
                     <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
-                        <Text style={styles.btnText}>Send Code</Text>
+                        <Text style={styles.btnText}>Reset Password</Text>
                     </LinearGradient>
                 </TouchableOpacity>
-                
-                <View >
-                    <Text style={styles.qstn}>Didn’t received code? Resend</Text>
-                </View>
             </View>
         </View>
+  
   )
 }
 
-export default OtpComponent
+export default CreatePassword
 
 const styles = StyleSheet.create({
     container: {
@@ -97,24 +81,19 @@ const styles = StyleSheet.create({
     para:{
         fontSize:16
     },
+    inputs: {
+        gap: 12
+    },
+    textInput: {
+        height: 56,
+        borderRadius: 8,
+        borderColor: '#E8ECF4',
+        backgroundColor: '#F7F8F9',
+        borderWidth: 1,
+        paddingLeft: 8,
+        fontSize: 20
+    },
 
-    // otpContainer: {
-    //     backgroundColor: '#F7F8F9', // Adjust the background color
-    //     width: '100%', // Adjust the width
-    //     height: 56, // Adjust the height
-    //   },
-    //   otpInputContainer: {
-    //     backgroundColor: '#F7F8F9', // Adjust the background color of each input
-    //     height: 56, // Adjust the height of each input
-    //     width: 50, // Adjust the width of each input
-    //     margin: 5, // Adjust the margin between inputs
-    //     borderRadius: 8, // Adjust the border radius if needed
-    //   },
-    //   otpInput: {
-    //     fontSize: 50, // Adjust the font size
-    //     textAlign: 'center', // Center align the text,
-    //     backgroundColor: '#F7F8F9', // Adjust the background color of each input
-    //   },
 
     btnContainer: {
         // width:250,
