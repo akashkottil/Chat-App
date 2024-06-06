@@ -5,10 +5,11 @@ import SignupComponent from '../../Components/Login/SignupComponent'
 import ForgotPassword from '../../Components/Login/ForgotPassword'
 import OtpComponent from '../../Components/Login/OtpComponent'
 import CreatePassword from '../../Components/Login/CreatePassword'
+import PasswordChanged from '../../Components/Login/PasswordChanged'
 
 
 const Login = ({navigation}) => {
-    const [CurrentScreen, setCurrentScreen] = useState('createpassword');
+    const [CurrentScreen, setCurrentScreen] = useState('passwordchanged');
     
 
     const  switchToSignup =() =>{
@@ -28,6 +29,9 @@ const Login = ({navigation}) => {
     }
     const switchToCreatePassword =()=>{
         setCurrentScreen('otpscreen')
+    }
+    const switchToPasswordChanged =()=>{
+        setCurrentScreen('passwordchanged')
     }
   return (
     <View style={styles.container}>
@@ -56,6 +60,11 @@ const Login = ({navigation}) => {
         {
             CurrentScreen === 'createpassword' && (
                 <CreatePassword/>
+            )
+        }
+        {
+            CurrentScreen === 'passwordchanged' &&(
+                <PasswordChanged/>
             )
         }
 
