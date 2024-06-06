@@ -3,9 +3,10 @@ import React, { useState } from 'react'
 import LoginComponent from '../../Components/Login/LoginComponent'
 import SignupComponent from '../../Components/Login/SignupComponent'
 import ForgotPassword from '../../Components/Login/ForgotPassword'
+import OtpComponent from '../../Components/Login/OtpComponent'
 
 const Login = ({navigation}) => {
-    const [CurrentScreen, setCurrentScreen] = useState('login');
+    const [CurrentScreen, setCurrentScreen] = useState('otpscreen');
 
     const  switchToSignup =() =>{
         setCurrentScreen('signup');
@@ -17,6 +18,10 @@ const Login = ({navigation}) => {
 
     const switchToForgotPassword =()=>{
         setCurrentScreen('forgotpassword');
+    }
+
+    const switchToOtpScreen =()=>{
+        setCurrentScreen('otpscreen')
     }
   return (
     <View style={styles.container}>
@@ -37,16 +42,14 @@ const Login = ({navigation}) => {
                 <ForgotPassword  switchToLogin={switchToLogin}/>
             )
         }
-
-        {/* <ForgotPassword switchToLogin={switchToLogin} /> */}
-
-        {/* {
-            isLogin ? (
-                <LoginComponent switchToSignup={switchToSignup}/>
-            ):(
-                <SignupComponent switchToLogin={switchToLogin} />
+        {
+            CurrentScreen === 'otpscreen' && (
+                <OtpComponent navigation={navigation}/>
             )
-        } */}
+        }
+
+        
+        
 
 
 

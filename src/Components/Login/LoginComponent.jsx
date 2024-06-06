@@ -10,7 +10,7 @@ import appleIcons from '../../assets/Icons/apple.png'
 import googleIcons from '../../assets/Icons/google.png'
 import fbIcons from '../../assets/Icons/fb.png'
 import backIcon from "../../assets/Icons/backicon.png"
-import { Navigation } from 'swiper/modules'
+
 
 const LoginComponent = ({switchToSignup, switchToForgotPassword, navigation}) => {
     const handleLogin= ()=>{
