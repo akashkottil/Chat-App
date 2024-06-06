@@ -7,14 +7,14 @@ import Colors from '../../Constants/Colors'
 
 import backIcon from "../../assets/Icons/backicon.png"
 
-const ForgotPassword = ({switchToLogin, }) => {
+const ForgotPassword = ({switchToOtpScreen,switchToLogin }) => {
   return (
     <View style={styles.container}>
             {/* <View style={styles.topbar}>
 
     </View> */}
             <View style={styles.wrapper}>
-                <TouchableOpacity >
+                <TouchableOpacity onPress={switchToLogin}>
                     <View style={styles.backBtn}>
                         <Image source={backIcon} style={styles.backIcon} />
                     </View>
@@ -28,7 +28,7 @@ const ForgotPassword = ({switchToLogin, }) => {
                 <View style={styles.inputs}>
                     <TextInput style={styles.textInput} placeholder="Enter your Email" />
                 </View>
-                <TouchableOpacity style={styles.btnContainer}>
+                <TouchableOpacity style={styles.btnContainer} onPress={switchToOtpScreen}>
                     <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
                         <Text style={styles.btnText}>Send Code</Text>
                     </LinearGradient>

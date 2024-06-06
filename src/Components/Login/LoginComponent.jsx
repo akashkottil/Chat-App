@@ -12,9 +12,16 @@ import fbIcons from '../../assets/Icons/fb.png'
 import backIcon from "../../assets/Icons/backicon.png"
 
 
-const LoginComponent = ({switchToSignup, switchToForgotPassword, navigation}) => {
+import { useNavigation } from '@react-navigation/native'
+
+
+const LoginComponent = ({switchToSignup, switchToForgotPassword, }) => {
+    const navigation = useNavigation();
     const handleLogin= ()=>{
         navigation.navigate('home')
+    }
+    const handleBack =()=>{
+        navigation.navigate('')
     }
     return (
         <View style={styles.container}>
@@ -23,7 +30,7 @@ const LoginComponent = ({switchToSignup, switchToForgotPassword, navigation}) =>
             </View> */}
             <View style={styles.wrapper}>
                 <View style={styles.backBtn}>
-                    <Image source={backIcon} style={styles.backIcon}/>
+                    {/* <Image source={backIcon} style={styles.backIcon}/> */}
                 </View>
                 <View >
                     <Text style={styles.note}>Welcome back! Glad to see you, Again!</Text>
@@ -71,15 +78,15 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center"
     },
-    backBtn: {
-        height: 50,
-        width: 50,
-        borderWidth: 0.5,
-        borderColor: '##E8ECF4',
-        borderRadius: 15,
-        justifyContent:"center",
-        alignItems:"center"
-    },
+    // backBtn: {
+    //     height: 50,
+    //     width: 50,
+    //     borderWidth: 0.5,
+    //     borderColor: '##E8ECF4',
+    //     borderRadius: 15,
+    //     justifyContent:"center",
+    //     alignItems:"center"
+    // },
     backIcon:{
         height:19,
         width:19

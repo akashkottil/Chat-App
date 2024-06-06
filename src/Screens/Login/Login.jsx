@@ -8,8 +8,8 @@ import CreatePassword from '../../Components/Login/CreatePassword'
 import PasswordChanged from '../../Components/Login/PasswordChanged'
 
 
-const Login = ({navigation}) => {
-    const [CurrentScreen, setCurrentScreen] = useState('passwordchanged');
+const Login = () => {
+    const [CurrentScreen, setCurrentScreen] = useState('login');
     
 
     const  switchToSignup =() =>{
@@ -28,7 +28,7 @@ const Login = ({navigation}) => {
         setCurrentScreen('otpscreen')
     }
     const switchToCreatePassword =()=>{
-        setCurrentScreen('otpscreen')
+        setCurrentScreen('createpassword')
     }
     const switchToPasswordChanged =()=>{
         setCurrentScreen('passwordchanged')
@@ -39,7 +39,7 @@ const Login = ({navigation}) => {
 
         {
             CurrentScreen === 'login' && (
-                <LoginComponent switchToSignup={switchToSignup} switchToForgotPassword={switchToForgotPassword} navigation={navigation}/>
+                <LoginComponent switchToSignup={switchToSignup} switchToForgotPassword={switchToForgotPassword} />
             )
         }
         {
@@ -49,22 +49,22 @@ const Login = ({navigation}) => {
         }
         {
             CurrentScreen === 'forgotpassword' && (
-                <ForgotPassword  switchToLogin={switchToLogin}/>
+                <ForgotPassword  switchToLogin={switchToLogin} switchToOtpScreen={switchToOtpScreen}/>
             )
         }
         {
             CurrentScreen === 'otpscreen' && (
-                <OtpComponent navigation={navigation}/>
+                <OtpComponent switchToCreatePassword={switchToCreatePassword} switchToForgotPassword={switchToForgotPassword}/>
             )
         }
         {
             CurrentScreen === 'createpassword' && (
-                <CreatePassword/>
+                <CreatePassword switchToPasswordChanged={switchToPasswordChanged} switchToForgotPassword={switchToForgotPassword}/>
             )
         }
         {
             CurrentScreen === 'passwordchanged' &&(
-                <PasswordChanged/>
+                <PasswordChanged switchToLogin={switchToLogin} />
             )
         }
 

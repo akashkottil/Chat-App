@@ -6,14 +6,14 @@ import Colors from '../../Constants/Colors'
 
 
 import backIcon from "../../assets/Icons/backicon.png"
-const CreatePassword = () => {
+const CreatePassword = ({switchToPasswordChanged,switchToForgotPassword}) => {
   return (
     <View style={styles.container}>
             {/* <View style={styles.topbar}>
 
     </View> */}
             <View style={styles.wrapper}>
-                <TouchableOpacity >
+                <TouchableOpacity onPress={switchToForgotPassword} >
                     <View style={styles.backBtn}>
                         <Image source={backIcon} style={styles.backIcon} />
                     </View>
@@ -30,7 +30,7 @@ const CreatePassword = () => {
                 <View style={styles.inputs}>
                     <TextInput style={styles.textInput} placeholder="Confirm Password" />
                 </View>
-                <TouchableOpacity style={styles.btnContainer}>
+                <TouchableOpacity style={styles.btnContainer} onPress={switchToPasswordChanged}>
                     <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
                         <Text style={styles.btnText}>Reset Password</Text>
                     </LinearGradient>

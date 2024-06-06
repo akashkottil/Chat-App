@@ -12,14 +12,21 @@ import fbIcons from '../../assets/Icons/fb.png'
 import backIcon from "../../assets/Icons/backicon.png"
 
 
+import { useNavigation } from '@react-navigation/native'
+
+
 const SignupComponent = ({ switchToLogin, }) => {
+    const navigation = useNavigation();
+    const handleLogin =()=>{
+        navigation.navigate('login')
+    }
     return (
         <View style={styles.container}>
             {/* <View style={styles.topbar}>
 
     </View> */}
             <View style={styles.wrapper}>
-                <TouchableOpacity >
+                <TouchableOpacity onPress={switchToLogin}>
                     <View style={styles.backBtn}>
                         <Image source={backIcon} style={styles.backIcon} />
                     </View>
@@ -34,7 +41,7 @@ const SignupComponent = ({ switchToLogin, }) => {
                     <TextInput style={styles.textInput} placeholder="Confirm Password" secureTextEntry />
                    
                 </View>
-                <TouchableOpacity style={styles.btnContainer}>
+                <TouchableOpacity style={styles.btnContainer} onPress={switchToLogin}>
                     <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
                         <Text style={styles.btnText}>Register</Text>
                     </LinearGradient>

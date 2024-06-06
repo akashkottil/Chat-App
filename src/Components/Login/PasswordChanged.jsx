@@ -7,7 +7,7 @@ import LottieView from 'lottie-react-native';
 
 import { useNavigation } from '@react-navigation/native'
 
-const PasswordChanged = () => {
+const PasswordChanged = ({switchToLogin}) => {
     const navigation = useNavigation();
 
     const handleLogin = ()=>{
@@ -37,7 +37,7 @@ const PasswordChanged = () => {
         
         <TouchableOpacity style={styles.btnContainer} onPress={handleLogin}>
             <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
-                <Text style={styles.btnText}>Back to Login</Text>
+                <Text style={styles.btnText} onPress={switchToLogin}>Back to Login</Text>
             </LinearGradient>
         </TouchableOpacity>
     </View>

@@ -4,23 +4,20 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
 import Colors from '../../Constants/Colors'
 import { OtpInput } from 'react-native-otp-entry'
-import { useNavigation } from '@react-navigation/native'
+
 
 
 
 import backIcon from "../../assets/Icons/backicon.png"
-const OtpComponent = () => {
-    const navigation = useNavigation();
-    const handleBack= ()=>{
-        navigation.navigate('login')
-    }
+const OtpComponent = ({switchToCreatePassword,switchToForgotPassword}) => {
+    
   return (
     <View style={styles.container}>
             {/* <View style={styles.topbar}>
 
     </View> */}
             <View style={styles.wrapper}>
-                <TouchableOpacity onPress={handleBack}>
+                <TouchableOpacity onPress={switchToForgotPassword}>
                     <View style={styles.backBtn}>
                         <Image source={backIcon} style={styles.backIcon} />
                     </View>
@@ -43,9 +40,9 @@ const OtpComponent = () => {
                 />
 
                 
-                <TouchableOpacity style={styles.btnContainer}>
+                <TouchableOpacity style={styles.btnContainer} onPress={switchToCreatePassword} >
                     <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
-                        <Text style={styles.btnText}>Send Code</Text>
+                        <Text style={styles.btnText} >Verify</Text>
                     </LinearGradient>
                 </TouchableOpacity>
                 
