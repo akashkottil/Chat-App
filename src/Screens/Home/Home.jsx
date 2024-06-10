@@ -1,58 +1,83 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import searchIcon from "../../assets/Icons/search.png"
+import React from 'react';
+import { View, Image, StyleSheet, Dimensions } from 'react-native';
+import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, interpolate, Extrapolate } from 'react-native-reanimated';
 
-import Colors from '../../Constants/Colors'
-import LinearGradient from 'react-native-linear-gradient'
-import TrendingSwiper from './TrendingSwiper'
+const { width: windowWidth } = Dimensions.get('window');
 
+const images = [
+  "https://picsum.photos/200/300",
+  "https://picsum.photos/200/300",
+  "https://picsum.photos/200/300",
+  "https://picsum.photos/200/300",
+  "https://picsum.photos/200/300",
+];
 
 const Home = () => {
+  const scrollX = useSharedValue(0);
+
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollX.value = event.contentOffset.x;
+    },
+  });
+
+  const renderItem = ({ item, index }) => {
+    const parallaxStyle = useAnimatedStyle(() => {
+      return {
+        transform: [
+          {
+            translateX: interpolate(
+              scrollX.value,
+              [(index - 1) * windowWidth, index * windowWidth, (index + 1) * windowWidth],
+              [-windowWidth * 0.2, 0, windowWidth * 0.2],
+              Extrapolate.CLAMP
+            ),
+          },
+        ],
+      };
+    });
+
+    return (
+      <View style={styles.slide}>
+        <Animated.Image source={{ uri: item }} style={[styles.image, parallaxStyle]} />
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.topbar}>
-        <Text style={styles.title}>Trending</Text>
-        <LinearGradient colors={Colors.gradient} style={styles.searchbg}>
-          <Image source={searchIcon} style={styles.searchIcon}/>
-        </LinearGradient>
-      </View>
-      <TrendingSwiper/>
-      <View style={styles.mainWrapper}>
-
-      </View>
+      <Animated.ScrollView
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+        
+      >
+        {images.map((image, index) => {
+          return renderItem({ item: image, index });
+        })}
+      </Animated.ScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-   },
-   topbar:{
-    flexDirection:"row",
-    alignItems:"center",
-    justifyContent:"space-between",
-    paddingHorizontal:20,
-    paddingVertical:15
-   },
-   searchIcon:{
-    height:21,
-    width:23,
-   },
-   searchbg:{
-      width:40,
-      height:40,
-      alignItems:"center",
-      justifyContent:"center",
-      borderRadius:100
-   },
-   title:{
-    fontSize:26,
-    color:"black"
-   },
-   mainWrapper:{
-    flex:2
-   }
-})
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  slide: {
+    width: windowWidth,
+    height: 300,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: windowWidth,
+    height: '100%',
+  },
+});

@@ -5,8 +5,8 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TabNavigator from './src/Navigation/TabNavigator';
 import PersonalChat from './src/Screens/Chats/PersonalChat';
-import EditProfile from './src/Screens/Profile/EditProfile';
 import Login from './src/Screens/Login/Login';
+import EditProfile from './src/Components/Profile/EditProfile';
 
 
 const Stack = createNativeStackNavigator();

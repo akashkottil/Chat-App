@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const EditProfile = () => {
+
+const TrendingSlides = () => {
   return (
-    <View>
-      <Text>EditProfile</Text>
+    <View style={styles.container}>
+      
     </View>
   )
 }
 
-export default EditProfile
+export default TrendingSlides
 
 const styles = StyleSheet.create({})
