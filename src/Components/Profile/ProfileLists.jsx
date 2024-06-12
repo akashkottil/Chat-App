@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
+import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity,Alert } from 'react-native'
 import React from 'react'
 import profileDp from '../../assets/ProfilePics/trainDp.jpg'
 
@@ -104,7 +104,8 @@ const account = [
     id: 1,
     title: "Logout",
     icon: logout,
-    arrow: arrowIcon
+    arrow: arrowIcon,
+    onPress: () => showLogoutAlert()
   },
   {
     id: 2,
@@ -114,7 +115,24 @@ const account = [
   },
 ]
 
-
+const showLogoutAlert = () => {
+  Alert.alert(
+    "Logout", // Title
+    "Are you sure you want to logout?",
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Logout cancelled"),
+        style: "cancel"
+      },
+      {
+        text: "Logout",
+        onPress: () => console.log("User logged out"),
+        // Add any additional logout logic here
+      }
+    ]
+  );
+};
 
 const ProfileLists = () => {
 
@@ -210,7 +228,7 @@ const ProfileLists = () => {
               <View style={styles.mainCard}>
                 {
                   account.map((data) => (
-                    <View style={styles.dataCard}>
+                    <TouchableOpacity  style={styles.dataCard} onPress={data.onPress}>
                       <View style={styles.cardLeft}>
                         <View>
                           <Image source={data.icon} style={styles.icons} />
@@ -220,10 +238,10 @@ const ProfileLists = () => {
                         </View>
 
                       </View>
-                      <View>
+                      {/* <View>
                         <Image source={data.arrow} style={styles.arrowIcon} />
-                      </View>
-                    </View>
+                      </View> */}
+                    </TouchableOpacity >
                   ))
                 }
               </View>
