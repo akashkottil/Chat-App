@@ -25,7 +25,7 @@ const ChatScreen = ({ navigation }) => {
           <Image source={FilterIcon} style={styles.filterImg} />
         </View>
       </View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.main}>
           <Chat navigation={navigation} />
           <Chat navigation={navigation} />

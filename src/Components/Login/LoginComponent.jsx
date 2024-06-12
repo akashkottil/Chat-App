@@ -8,9 +8,7 @@ import LinearGradient from 'react-native-linear-gradient'
 
 import appleIcons from '../../assets/Icons/apple.png'
 import googleIcons from '../../assets/Icons/google.png'
-import fbIcons from '../../assets/Icons/fb.png'
-import backIcon from "../../assets/Icons/backicon.png"
-
+import fbIcons from '../../assets/Icons/fb.png' 
 
 import { useNavigation } from '@react-navigation/native'
 

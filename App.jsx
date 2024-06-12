@@ -7,6 +7,7 @@ import TabNavigator from './src/Navigation/TabNavigator';
 import PersonalChat from './src/Screens/Chats/PersonalChat';
 import Login from './src/Screens/Login/Login';
 import EditProfile from './src/Components/Profile/EditProfile';
+import Profile from './src/Screens/Profile/Profile';
 
 
 const Stack = createNativeStackNavigator();
@@ -20,6 +21,7 @@ const App = () => {
         <Stack.Screen name="login" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="home" component={TabNavigator} options={{ headerShown: false }} />
         <Stack.Screen name="personalChat" component={PersonalChat} options={{ headerShown: false }} />
+        <Stack.Screen name="profile" component={Profile} options={{ headerShown: false }} />
         <Stack.Screen name="editprofile" component={EditProfile} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
