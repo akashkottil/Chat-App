@@ -9,79 +9,48 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, View, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '../Constants/Colors';
+import ReanimatedBottomTabs from 'reanimated-bottom-tabs';
 
 
 
-
-const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+
+  const Tab = createBottomTabNavigator();
+
   return (
-
-    <Tab.Navigator screenOptions={{ tabBarShowLabel: false }}>
-      <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <View style={[styles.tabButton, focused ? styles.btnContainer : null]}  >
-              <LinearGradient
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                colors={focused ? Colors.gradient : ['transparent', 'transparent']}
-                style={styles.btnContainer}>
-                <Feather
-                  name={focused ? 'home' : 'home'}
-                  size={26}
-                  color={focused ? '#F4F2F2' : '#222'}
-                />
-                {focused && <Text style={{ color: '#F4F2F2', fontSize: 20, }}>Home</Text>}
-              </LinearGradient>
-            </View>
-
-          ),
-        }}
-      />
-      <Tab.Screen name="chats" component={ChatScreen} options={{
-        headerShown: false,
-        tabBarIcon: ({ focused }) => (
-          <View style={[styles.tabButton, focused ? styles.btnContainer : null]}  >
-            <LinearGradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              colors={focused ? Colors.gradient : ['transparent', 'transparent']}
-              style={styles.btnContainer}>
-              <MaterialIcons
-                name={focused ? 'chat' : 'chat'}
-                size={26}
-                color={focused ? Colors.tabActive : '#222'} />
-              {focused && <Text style={{ color: Colors.tabActive, fontSize: 20 }}>Chats</Text>}
-            </LinearGradient>
-          </View>
-        )
-
-      }} />
-
-      <Tab.Screen name="Profile" component={Profile} options={{
-        headerShown: false,
-        tabBarIcon: ({ focused }) => (
-          <View style={[styles.tabButton, focused ? styles.btnContainer : null]}  >
-            <LinearGradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              colors={focused ? Colors.gradient : ['transparent', 'transparent']}
-              style={styles.btnContainer}>
-              <Ionicons
-                name={focused ? 'person' : 'person'}
-                size={26}
-                color={focused ? Colors.tabActive : '#222'} />
-              {focused && <Text style={{ color: Colors.tabActive, fontSize: 20 }}>Profile</Text>}
-            </LinearGradient>
-          </View>
-        )
-      }} />
-    </Tab.Navigator>
+    
+    <Tab.Navigator tabBar={props => <ReanimatedBottomTabs {...props} />}>
+    <Tab.Screen 
+      options={{
+        title: 'Home',
+        // for icon you should set your custom icon for each screen using tabBarIcon:
+        tabBarIcon: () => <Feather name="home" size={24} color="gray" />,
+        headerShown:false
+      }}
+      name="Home"
+      component={Home}
+    />
+    <Tab.Screen
+      name="Chats"
+      options={{
+        title: 'Home',
+        tabBarIcon: () => <MaterialIcons name="chat" size={24} color="gray" />,
+        headerShown:false
+      }}
+      component={ChatScreen}
+    />
+    <Tab.Screen
+      name="Profile"
+      options={{
+        title: 'Home',
+        tabBarIcon: () => <Ionicons name="person" size={24} color="gray" />,
+        headerShown:false
+      }}
+      component={Profile}
+    />
+  </Tab.Navigator>
+  
   );
 };
 
@@ -89,7 +58,10 @@ export default TabNavigator;
 
 const styles = StyleSheet.create({
 
-
+  container:{
+    backgroundColor:"white",
+    
+  },
   btnContainer: {
     height: 40,
     width: 100,
@@ -98,5 +70,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
-  }
+  },
+  
 })
