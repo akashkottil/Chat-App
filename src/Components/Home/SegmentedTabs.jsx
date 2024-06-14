@@ -1,43 +1,52 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import SegmentControl from 'react-native-segment-control';
+import SegmentControl from '../Home/SegmentControl';
 import { ScrollView } from 'react-native-gesture-handler';
 import TrendingSlides from './TrendingSlides';
 import Colors from '../../Constants/Colors';
+import All from './HomeTabs/All';
+import Latest from './HomeTabs/Latest';
+import NewModels from './HomeTabs/NewModels';
+import VerifedAi from './HomeTabs/VerifedAi';
+import ActiveNow from './HomeTabs/ActiveNow';
 
 
-const One = () => {
-    return <TrendingSlides />;
+const firstTab = () => {
+    return <All/>;
 };
-const Two = () => {
-    return <Text style={styles.text}>This is second view</Text>;
+const secondTab = () => {
+    return <Latest/>;
 };
-const Three = () => {
-    return <Text style={styles.text}>This is 3rd view</Text>;
+const thirdTab = () => {
+    return <NewModels/>;
 };
-const Four = () => {
-    return <Text style={styles.text}>This is 4th view</Text>;
+const fourthTab = () => {
+    return <VerifedAi/>;
 };
+const fifthTab = () => {
+    return <ActiveNow/>;
+};
+
 const segments = [
     {
         title: 'All',
-        view: One
+        view: firstTab
     },
     {
         title: 'Latest',
-        view: Two
+        view: secondTab
     },
     {
         title: 'New Models',
-        view: Three
+        view: thirdTab
     },
     {
         title: 'Verified',
-        view: Four
+        view: fourthTab
     },
     {
         title: 'Active Now',
-        view: Four
+        view: fifthTab
     },
 ];
 

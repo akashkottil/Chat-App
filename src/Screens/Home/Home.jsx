@@ -17,11 +17,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 import HomeTabs from '../../Components/Home/HomeTabs';
 import SegmentedTabs from '../../Components/Home/SegmentedTabs';
 
-
-
-
-
-
 const Home = () => {
 
   const influencers = [
@@ -64,35 +59,10 @@ const Home = () => {
           <TrendingSlides />
         </View>
         <View>
-          {/* <SegmentedTabs/> */}
-          <HomeTabs/>
+          <SegmentedTabs/>
+          {/* <HomeTabs/> */}
         </View>
-        <View style={styles.cardWrapper}>
-
-          {
-
-            influencers.map((influencer) => (
-              <View style={styles.card}>
-                <View>
-                  <Image source={influencer.img} style={styles.images} />
-                  <View style={styles.blackShade}></View>
-                  <View style={styles.cardDetails}>
-                    <View style={styles.text}>
-                      <Text style={styles.cardName}>{influencer.name}</Text>
-                      <Text style={styles.cardTag}>{influencer.nameTag}</Text>
-                    </View>
-                    {/* <View style={styles.cardButton}>
-              <Image source={frwd}/>
-            </View> */}
-                  </View>
-                </View>
-              </View>
-            ))
-          }
-
-
-          <View></View>
-        </View>
+        
       </ScrollView>
     </View>
   )

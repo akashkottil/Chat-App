@@ -1,13 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import Colors from '../../Constants/Colors'
 
+
 const HomeTabs = () => {
+  const [tabName, setTabName] = useState("");
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} >
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}  >
                 <View style={styles.tab}><Text style={styles.tabText}>All</Text></View>
                 <View style={styles.tab}><Text style={styles.tabText}>Latest</Text></View>
                 <View style={styles.tab}><Text style={styles.tabText}>New Models</Text></View>
