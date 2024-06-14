@@ -9,7 +9,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, View, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '../Constants/Colors';
-import ReanimatedBottomTabs from 'reanimated-bottom-tabs';
+import AnimatedTabBar from '../Navigation/AnimatedTabBar';
+
 
 
 
@@ -20,8 +21,10 @@ const TabNavigator = () => {
 
   return (
     
-    <Tab.Navigator tabBar={props => <ReanimatedBottomTabs {...props} />}>
+    <Tab.Navigator tabBar={props => <AnimatedTabBar {...props}  />}>
+      
     <Tab.Screen 
+    styles={styles.tabs}
       options={{
         title: 'Home',
         // for icon you should set your custom icon for each screen using tabBarIcon:
@@ -30,6 +33,7 @@ const TabNavigator = () => {
       }}
       name="Home"
       component={Home}
+      
     />
     <Tab.Screen
       name="Chats"
@@ -43,6 +47,7 @@ const TabNavigator = () => {
     <Tab.Screen
       name="Profile"
       options={{
+        
         title: 'Home',
         tabBarIcon: () => <Ionicons name="person" size={24} color="gray" />,
         headerShown:false
@@ -71,5 +76,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
+  
+  
   
 })

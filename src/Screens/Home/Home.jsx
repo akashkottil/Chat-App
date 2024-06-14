@@ -15,6 +15,7 @@ import frwd from '../../assets/Icons/frwdarrow.png'
 import { Screen } from 'react-native-screens';
 import { ScrollView } from 'react-native-gesture-handler';
 import HomeTabs from '../../Components/Home/HomeTabs';
+import SegmentedTabs from '../../Components/Home/SegmentedTabs';
 
 
 
@@ -63,6 +64,7 @@ const Home = () => {
           <TrendingSlides />
         </View>
         <View>
+          {/* <SegmentedTabs/> */}
           <HomeTabs/>
         </View>
         <View style={styles.cardWrapper}>
