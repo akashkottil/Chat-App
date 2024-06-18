@@ -2,44 +2,57 @@ import { Button, View, StyleSheet, Text, Image } from 'react-native';
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 
+
+
+// influencers images
+
 import achu from '../../assets/Influencers/Achu.png'
-import jinto from '../../assets/Influencers/jinto.jpeg'
-import mamitha from '../../assets/Influencers/mamitha.jpg'
-import shazam from '../../assets/Influencers/shazam.jpeg'
+import bellie from '../../assets/Influencers/bellie.png'
+import helen from '../../assets/Influencers/helen.png'
+import keira from '../../assets/Influencers/keira.png'
+import lilly from '../../assets/Influencers/lilly.png'
+
 
 const TrendingSlides = () => {
 
   const influencers = [
     {
-      id: 1,
-      name: "Aswathy achu",
-      nameTag: "Ai influencer",
-      img: achu,
+        id:1,
+        name: "Aswathy Achu",
+        nameTag: "Ai influencer",
+        img:achu
     },
     {
-      id: 2,
-      name: "Mamitha",
-      nameTag: "Ai Actress",
-      img: mamitha,
+        id:1,
+        name: "bellie",
+        nameTag: "Ai influencer",
+        img:bellie
     },
     {
-      id: 3,
-      name: "Shazam",
-      nameTag: "Tech Ai influencer",
-      img: shazam,
+        id:1,
+        name: "helen",
+        nameTag: "Ai influencer",
+        img:helen
     },
     {
-      id: 4,
-      name: "Jinto",
-      nameTag: "Fintness ai influencer",
-      img: jinto,
+        id:1,
+        name: "keira",
+        nameTag: "Ai influencer",
+        img:keira
     },
-  ]
+    {
+        id:1,
+        name: "lilly",
+        nameTag: "Ai influencer",
+        img:lilly
+    },
+]
 
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}  >
+        
       <View style={styles.cardWrapper}>
 
 {
@@ -76,6 +89,7 @@ export default TrendingSlides
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal:30
   },
   cardWrapper:{
     flexWrap:"wrap",

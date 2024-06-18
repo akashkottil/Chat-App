@@ -7,8 +7,6 @@ import Feather from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Text, View, StyleSheet } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import Colors from '../Constants/Colors';
 import AnimatedTabBar from '../Navigation/AnimatedTabBar';
 
 

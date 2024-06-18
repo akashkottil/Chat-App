@@ -1,50 +1,21 @@
 import { View, StyleSheet, Text, Image } from 'react-native';
-import React, { useState } from 'react'
+import React  from 'react'
 import searchIcon from '../../assets/Icons/search.png'
 import TrendingSlides from '../../Components/Home/TrendingSlides';
-import ProfileCard from '../../Components/Home/ProfileCard';
 
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '../../Constants/Colors';
 
-import achu from '../../assets/Influencers/Achu.png'
-import jinto from '../../assets/Influencers/jinto.jpeg'
-import mamitha from '../../assets/Influencers/mamitha.jpg'
-import shazam from '../../assets/Influencers/shazam.jpeg'
-import frwd from '../../assets/Icons/frwdarrow.png'
-import { Screen } from 'react-native-screens';
 import { ScrollView } from 'react-native-gesture-handler';
-import HomeTabs from '../../Components/Home/HomeTabs';
 import SegmentedTabs from '../../Components/Home/SegmentedTabs';
+import Footer from '../../Components/Home/Footer';
+import Parallax from '../../Components/Home/Parallax';
+
 
 const Home = () => {
+  
 
-  const influencers = [
-    {
-      id: 1,
-      name: "Aswathy achu",
-      nameTag: "Ai influencer",
-      img: achu,
-    },
-    {
-      id: 2,
-      name: "Mamitha",
-      nameTag: "Ai Actress",
-      img: mamitha,
-    },
-    {
-      id: 3,
-      name: "Shazam",
-      nameTag: "Tech Ai influencer",
-      img: shazam,
-    },
-    {
-      id: 4,
-      name: "Jinto",
-      nameTag: "Fintness ai influencer",
-      img: jinto,
-    },
-  ]
+
 
   return (
     <View style={styles.container}>
@@ -53,16 +24,18 @@ const Home = () => {
         <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={Colors.gradient} style={styles.searchBox}>
           <Image source={searchIcon} style={styles.searchIcon} />
         </LinearGradient>
+        
       </View>
       <ScrollView vertical={true} showsVerticalScrollIndicator={false} >
         <View>
-          <TrendingSlides />
+          {/* <TrendingSlides /> */}
+          <Parallax/>
         </View>
         <View>
           <SegmentedTabs/>
-          {/* <HomeTabs/> */}
+          
         </View>
-        
+        <Footer/>
       </ScrollView>
     </View>
   )
@@ -144,8 +117,9 @@ const styles = StyleSheet.create({
   },
   topbarText:{
     fontSize:25,
-    fontWeight:"600",
-    color:"black"
+    // fontWeight:"600",
+    color:"black",
+    
   }
 
 })
