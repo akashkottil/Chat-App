@@ -9,6 +9,8 @@ import bellie from '../../../assets/Influencers/bellie.png'
 import helen from '../../../assets/Influencers/helen.png'
 import keira from '../../../assets/Influencers/keira.png'
 import lilly from '../../../assets/Influencers/lilly.png'
+import { useNavigation } from '@react-navigation/native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
 const ActiveNow = () => {
@@ -20,30 +22,38 @@ const ActiveNow = () => {
             img:achu
         },
         {
-            id:1,
+            id:2,
             name: "bellie",
             nameTag: "Ai influencer",
             img:bellie
         },
         {
-            id:1,
+            id:3,
             name: "helen",
             nameTag: "Ai influencer",
             img:helen
         },
         {
-            id:1,
+            id:4,
             name: "keira",
             nameTag: "Ai influencer",
             img:keira
         },
         {
-            id:1,
+            id:5,
             name: "lilly",
             nameTag: "Ai influencer",
             img:lilly
         },
     ]
+
+    const navigation =useNavigation();
+
+    const handleProfileClick = (profile)=>{
+      navigation.navigate('personalChat',{userId: profile.id, userName: profile.name, userImage: profile.img});
+    };
+
+
   return (
     <View style={styles.container}>
       <View style={styles.cardWrapper}>
@@ -51,6 +61,7 @@ const ActiveNow = () => {
 {
 
   influencers.map((influencer) => (
+    <TouchableOpacity key={influencer.id} onPress={()=>handleProfileClick(influencer)}>
     <View style={styles.card}>
       <View>
         <Image source={influencer.img} style={styles.images} />
@@ -66,8 +77,10 @@ const ActiveNow = () => {
         </View>
       </View>
     </View>
+    </TouchableOpacity>
   ))
 }
+
 
 
 <View></View>

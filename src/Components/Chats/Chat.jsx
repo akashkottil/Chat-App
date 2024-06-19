@@ -2,10 +2,12 @@ import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import img1 from '../../assets/ProfilePics/trainDp.jpg';
 import LinearGradient from 'react-native-linear-gradient';
+import { useRoute } from '@react-navigation/native';
 
 import Colors from '../../Constants/Colors';
 
 const Chat = ({ navigation }) => {
+  
   return (
     <View>
       <TouchableOpacity style={styles.backIcon} onPress={() => navigation.navigate('personalChat')}>

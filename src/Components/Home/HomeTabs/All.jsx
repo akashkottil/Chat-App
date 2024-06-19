@@ -9,6 +9,9 @@ import bellie from '../../../assets/Influencers/bellie.png'
 import helen from '../../../assets/Influencers/helen.png'
 import keira from '../../../assets/Influencers/keira.png'
 import lilly from '../../../assets/Influencers/lilly.png'
+import { useNavigation } from '@react-navigation/native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+
 
 
 const All = () => {
@@ -44,6 +47,16 @@ const All = () => {
             img:lilly
         },
     ]
+
+    const navigation = useNavigation();
+
+    const handleProfileClick = (profile)=>{
+      navigation.navigate('personalChat',{
+        userId: profile.id,
+        userName: profile.name,
+        userImage: profile.img
+      })
+    }
   return (
     <View style={styles.container}>
       <View style={styles.cardWrapper}>
@@ -51,6 +64,7 @@ const All = () => {
 {
 
   influencers.map((influencer) => (
+    <TouchableOpacity key={influencer.id} onPress={()=>handleProfileClick(influencer)}>
     <View style={styles.card}>
       <View>
         <Image source={influencer.img} style={styles.images} />
@@ -66,6 +80,7 @@ const All = () => {
         </View>
       </View>
     </View>
+    </TouchableOpacity>
   ))
 }
 

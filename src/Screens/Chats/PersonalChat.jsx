@@ -8,7 +8,11 @@ import sendImg from '../../assets/Icons/send.png'
 import UserMessage from '../../Components/Chats/UserMessage'
 import AiMessage from '../../Components/Chats/AiMessage'
 
+import { useRoute } from '@react-navigation/native'
+
 const PersonalChat = ({ navigation }) => {
+  const route = useRoute();
+  const { userId, userName, userImage } = route.params;
   return (
     <View style={styles.container}>
       <View style={styles.topbar}>
@@ -17,9 +21,9 @@ const PersonalChat = ({ navigation }) => {
             <Image source={backIcon} style={styles.backIcon} />
           </TouchableOpacity>
           <View style={styles.proDetails}>
-            <Image source={proPIc} style={styles.propicimg}></Image>
+            <Image source={userImage} style={styles.propicimg}></Image>
             <View>
-              <Text style={styles.name}>Akash Kottil</Text>
+              <Text style={styles.name}>{userName}</Text>
               <View style={styles.statusbar}>
                 <Text style={styles.status}>Active now</Text>
                 <View style={styles.active}></View>
@@ -32,6 +36,25 @@ const PersonalChat = ({ navigation }) => {
       <View style={styles.main}>
         <ScrollView>
           <UserMessage />
+          <UserMessage />
+          <UserMessage />
+          <UserMessage />
+          <UserMessage />
+          <UserMessage />
+          <UserMessage />
+          <UserMessage />
+          <UserMessage />
+          <UserMessage />
+          <AiMessage />
+          <AiMessage />
+          <UserMessage />
+          <AiMessage />
+          <AiMessage />
+          <AiMessage />
+          <AiMessage />
+          <AiMessage />
+          <AiMessage />
+          <AiMessage />
           <AiMessage />
         </ScrollView>
       </View>

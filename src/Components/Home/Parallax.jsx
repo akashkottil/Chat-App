@@ -1,80 +1,76 @@
 import { useState } from "react";
-import { View, Text, Dimensions, StyleSheet, Image } from "react-native";
+import { View, Text, Dimensions, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Animated, {
     Extrapolate,
     interpolate,
     useAnimatedStyle,
-  useSharedValue,
+    useSharedValue,
 } from "react-native-reanimated";
 import Carousel from "react-native-reanimated-carousel";
+import { useNavigation } from "@react-navigation/native";
 
 // images
-
-import img1 from '../../assets/Influencers/sreya.jpg'
-import img2 from '../../assets/Influencers/bellie.png'
-import img3 from '../../assets/Influencers/helen.png'
-import img4 from '../../assets/Influencers/keira.png'
-import img5 from '../../assets/Influencers/lilly.png'
-
+import img1 from '../../assets/Influencers/sreya.jpg';
+import img2 from '../../assets/Influencers/bellie.png';
+import img3 from '../../assets/Influencers/helen.png';
+import img4 from '../../assets/Influencers/keira.png';
+import img5 from '../../assets/Influencers/lilly.png';
 
 const PAGE_WIDTH = Dimensions.get('window').width;
 
-
-
-const list = [
+const influencers = [
     {
-        id: '1',
-        title: 'sreya',
-        color: '#26292E',
-        img: img1
+        id: '6',
+        name: 'sreya',
+        img: img1,
     },
     {
         id: '2',
-        title: 'bellie',
-        color: '#899F9C',
-        color: '#899F9C',
-        img: img2
+        name: 'bellie',
+        img: img2,
     },
     {
         id: '3',
-        title: 'helen',
-        color: '#B3C680',
-        img: img3
+        name: 'helen',
+        img: img3,
     },
     {
         id: '4',
-        title: 'keira',
-        color: '#5C6265',
-        img: img4
+        name: 'keira',
+        img: img4,
     },
     {
         id: '5',
-        title: 'lilly',
-        color: '#F5D399',
-        img: img5
-    }
+        name: 'lilly',       
+        img: img5,
+    },
 ];
 
 function Parallax() {
-  const [isVertical, setIsVertical] = useState(false);
-  const [autoPlay, setAutoPlay] = useState(true);
-  const [pagingEnabled, setPagingEnabled] = useState(true);
-  const [snapEnabled, setSnapEnabled] = useState(true);
-  const progressValue = useSharedValue(0);
-  const baseOptions = isVertical
-    ? {
-      vertical: true,
-    }
-    : 
-    {
-      vertical: false,
-      width: PAGE_WIDTH ,
-      height: PAGE_WIDTH * 0.6,
+    const [isVertical, setIsVertical] = useState(false);
+    const [autoPlay, setAutoPlay] = useState(true);
+    const [pagingEnabled, setPagingEnabled] = useState(true);
+    const [snapEnabled, setSnapEnabled] = useState(true);
+    const progressValue = useSharedValue(0);
+    const baseOptions = isVertical
+        ? {
+            vertical: true,
+        }
+        : {
+            vertical: false,
+            width: PAGE_WIDTH,
+            height: PAGE_WIDTH * 0.6,
+        };
+
+    const navigation = useNavigation();
+
+    const handleProfileClick = (profile) => {
+        navigation.navigate('personalChat', { userId: profile.id, userName: profile.name , userImage: profile.img });
     };
 
-  return (
-    <View style={styles.container}>
-            <Carousel 
+    return (
+        <View style={styles.container}>
+            <Carousel
                 width={PAGE_WIDTH}
                 height={PAGE_WIDTH * 0.6}
                 vertical={false}
@@ -89,40 +85,40 @@ function Parallax() {
                     parallaxScrollingScale: 0.9,
                     parallaxScrollingOffset: 50,
                 }}
-                data={list}
+                data={influencers}
                 scrollAnimationDuration={1000}
                 renderItem={({ item }) => (
-                    <View style={styles.card}>
-                        <Image source={item.img} style={styles.images} />
-                        <View style={styles.blackShade}></View>
-                        <View style={styles.cardDetails}>
-                            <Text style={styles.cardName}>{item.title}</Text>
-                            <Text style={styles.cardTag}>{item.nameTag}</Text>
+                    <TouchableOpacity key={item.id} onPress={() => handleProfileClick(item)}>
+                        <View style={styles.card}>
+                            <Image source={item.img} style={styles.images} />
+                            <View style={styles.blackShade}></View>
+                            <View style={styles.cardDetails}>
+                                <Text style={styles.cardName}>{item.name}</Text>
+                                <Text style={styles.cardTag}>{item.nameTag}</Text>
+                            </View>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                 )}
-            /> 
+            />
         </View>
-  );
+    );
 }
 
-
 export default Parallax;
-
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: 30,
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
     },
     card: {
         width: 380,
         height: PAGE_WIDTH * 0.6,
         borderRadius: 30,
         position: "relative",
-        overflow: "hidden" ,
+        overflow: "hidden",
     },
     images: {
         width: '100%',
@@ -136,7 +132,7 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
         backgroundColor: "black",
-        opacity: 0.3
+        opacity: 0.3,
     },
     cardDetails: {
         position: "absolute",
@@ -145,14 +141,14 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        zIndex: 20
+        zIndex: 20,
     },
     cardName: {
         color: "white",
         fontWeight: "600",
-        fontSize: 16
+        fontSize: 16,
     },
     cardTag: {
         color: "white",
-    }
+    },
 });
