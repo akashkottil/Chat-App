@@ -4,10 +4,18 @@ import {
     ScrollView,
     Animated,
     StyleSheet,
-    ViewProperties,
-    TouchableOpacity
+    TouchableOpacity,
+    useColorScheme
 } from "react-native";
-import Colors from "../../Constants/Colors";
+import colorTheme from "../../DarkMode/darkMode";
+
+
+
+// Functional component to wrap the class component and pass color scheme as prop
+const SegmentControlWrapper = (props) => {
+    const isDarkMode = useColorScheme() === 'dark';
+    return <SegmentControl {...props} isDarkMode={isDarkMode} />;
+};
 
 class SegmentControl extends Component {
     state = {
@@ -16,7 +24,7 @@ class SegmentControl extends Component {
     };
 
     render() {
-        const { segments = [], color = "#4549D1" } = this.props;
+        const { segments = [], color = "#4549D1", isDarkMode } = this.props;
         const numberOfSegments = segments.length;
         const { containerWidth } = this.state;
 
@@ -40,22 +48,10 @@ class SegmentControl extends Component {
                     <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
                         <View style={styles.headerContainer}>
                             {segments.map((segment, index) =>
-                                this.renderSegment(numberOfSegments, segment.title, index)
+                                this.renderSegment(numberOfSegments, segment.title, index, isDarkMode)
                             )}
                         </View>
                     </ScrollView>
-                    {/* <Animated.View
-                        style={[
-                            styles.animatedSeparator,
-                            {
-                                width: containerWidth / numberOfSegments,
-                                marginLeft: activeMargin,
-                                backgroundColor: color
-                            }
-                        ]}
-                    /> */}
-                    {/* <View style={styles.separatorStyle} /> */}
-
                     <ScrollView
                         scrollEventThrottle={16}
                         onScroll={this.handleOnScroll}
@@ -77,7 +73,7 @@ class SegmentControl extends Component {
         );
     }
 
-    renderSegment = (numberOfSegments, title, index) => {
+    renderSegment = (numberOfSegments, title, index, isDarkMode) => {
         const input = Array.from(
             { length: numberOfSegments },
             (value, key) => key
@@ -86,7 +82,7 @@ class SegmentControl extends Component {
         const output = Array.from(
             { length: numberOfSegments },
             (value, key) => key
-        ).map(key => (key === index ? "black" : "#828282"));
+        ).map(key => (key === index ? "white" : "#828282"));
 
         if (output.length < 2) {
             return <View key={index} />;
@@ -110,19 +106,18 @@ class SegmentControl extends Component {
                 }}
                 key={index}
             >
-                <Animated.View style={styles.test}>
-                    <Animated.Text style={[styles.title, { color }]}>{title}</Animated.Text>
+                <Animated.View style={styles.segmentTab}>
+                    <Animated.Text style={[styles.segmentTabText, { color }]}>{title}</Animated.Text>
                 </Animated.View>
             </TouchableOpacity>
         );
     };
 
-    handleOnScroll = x => {
+    handleOnScroll = (x) => {
         const mover = Animated.event([
             { nativeEvent: { contentOffset: { x: this.state.scrollX } } }
         ],
-        { useNativeDriver: false }
-    );
+        { useNativeDriver: false });
         mover(x);
     };
 }
@@ -130,7 +125,7 @@ class SegmentControl extends Component {
 const styles = StyleSheet.create({
     card: {
         width: "100%",
-        backgroundColor: "white",
+        backgroundColor: colorTheme.bgColor,
         borderRadius: 6,
         shadowColor: "black",
         shadowOffset: { height: 4, width: 0 },
@@ -153,26 +148,27 @@ const styles = StyleSheet.create({
         alignItems: "center",
         paddingVertical: 16,
     },
-    title: {
+    segmentTabText: {
         fontWeight: "600",
         fontSize: 16,
-        textAlign: "center"
+        textAlign: "center",
+        color: colorTheme.segmentTabText,
+        
     },
     animatedSeparator: {
         height: 2
     },
-    test: {
+    segmentTab: {
         width: "auto",
         height: 40,
-        backgroundColor: Colors.secondary,
+        backgroundColor: colorTheme.segmentTab,
         borderRadius: 20,
         paddingHorizontal: 25,
         justifyContent: "center",
         alignItems: "center",
         marginHorizontal: 5,
-        // marginVertical: 5,
         elevation: 6,
     }
 });
 
-export default SegmentControl;
+export default SegmentControlWrapper;

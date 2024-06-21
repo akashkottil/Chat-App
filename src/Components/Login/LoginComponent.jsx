@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, TextInput, Image } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import Colors from '../../Constants/Colors'
 import LinearGradient from 'react-native-linear-gradient'
 
 // icons
@@ -11,6 +10,7 @@ import googleIcons from '../../assets/Icons/google.png'
 import fbIcons from '../../assets/Icons/fb.png' 
 
 import { useNavigation } from '@react-navigation/native'
+import colorTheme from '../../DarkMode/darkMode';
 
 
 const LoginComponent = ({switchToSignup, switchToForgotPassword, }) => {
@@ -41,7 +41,7 @@ const LoginComponent = ({switchToSignup, switchToForgotPassword, }) => {
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={styles.btnContainer} onPress={handleLogin}>
-                    <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
+                    <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
                         <Text style={styles.btnText}>Login</Text>
                     </LinearGradient>
                 </TouchableOpacity>
@@ -74,24 +74,16 @@ export default LoginComponent
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: colorTheme.themeColor,
     },
-    // backBtn: {
-    //     height: 50,
-    //     width: 50,
-    //     borderWidth: 0.5,
-    //     borderColor: '##E8ECF4',
-    //     borderRadius: 15,
-    //     justifyContent:"center",
-    //     alignItems:"center"
-    // },
+
     backIcon:{
         height:19,
         width:19
     },
     wrapper: {
         flex: 12,
-        backgroundColor: "white",
         alignSelf: "stretch",
         paddingHorizontal: 20,
         gap: 30,
@@ -104,7 +96,7 @@ const styles = StyleSheet.create({
         fontSize: 45,
         fontWeight: "600",
         alignItems: "flex-start",
-        color: "black"
+        color: colorTheme.white
     },
     inputs: {
         gap: 12
@@ -112,8 +104,8 @@ const styles = StyleSheet.create({
     textInput: {
         height: 56,
         borderRadius: 8,
-        borderColor: '#E8ECF4',
-        backgroundColor: '#F7F8F9',
+        borderColor: colorTheme.inputBar,
+        backgroundColor: colorTheme.inputBar,
         borderWidth: 1,
         paddingLeft: 8,
         fontSize: 20
@@ -123,7 +115,7 @@ const styles = StyleSheet.create({
     },
     forgotPswrd: {
         fontSize: 14,
-        color: "#6A707C"
+        color: colorTheme.white,
     },
     btnContainer: {
         // width:250,
@@ -138,13 +130,13 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontSize: 15,
-        color: Colors.white,
+        color: colorTheme.white,
         fontWeight: "600"
     },
     line: {
         height: 1,
         flex: 1,
-        backgroundColor: "gray"
+        backgroundColor: colorTheme.white,
     },
 
     loginWithContainer: {
@@ -154,14 +146,16 @@ const styles = StyleSheet.create({
         gap: 10
     },
     orLoginText: {
-        fontSize: 14
+        fontSize: 14,
+        color: colorTheme.white,
     },
     socialLoginContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
     },
     socialButton: {
-        borderColor: "#E8ECF4",
+        borderColor: colorTheme.inputBar,
+        backgroundColor:colorTheme.inputBar,
         borderWidth: 1,
         width: 105,
         height: 56,
@@ -172,7 +166,7 @@ const styles = StyleSheet.create({
     qstn: {
         alignSelf: "center",
         fontSize: 15,
-        color: "black"
+        color: colorTheme.white,
     },
     socialIcon: {
         height: 26,

@@ -41,7 +41,7 @@ const influencers = [
     },
     {
         id: '5',
-        name: 'lilly',       
+        name: 'lilly',
         img: img5,
     },
 ];
@@ -65,7 +65,7 @@ function Parallax() {
     const navigation = useNavigation();
 
     const handleProfileClick = (profile) => {
-        navigation.navigate('personalChat', { userId: profile.id, userName: profile.name , userImage: profile.img });
+        navigation.navigate('personalChat', { userId: profile.id, userName: profile.name, userImage: profile.img });
     };
 
     return (
@@ -94,7 +94,6 @@ function Parallax() {
                             <View style={styles.blackShade}></View>
                             <View style={styles.cardDetails}>
                                 <Text style={styles.cardName}>{item.name}</Text>
-                                <Text style={styles.cardTag}>{item.nameTag}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -110,11 +109,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: 30,
-        justifyContent: "space-between",
+        justifyContent: "center",
         alignItems: "center",
     },
     card: {
-        width: 380,
+        width: PAGE_WIDTH - 60,
         height: PAGE_WIDTH * 0.6,
         borderRadius: 30,
         position: "relative",
@@ -138,17 +137,14 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 12,
         left: 12,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "flex-end",
         zIndex: 20,
     },
     cardName: {
         color: "white",
         fontWeight: "600",
         fontSize: 16,
-    },
-    cardTag: {
-        color: "white",
     },
 });

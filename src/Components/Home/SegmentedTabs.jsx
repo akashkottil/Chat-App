@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, useColorScheme } from 'react-native'
 import React, { useState } from 'react'
 import SegmentControl from '../Home/SegmentControl';
 import { ScrollView } from 'react-native-gesture-handler';
 import TrendingSlides from './TrendingSlides';
-import Colors from '../../Constants/Colors';
+// import Colors from '../../Constants/Colors';
 import All from './HomeTabs/All';
 import Latest from './HomeTabs/Latest';
 import NewModels from './HomeTabs/NewModels';
@@ -51,6 +51,9 @@ const segments = [
 ];
 
 
+
+
+
 const SegmentedTabs = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     return (
@@ -78,7 +81,6 @@ const styles = StyleSheet.create({
     tab: {
         width: "auto",
         height: 40,
-        backgroundColor: Colors.secondary,
         borderRadius: 20,
         paddingHorizontal: 25,
         justifyContent: "center",

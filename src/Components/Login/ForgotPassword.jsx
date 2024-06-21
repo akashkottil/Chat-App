@@ -2,10 +2,9 @@ import { StyleSheet, Text, View, Image,TextInput} from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
-import Colors from '../../Constants/Colors'
-
 
 import backIcon from "../../assets/Icons/backicon.png"
+import colorTheme from '../../DarkMode/darkMode'
 
 const ForgotPassword = ({switchToOtpScreen,switchToLogin }) => {
   return (
@@ -29,7 +28,7 @@ const ForgotPassword = ({switchToOtpScreen,switchToLogin }) => {
                     <TextInput style={styles.textInput} placeholder="Enter your Email" />
                 </View>
                 <TouchableOpacity style={styles.btnContainer} onPress={switchToOtpScreen}>
-                    <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
+                    <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
                         <Text style={styles.btnText}>Send Code</Text>
                     </LinearGradient>
                 </TouchableOpacity>
@@ -47,16 +46,19 @@ export default ForgotPassword
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: colorTheme.themeColor,
     },
     backBtn: {
         height: 50,
         width: 50,
         borderWidth: 0.5,
-        borderColor: '##E8ECF4',
+        borderColor: colorTheme.inputBar,
+        backgroundColor: colorTheme.inputBar,
         borderRadius: 15,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        elevation:10
     },
     backIcon: {
         height: 19,
@@ -64,7 +66,6 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         flex: 12,
-        backgroundColor: "white",
         alignSelf: "stretch",
         paddingHorizontal: 20,
         gap: 30,
@@ -77,10 +78,11 @@ const styles = StyleSheet.create({
         fontSize: 45,
         fontWeight: "600",
         alignItems: "flex-start",
-        color: "black"
+        color: colorTheme.white
     },
     para:{
-        fontSize:16
+        fontSize:16,
+        color: colorTheme.white
     },
     inputs: {
         gap: 12
@@ -88,8 +90,8 @@ const styles = StyleSheet.create({
     textInput: {
         height: 56,
         borderRadius: 8,
-        borderColor: '#E8ECF4',
-        backgroundColor: '#F7F8F9',
+        borderColor: colorTheme.inputBar,
+        backgroundColor: colorTheme.inputBar,
         borderWidth: 1,
         paddingLeft: 8,
         fontSize: 20
@@ -109,13 +111,13 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontSize: 15,
-        color: Colors.white,
+        color: colorTheme.white,
         fontWeight: "600"
     },
     qstn: {
         alignSelf: "center",
         fontSize: 15,
-        color: "black"
+        color: colorTheme.white,
     },
 
 })

@@ -6,7 +6,9 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import TabItem from "../Navigation/TabItem";
-import Colors from "../Constants/Colors";
+// import Colors from "../Constants/Colors";
+import {dark, defaultT, light} from '../Constants/Colors';
+import colorTheme from "../DarkMode/darkMode";
 
 const { width } = Dimensions.get("window");
 
@@ -18,11 +20,11 @@ const AnimatedTabBar = ({
   margin = 8,
   moverPadding = 5,
   moverStyle = {
-    backgroundColor: Colors.activeTab,
+    backgroundColor: colorTheme.activeTab,
     borderRadius: 10,
   },
   contentContainerStyle = {
-    backgroundColor: Colors.defaultTab,
+    backgroundColor: colorTheme.bgColor,
     borderRadius: 14,
     elevation: 3,
   },

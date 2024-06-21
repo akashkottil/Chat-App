@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity,Alert } from 'react-native'
+import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, Alert, Switch } from 'react-native';
 import React from 'react'
 import profileDp from '../../assets/ProfilePics/trainDp.jpg'
 
@@ -24,6 +24,7 @@ import termImg from "../../assets/SettingsIcons/terms.png"
 import logout from "../../assets/SettingsIcons/logout.png"
 import del from "../../assets/SettingsIcons/delete.png"
 import { useNavigation } from '@react-navigation/native'
+import colorTheme from '../../DarkMode/darkMode'
 
 
 
@@ -60,8 +61,17 @@ const settingsData = [
     title: "User Interface",
     data: "Enable Dark or Light Mode",
     icon: interfaceImg,
-    arrow: arrowIcon
+    Component: ({ isDarkMode, toggleTheme }) => (
+      <Switch
+        trackColor={{ false: "#767577", true: "#81b0ff" }}
+        thumbColor={isDarkMode ? "#f5dd4b" : "#f4f3f4"}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleTheme}
+        value={isDarkMode}
+      />
+    )
   },
+
   {
     id: 5,
     title: "Privacy",
@@ -136,10 +146,16 @@ const showLogoutAlert = () => {
 
 const ProfileLists = () => {
 
-    const navigation = useNavigation ();
-    const handleEdit= ()=>{
-        navigation.navigate('editprofile')
-    }
+  const navigation = useNavigation();
+  const handleEdit = () => {
+    navigation.navigate('editprofile')
+  }
+
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   return (
     <View style={styles.container}>
@@ -166,9 +182,9 @@ const ProfileLists = () => {
             </View>
           </View>
           <View style={styles.profilebtns}>
-            <View><Text>@akashkottil</Text></View>
+            <View><Text style={styles.profileText}>@akashkottil</Text></View>
             <View style={styles.line}></View>
-            <View><Text>9539987128</Text></View>
+            <View><Text style={styles.profileText}>9539987128</Text></View>
           </View>
         </View>
         <View style={styles.mainWrapper}>
@@ -180,7 +196,7 @@ const ProfileLists = () => {
               <View style={styles.mainCard}>
                 {
                   settingsData.map((data) => (
-                    <TouchableOpacity style={styles.dataCard} onPress={() => navigation.navigate(data.path)}>
+                    <TouchableOpacity style={styles.dataCard} onPress={() => data.path && navigation.navigate(data.path)}>
                       <View style={styles.cardLeft}>
                         <View>
                           <Image source={data.icon} style={styles.icons} />
@@ -189,10 +205,9 @@ const ProfileLists = () => {
                           <Text style={styles.contentTitle}>{data.title}</Text>
                           <Text style={styles.contentPara}>{data.data}</Text>
                         </View>
-
                       </View>
                       <View>
-                        <Image source={data.arrow} style={styles.arrowIcon} />
+                        {data.Component ? <data.Component isDarkMode={isDarkMode} toggleTheme={toggleTheme} /> : <Image source={data.arrow} style={styles.arrowIcon} />}
                       </View>
                     </TouchableOpacity>
                   ))
@@ -228,7 +243,7 @@ const ProfileLists = () => {
               <View style={styles.mainCard}>
                 {
                   account.map((data) => (
-                    <TouchableOpacity  style={styles.dataCard} onPress={data.onPress}>
+                    <TouchableOpacity style={styles.dataCard} onPress={data.onPress}>
                       <View style={styles.cardLeft}>
                         <View>
                           <Image source={data.icon} style={styles.icons} />
@@ -260,7 +275,8 @@ export default ProfileLists
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 30
+    paddingTop: 30,
+    backgroundColor: colorTheme.bgColor
   },
 
   topbar: {
@@ -296,20 +312,23 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 35,
     fontWeight: "400",
-    color: "black"
+    color: colorTheme.white
   },
   profilebtns: {
     display: "flex",
     flexDirection: "row",
     gap: 20,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+  },
+  profileText: {
+    color: colorTheme.white
   },
 
   line: {
     height: 15,
-    width: 1,
-    backgroundColor: "black"
+    width: 1.5,
+    backgroundColor: colorTheme.white
   },
   mainWrapper: {
     paddingHorizontal: 10,
@@ -324,7 +343,7 @@ const styles = StyleSheet.create({
     gap: 20
   },
   mainCard: {
-    backgroundColor: "white",
+    backgroundColor: colorTheme.cards,
     borderRadius: 20,
     paddingVertical: 10,
   },
@@ -351,9 +370,9 @@ const styles = StyleSheet.create({
     width: 20
   },
   contentTitle: {
-    fontSize: 22,
+    fontSize: 16,
     fontWeight: "800",
-    color: "black"
+    color: colorTheme.white
   },
   contentPara: {
     width: 250,

@@ -2,12 +2,10 @@ import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import img1 from '../../assets/ProfilePics/trainDp.jpg';
 import LinearGradient from 'react-native-linear-gradient';
-import { useRoute } from '@react-navigation/native';
+import colorTheme from '../../DarkMode/darkMode';
 
-import Colors from '../../Constants/Colors';
 
 const Chat = ({ navigation }) => {
-  
   return (
     <View>
       <TouchableOpacity style={styles.backIcon} onPress={() => navigation.navigate('personalChat')}>
@@ -39,10 +37,10 @@ const styles = StyleSheet.create({
   chats: {
     alignSelf: "stretch",
     height: 80,
-    backgroundColor: "white",
+    backgroundColor: colorTheme.cards,
     borderRadius: 25,
     shadowColor: 'black',
-    elevation: 2,
+    elevation: 6,
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 20,
@@ -80,9 +78,10 @@ const styles = StyleSheet.create({
   title: {
     color: "black",
     fontWeight: "600",
+    color: colorTheme.white,
   },
   message: {
-    color: "black",
+    color: colorTheme.white,
   },
   left: {
     flexDirection: "row",

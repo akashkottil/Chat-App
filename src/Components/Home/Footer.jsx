@@ -6,6 +6,7 @@ import Whatsapp from 'react-native-vector-icons/Ionicons'
 import Insta from 'react-native-vector-icons/Ionicons'
 
 import LottieView from 'lottie-react-native';
+import colorTheme from '../../DarkMode/darkMode'
 
 const Footer = () => {
   return (
@@ -52,7 +53,7 @@ export default Footer
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E7DBDB",
+    backgroundColor: colorTheme.footerBgColor,
 
   },
   wrapper: {
@@ -72,13 +73,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    fontWeight: "600"
+    fontWeight: "600",
+    color: colorTheme.footerText
   },
   text: {
     fontSize: 18,
     fontWeight: "600",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    color: colorTheme.footerText
   },
   madeWith:{
     justifyContent:"center",

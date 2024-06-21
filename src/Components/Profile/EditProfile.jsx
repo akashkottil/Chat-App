@@ -14,9 +14,9 @@ import {
 import { Picker } from '@react-native-picker/picker';
 import * as ImagePicker from 'react-native-image-picker';
 import LinearGradient from 'react-native-linear-gradient'
-import Colors from '../../Constants/Colors'
 import profileDp from '../../assets/ProfilePics/trainDp.jpg'
 import backIcon from "../../assets/Icons/backicon.png"
+import colorTheme from '../../DarkMode/darkMode';
 
 
 
@@ -75,7 +75,7 @@ const EditProfile = () => {
       <View style={styles.topSection}>
         <View style={styles.img}>
           <Image source={profileDp} style={styles.profileImg} />
-          
+
         </View>
 
       </View>
@@ -122,7 +122,7 @@ const EditProfile = () => {
 
         {/* <Button title="Submit" onPress={updateProfile} /> */}
         <TouchableOpacity onPress={updateProfile}>
-          <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
+          <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
             <Text style={styles.btnText}>Submit</Text>
           </LinearGradient>
         </TouchableOpacity>
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: colorTheme.themeColor,
 
   },
   imagePicker: {
@@ -153,10 +153,11 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: colorTheme.inputBar,
     borderWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 10,
+    
   },
   picker: {
     height: 50,
@@ -166,31 +167,34 @@ const styles = StyleSheet.create({
   textInput: {
     height: 56,
     borderRadius: 8,
-    borderColor: '#E8ECF4',
-    backgroundColor: '#F7F8F9',
+    borderColor: colorTheme.inputBar,
+    backgroundColor: colorTheme.inputBar,
     borderWidth: 1,
     paddingLeft: 8,
-    fontSize: 20
+    fontSize: 20,
+    
   },
   gender: {
     height: 56,
     borderRadius: 8,
-    borderColor: '#E8ECF4',
-    backgroundColor: '#F7F8F9',
+    borderColor: colorTheme.inputBar,
+    backgroundColor: colorTheme.inputBar,
     borderWidth: 1,
     paddingLeft: 8,
     fontSize: 20,
-    width:180
+    width: 180,
+    elevation:8
   },
   number: {
     height: 56,
     borderRadius: 8,
-    borderColor: '#E8ECF4',
-    backgroundColor: '#F7F8F9',
+    borderColor: colorTheme.inputBar,
+    backgroundColor: colorTheme.inputBar,
     borderWidth: 1,
     paddingLeft: 8,
     fontSize: 20,
-    width:180
+    width: 180,
+    elevation:8
   },
   inputs: {
     gap: 12
@@ -204,7 +208,7 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 15,
-    color: Colors.white,
+    color: colorTheme.white,
     fontWeight: "600"
   },
   topSection: {
@@ -222,19 +226,21 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderWidth: 0.5,
-    borderColor: '##E8ECF4',
+    borderColor: colorTheme.inputBar,
+    backgroundColor: colorTheme.inputBar,
     borderRadius: 15,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    elevation: 10
   },
   backIcon: {
     height: 19,
     width: 19
   },
-  rowInput:{
-    flexDirection:"row",
-    flex:1,
-    gap:10
+  rowInput: {
+    flexDirection: "row",
+    flex: 1,
+    gap: 10
   }
 });
 

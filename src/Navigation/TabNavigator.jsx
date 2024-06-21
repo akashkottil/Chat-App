@@ -60,21 +60,5 @@ const TabNavigator = () => {
 export default TabNavigator;
 
 const styles = StyleSheet.create({
-
-  container:{
-    backgroundColor:"white",
-    
-  },
-  btnContainer: {
-    height: 40,
-    width: 100,
-    justifyContent: "center",
-    borderRadius: 30,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-  },
-  
-  
   
 })

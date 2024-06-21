@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet, StatusBar } from 'react-native';
+import { DarkTheme, DefaultTheme, NavigationContainer, ThemeProvider } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TabNavigator from './src/Navigation/TabNavigator';
@@ -14,6 +14,7 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
+    <ThemeProvider>
     <GestureHandlerRootView style={{ flex: 1 }}>
     <NavigationContainer>
       <StatusBar barStyle="dark-content" backgroundColor="#6a51ae" />
@@ -26,6 +27,7 @@ const App = () => {
       </Stack.Navigator>
     </NavigationContainer>
     </GestureHandlerRootView>
+    </ThemeProvider>
   );
 };
 

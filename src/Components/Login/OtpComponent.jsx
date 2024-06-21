@@ -2,13 +2,13 @@ import { StyleSheet, Text, View, Image,TextInput} from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
-import Colors from '../../Constants/Colors'
 import { OtpInput } from 'react-native-otp-entry'
 
 
 
 
 import backIcon from "../../assets/Icons/backicon.png"
+import colorTheme from '../../DarkMode/darkMode';
 const OtpComponent = ({switchToCreatePassword,switchToForgotPassword}) => {
     
   return (
@@ -32,7 +32,7 @@ const OtpComponent = ({switchToCreatePassword,switchToForgotPassword}) => {
 
                 <OtpInput
                 numberOfDigits={4}
-                focusColor={Colors.solid}
+                focusColor={colorTheme.footerText}
                 focusStickBlinkingDuration={400}
                 containerStyle={styles.otpContainer}
                 inputsContainerStyle={styles.otpInputContainer}
@@ -41,7 +41,7 @@ const OtpComponent = ({switchToCreatePassword,switchToForgotPassword}) => {
 
                 
                 <TouchableOpacity style={styles.btnContainer} onPress={switchToCreatePassword} >
-                    <LinearGradient colors={Colors.gradient} style={styles.btnGradient}>
+                    <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
                         <Text style={styles.btnText} >Verify</Text>
                     </LinearGradient>
                 </TouchableOpacity>
@@ -59,13 +59,15 @@ export default OtpComponent
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: colorTheme.themeColor,
     },
     backBtn: {
         height: 50,
         width: 50,
         borderWidth: 0.5,
-        borderColor: '##E8ECF4',
+        borderColor: colorTheme.inputBar,
+        backgroundColor:colorTheme.inputBar,
         borderRadius: 15,
         justifyContent: "center",
         alignItems: "center"
@@ -76,7 +78,6 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         flex: 12,
-        backgroundColor: "white",
         alignSelf: "stretch",
         paddingHorizontal: 20,
         gap: 30,
@@ -89,19 +90,20 @@ const styles = StyleSheet.create({
         fontSize: 45,
         fontWeight: "600",
         alignItems: "flex-start",
-        color: "black"
+        color: colorTheme.white
     },
     para:{
-        fontSize:16
+        fontSize:16,
+        color: colorTheme.white
     },
 
     // otpContainer: {
-    //     backgroundColor: '#F7F8F9', // Adjust the background color
+        
     //     width: '100%', // Adjust the width
     //     height: 56, // Adjust the height
     //   },
     //   otpInputContainer: {
-    //     backgroundColor: '#F7F8F9', // Adjust the background color of each input
+        
     //     height: 56, // Adjust the height of each input
     //     width: 50, // Adjust the width of each input
     //     margin: 5, // Adjust the margin between inputs
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     //   otpInput: {
     //     fontSize: 50, // Adjust the font size
     //     textAlign: 'center', // Center align the text,
-    //     backgroundColor: '#F7F8F9', // Adjust the background color of each input
+    //     backgroundColor: colorTheme.footerText, // Adjust the background color of each input
     //   },
 
     btnContainer: {
@@ -126,13 +128,13 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontSize: 15,
-        color: Colors.white,
+        color: colorTheme.white,
         fontWeight: "600"
     },
     qstn: {
         alignSelf: "center",
         fontSize: 15,
-        color: "black"
+        color: colorTheme.white
     },
 
 })

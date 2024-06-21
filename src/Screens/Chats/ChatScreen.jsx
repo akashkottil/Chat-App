@@ -1,8 +1,8 @@
 import { StyleSheet, Text, StatusBar, ScrollView, View, TextInput, Image } from 'react-native';
 import React from 'react';
 import SearchIcon from 'react-native-vector-icons/Feather';
-import FilterIcon from '../../assets/Icons/Vector.png';
 import Chat from '../../Components/Chats/Chat';
+import colorTheme from '../../DarkMode/darkMode';
 
 const ChatScreen = ({ navigation }) => {
   return (
@@ -14,30 +14,23 @@ const ChatScreen = ({ navigation }) => {
       />
       <View style={styles.topbar}>
         <View style={styles.searchbar}>
-          <SearchIcon name="search" size={25} color="#900" />
+          <SearchIcon name="search" size={25}  />
           <View style={styles.line}></View>
           <TextInput
             style={styles.searchInput}
             placeholder="Search Messages, Profiles"
           />
         </View>
-        <View style={styles.filter}>
+        {/* <View style={styles.filter}>
           <Image source={FilterIcon} style={styles.filterImg} />
-        </View>
+        </View> */}
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.main}>
+         
           <Chat navigation={navigation} />
-          <Chat navigation={navigation} />
-          <Chat navigation={navigation} />
-          <Chat navigation={navigation} />
-          <Chat navigation={navigation} />
-          <Chat navigation={navigation} />
-          <Chat navigation={navigation} />
-          <Chat navigation={navigation} />
-          <Chat navigation={navigation} />
-          <Chat navigation={navigation} />
-          <Chat navigation={navigation} />
+          
+          {/* <Chat navigation={navigation} />  */}
         </View>
       </ScrollView>
     </View>
@@ -49,11 +42,11 @@ export default ChatScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F8F8F8"
+    backgroundColor: colorTheme.bgColor
   },
   topbar: {
     flexDirection: "row",
-    backgroundColor: "#F8F8F8",
+    backgroundColor: colorTheme.transparent,
     paddingHorizontal: 20,
     paddingVertical: 15,
     justifyContent: "space-between",
@@ -61,8 +54,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     zIndex: 10,
   },
+  
   searchbar: {
-    backgroundColor: "#EAEAEA",
+    backgroundColor: colorTheme.inputBar ,
     height: 40,
     borderRadius: 30,
     flexDirection: "row",
@@ -71,7 +65,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     gap: 20,
     alignItems: "center",
-    flex:1
+    flex:1,
+    elevation:8
   },
   filter: {
     // flex: 1,
