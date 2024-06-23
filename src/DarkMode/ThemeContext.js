@@ -1,29 +1,65 @@
 // ThemeContext.js
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Appearance } from 'react-native';
+import React, { createContext, useState, useEffect } from 'react';
+import { useColorScheme } from 'react-native';
 
-const ThemeContext = createContext();
+const commonColor = {
+  gradient: ["#9673FF", "#522FDC"],
+  activeTab: '#522FDC',
+  defaultTab: '#DDD',
+};
+
+const lightTheme = {
+  themeColor: '#FFFFFF',
+  white: '#000000',
+  gray: 'gray',
+  bgColor: '#f8f8ff',
+  segmentTab: '#fff0f5',
+  segmentTabText: '#333333',
+  footerBgColor: '#48d1cc',
+  footerText: '#006666',
+  transparent: 'transparent',
+  inputBar: '#fff0f5',
+  cards: '#fff0f5',
+  profileBgColor: '#48d1cc',
+  tabActive: "#522FDC",
+  ...commonColor,
+};
+
+const darkTheme = {
+  themeColor: '#333333',
+  white: '#FFFFFF',
+  gray: '#a9a9a9',
+  bgColor: '#1e1e1e',
+  segmentTab: '#383838',
+  segmentTabText: '#FFFFFF',
+  footerBgColor: '#808080',
+  footerText: '#CCCCCC',
+  transparent: 'transparent',
+  inputBar: '#383838',
+  cards: '#2f2f2f',
+  profileBgColor: '#20b2aa',
+  tabActive: "#522FDC",
+  ...commonColor,
+};
+
+export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const colorScheme = Appearance.getColorScheme();
-  const [theme, setTheme] = useState(colorScheme);
+  const colorScheme = useColorScheme();
+  const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
+  const theme = isDarkMode ? darkTheme : lightTheme;
 
   useEffect(() => {
-    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
-      setTheme(colorScheme);
-    });
-    return () => subscription.remove();
-  }, []);
+    setIsDarkMode(colorScheme === 'dark');
+  }, [colorScheme]);
 
   const toggleTheme = () => {
-    setTheme(theme => theme === 'dark' ? 'light' : 'dark');
+    setIsDarkMode(prevMode => !prevMode);
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, isDarkMode, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
 };
-
-export const useTheme = () => useContext(ThemeContext);

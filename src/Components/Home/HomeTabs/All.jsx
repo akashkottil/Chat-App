@@ -103,13 +103,15 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         paddingVertical: 40,
-        alignItems: "center"
+        alignItems: "flex-start",
+        
       },
       card: {
         width: 164,
         height: 218,
         borderRadius: 30,
-        position: "relative"
+        position: "relative",
+        
       },
       cardDetails: {
         position: "absolute",

@@ -1,20 +1,17 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import {
     View,
     ScrollView,
     Animated,
     StyleSheet,
-    TouchableOpacity,
-    useColorScheme
+    TouchableOpacity
 } from "react-native";
-import colorTheme from "../../DarkMode/darkMode";
-
-
+import { ThemeContext } from '../../DarkMode/ThemeContext';
 
 // Functional component to wrap the class component and pass color scheme as prop
 const SegmentControlWrapper = (props) => {
-    const isDarkMode = useColorScheme() === 'dark';
-    return <SegmentControl {...props} isDarkMode={isDarkMode} />;
+    const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+    return <SegmentControl {...props} isDarkMode={isDarkMode} theme={theme} />;
 };
 
 class SegmentControl extends Component {
@@ -24,7 +21,7 @@ class SegmentControl extends Component {
     };
 
     render() {
-        const { segments = [], color = "#4549D1", isDarkMode } = this.props;
+        const { segments = [], color = "#4549D1", isDarkMode, theme } = this.props;
         const numberOfSegments = segments.length;
         const { containerWidth } = this.state;
 
@@ -38,7 +35,7 @@ class SegmentControl extends Component {
 
         return (
             <View
-                style={styles.card}
+                style={[styles.card, { backgroundColor: theme.bgColor }]}
                 onLayout={event => {
                     const { width } = event.nativeEvent.layout;
                     this.setState({ containerWidth: width });
@@ -48,7 +45,7 @@ class SegmentControl extends Component {
                     <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
                         <View style={styles.headerContainer}>
                             {segments.map((segment, index) =>
-                                this.renderSegment(numberOfSegments, segment.title, index, isDarkMode)
+                                this.renderSegment(numberOfSegments, segment.title, index, isDarkMode, theme)
                             )}
                         </View>
                     </ScrollView>
@@ -73,7 +70,7 @@ class SegmentControl extends Component {
         );
     }
 
-    renderSegment = (numberOfSegments, title, index, isDarkMode) => {
+    renderSegment = (numberOfSegments, title, index, isDarkMode, theme) => {
         const input = Array.from(
             { length: numberOfSegments },
             (value, key) => key
@@ -82,7 +79,7 @@ class SegmentControl extends Component {
         const output = Array.from(
             { length: numberOfSegments },
             (value, key) => key
-        ).map(key => (key === index ? "white" : "#828282"));
+        ).map(key => (key === index ? theme.white : "#828282"));
 
         if (output.length < 2) {
             return <View key={index} />;
@@ -106,7 +103,7 @@ class SegmentControl extends Component {
                 }}
                 key={index}
             >
-                <Animated.View style={styles.segmentTab}>
+                <Animated.View style={[styles.segmentTab, { backgroundColor: theme.segmentTab }]}>
                     <Animated.Text style={[styles.segmentTabText, { color }]}>{title}</Animated.Text>
                 </Animated.View>
             </TouchableOpacity>
@@ -117,7 +114,7 @@ class SegmentControl extends Component {
         const mover = Animated.event([
             { nativeEvent: { contentOffset: { x: this.state.scrollX } } }
         ],
-        { useNativeDriver: false });
+            { useNativeDriver: false });
         mover(x);
     };
 }
@@ -125,7 +122,6 @@ class SegmentControl extends Component {
 const styles = StyleSheet.create({
     card: {
         width: "100%",
-        backgroundColor: colorTheme.bgColor,
         borderRadius: 6,
         shadowColor: "black",
         shadowOffset: { height: 4, width: 0 },
@@ -152,8 +148,6 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         fontSize: 16,
         textAlign: "center",
-        color: colorTheme.segmentTabText,
-        
     },
     animatedSeparator: {
         height: 2
@@ -161,7 +155,6 @@ const styles = StyleSheet.create({
     segmentTab: {
         width: "auto",
         height: 40,
-        backgroundColor: colorTheme.segmentTab,
         borderRadius: 20,
         paddingHorizontal: 25,
         justifyContent: "center",

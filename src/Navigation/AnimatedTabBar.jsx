@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from 'react';
 import { View, StyleSheet, Dimensions } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -6,9 +6,7 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import TabItem from "../Navigation/TabItem";
-// import Colors from "../Constants/Colors";
-import {dark, defaultT, light} from '../Constants/Colors';
-import colorTheme from "../DarkMode/darkMode";
+import { ThemeContext } from '../DarkMode/ThemeContext'; 
 
 const { width } = Dimensions.get("window");
 
@@ -19,17 +17,21 @@ const AnimatedTabBar = ({
   activeColor,
   margin = 8,
   moverPadding = 5,
-  moverStyle = {
-    backgroundColor: colorTheme.activeTab,
-    borderRadius: 10,
-  },
-  contentContainerStyle = {
-    backgroundColor: colorTheme.bgColor,
-    borderRadius: 14,
-    elevation: 3,
-  },
   itemLabelStyle,
 }) => {
+  const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+
+  const moverStyle = {
+    backgroundColor: theme.tabActive,
+    borderRadius: 10,
+  };
+
+  const contentContainerStyle = {
+    backgroundColor: theme.bgColor,
+    borderRadius: 14,
+    elevation: 3,
+  };
+
   //number of routes for calculating width
   const numberOrRoutes = state.routes.length;
   const thing = useSharedValue(0);
@@ -72,6 +74,7 @@ const AnimatedTabBar = ({
       target: route.key,
     });
   };
+
   return (
     <View
       style={[

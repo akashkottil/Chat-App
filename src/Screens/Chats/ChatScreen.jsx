@@ -1,24 +1,26 @@
 import { StyleSheet, Text, StatusBar, ScrollView, View, TextInput, Image } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import SearchIcon from 'react-native-vector-icons/Feather';
 import Chat from '../../Components/Chats/Chat';
-import colorTheme from '../../DarkMode/darkMode';
+import { ThemeContext } from '../../DarkMode/ThemeContext';
 
 const ChatScreen = ({ navigation }) => {
+  const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{backgroundColor: theme.bgColor}]}>
       <StatusBar
         barStyle="dark-content"
         hidden={false}
         backgroundColor="#f8f8f8"
       />
-      <View style={styles.topbar}>
-        <View style={styles.searchbar}>
-          <SearchIcon name="search" size={25}  />
-          <View style={styles.line}></View>
+      <View style={[styles.topbar,{backgroundColor: theme.transparent}]}>
+        <View style={[styles.searchbar,{backgroundColor: theme.cards}]}>
+          <SearchIcon name="search" size={25} style={[styles.searchIcon ,{color: theme.white}]} />
+          <View style={[styles.line ,{backgroundColor: theme.white}]}></View>
           <TextInput
-            style={styles.searchInput}
+            style={[styles.searchInput,]}
             placeholder="Search Messages, Profiles"
+            placeholderTextColor={theme.white}
           />
         </View>
         {/* <View style={styles.filter}>
@@ -42,11 +44,11 @@ export default ChatScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colorTheme.bgColor
+    // backgroundColor: theme.bgColor
   },
   topbar: {
     flexDirection: "row",
-    backgroundColor: colorTheme.transparent,
+    // backgroundColor: theme.transparent,
     paddingHorizontal: 20,
     paddingVertical: 15,
     justifyContent: "space-between",
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
   },
   
   searchbar: {
-    backgroundColor: colorTheme.inputBar ,
+    // backgroundColor: theme.inputBar ,
     height: 40,
     borderRadius: 30,
     flexDirection: "row",

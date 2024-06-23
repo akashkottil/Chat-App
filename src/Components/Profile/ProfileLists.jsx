@@ -1,36 +1,23 @@
+// ProfileLists.js
+import React, { useContext } from 'react';
 import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, Alert, Switch } from 'react-native';
-import React from 'react'
-import profileDp from '../../assets/ProfilePics/trainDp.jpg'
+import { ThemeContext } from '../../DarkMode/ThemeContext'; // Adjust the path accordingly
+import { useNavigation } from '@react-navigation/native';
 
-// icons 
-import arrowIcon from '../../assets/SettingsIcons/arrow.png'
-
-//Personal and Security Settings icons
-
-import profileImg from "../../assets/SettingsIcons/profileIcon.png"
-// import securityImg from "../../assets/SettingsIcons/security.png"
-import notificationImg from "../../assets/SettingsIcons/notification.png"
-import interfaceImg from "../../assets/SettingsIcons/interface.png"
-import privacyImg from "../../assets/SettingsIcons/privacy.png"
-
-// Subscription and Support
-
-import subscriptionImg from "../../assets/SettingsIcons/subscribtion.png"
-import helpImg from "../../assets/SettingsIcons/help.png"
-import termImg from "../../assets/SettingsIcons/terms.png"
-
-{/*  Account Management */ }
-
-import logout from "../../assets/SettingsIcons/logout.png"
-import del from "../../assets/SettingsIcons/delete.png"
-import { useNavigation } from '@react-navigation/native'
-import colorTheme from '../../DarkMode/darkMode'
+import profileDp from '../../assets/ProfilePics/trainDp.jpg';
+import arrowIcon from '../../assets/SettingsIcons/arrow.png';
+import profileImg from "../../assets/SettingsIcons/profileIcon.png";
+import notificationImg from "../../assets/SettingsIcons/notification.png";
+import interfaceImg from "../../assets/SettingsIcons/interface.png";
+import privacyImg from "../../assets/SettingsIcons/privacy.png";
+import subscriptionImg from "../../assets/SettingsIcons/subscribtion.png";
+import helpImg from "../../assets/SettingsIcons/help.png";
+import termImg from "../../assets/SettingsIcons/terms.png";
+import logout from "../../assets/SettingsIcons/logout.png";
+import del from "../../assets/SettingsIcons/delete.png";
 
 
-
-
-//Personal and Security Settings icons datas
-
+//Personal and Security Settings icons data
 const settingsData = [
   {
     id: 1,
@@ -40,18 +27,10 @@ const settingsData = [
     arrow: arrowIcon,
     path: "editprofile"
   },
-  // {
-  //   id: 2,
-  //   title: "Security",
-  //   data: "Set password,  two-factor authentication",
-  //   icon: securityImg,
-  //   arrow: arrowIcon,
-  //   path:"personalChat"
-  // },
   {
     id: 3,
     title: "Notification",
-    data: "toggle push notifications,  app sounds",
+    data: "toggle push notifications, app sounds",
     icon: notificationImg,
     arrow: arrowIcon,
     path: "notification"
@@ -61,7 +40,7 @@ const settingsData = [
     title: "User Interface",
     data: "Enable Dark or Light Mode",
     icon: interfaceImg,
-    Component: ({ isDarkMode, toggleTheme }) => (
+    Component: ({ toggleTheme, isDarkMode }) => (
       <Switch
         trackColor={{ false: "#767577", true: "#81b0ff" }}
         thumbColor={isDarkMode ? "#f5dd4b" : "#f4f3f4"}
@@ -71,7 +50,6 @@ const settingsData = [
       />
     )
   },
-
   {
     id: 5,
     title: "Privacy",
@@ -79,10 +57,9 @@ const settingsData = [
     icon: privacyImg,
     arrow: arrowIcon
   },
-]
+];
 
-// Subscription and Support datas
-
+// Subscription and Support data
 const support = [
   {
     id: 1,
@@ -101,14 +78,13 @@ const support = [
   {
     id: 3,
     title: "Terms and Policies",
-    data: "understand community guidelines,  license agreements",
+    data: "understand community guidelines, license agreements",
     icon: termImg,
     arrow: arrowIcon
   },
-]
+];
 
-{/*  Account Management datas */ }
-
+// Account Management data
 const account = [
   {
     id: 1,
@@ -123,11 +99,11 @@ const account = [
     icon: del,
     arrow: arrowIcon
   },
-]
+];
 
 const showLogoutAlert = () => {
   Alert.alert(
-    "Logout", // Title
+    "Logout",
     "Are you sure you want to logout?",
     [
       {
@@ -138,181 +114,109 @@ const showLogoutAlert = () => {
       {
         text: "Logout",
         onPress: () => console.log("User logged out"),
-        // Add any additional logout logic here
       }
     ]
   );
 };
 
 const ProfileLists = () => {
-
   const navigation = useNavigation();
-  const handleEdit = () => {
-    navigation.navigate('editprofile')
-  }
-
-  const [isDarkMode, setIsDarkMode] = React.useState(false);
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.bgColor }]}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* <View style={styles.topbar}>
-        <TouchableOpacity >
-        <View>
-          <Image source={backIcon} style={styles.backIcon} />
-        </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('settings')}>
-        <View>
-          <Image source={settingsIcon} style={styles.settingsIcon} />
-        </View>
-        </TouchableOpacity>
-      </View> */}
         <View style={styles.profile}>
           <View style={styles.topSection}>
             <View style={styles.img}>
               <Image source={profileDp} style={styles.profileImg} />
             </View>
-            <View>
-              <Text style={styles.name}>Akash Kottil</Text>
-            </View>
+            <Text style={[styles.name, { color: theme.white }]}>Akash Kottil</Text>
           </View>
           <View style={styles.profilebtns}>
-            <View><Text style={styles.profileText}>@akashkottil</Text></View>
-            <View style={styles.line}></View>
-            <View><Text style={styles.profileText}>9539987128</Text></View>
+            <Text style={[styles.profileText, { color: theme.white }]}>@akashkottil</Text>
+            <View style={[styles.line, { backgroundColor: theme.white }]}></View>
+            <Text style={[styles.profileText, { color: theme.white }]}>9539987128</Text>
           </View>
         </View>
         <View style={styles.mainWrapper}>
-          <ScrollView >
+          <ScrollView>
             <View style={styles.main}>
-
-              {/* Personal and Security Settings */}
-
-              <View style={styles.mainCard}>
-                {
-                  settingsData.map((data) => (
-                    <TouchableOpacity style={styles.dataCard} onPress={() => data.path && navigation.navigate(data.path)}>
-                      <View style={styles.cardLeft}>
-                        <View>
-                          <Image source={data.icon} style={styles.icons} />
-                        </View>
-                        <View style={styles.content}>
-                          <Text style={styles.contentTitle}>{data.title}</Text>
-                          <Text style={styles.contentPara}>{data.data}</Text>
-                        </View>
-                      </View>
-                      <View>
-                        {data.Component ? <data.Component isDarkMode={isDarkMode} toggleTheme={toggleTheme} /> : <Image source={data.arrow} style={styles.arrowIcon} />}
-                      </View>
-                    </TouchableOpacity>
-                  ))
-                }
-              </View>
-
-              {/* Subscription and Support */}
-
-              <View style={styles.mainCard}>
-                {
-                  support.map((data) => (
-                    <View style={styles.dataCard} onPress={() => navigation.navigate('personalChat')}>
-                      <View style={styles.cardLeft}>
-                        <View>
-                          <Image source={data.icon} style={styles.icons} />
-                        </View>
-                        <View style={styles.content}>
-                          <Text style={styles.contentTitle}>{data.title}</Text>
-                          <Text style={styles.contentPara}>{data.data}</Text>
-                        </View>
-
-                      </View>
-                      <View>
-                        <Image source={data.arrow} style={styles.arrowIcon} />
+              <View style={[styles.mainCard, { backgroundColor: theme.cards }]}>
+                {settingsData.map((data) => (
+                  <TouchableOpacity key={data.id} style={styles.dataCard} onPress={() => data.path && navigation.navigate(data.path)}>
+                    <View style={styles.cardLeft}>
+                      <Image source={data.icon} style={styles.icons} />
+                      <View style={styles.content}>
+                        <Text style={[styles.contentTitle, { color: theme.white }]}>{data.title}</Text>
+                        <Text style={[styles.contentPara, { color: theme.white }]}>{data.data}</Text>
                       </View>
                     </View>
-                  ))
-                }
-              </View>
-
-              {/*  Account Management */}
-
-              <View style={styles.mainCard}>
-                {
-                  account.map((data) => (
-                    <TouchableOpacity style={styles.dataCard} onPress={data.onPress}>
-                      <View style={styles.cardLeft}>
-                        <View>
-                          <Image source={data.icon} style={styles.icons} />
-                        </View>
-                        <View style={styles.content}>
-                          <Text style={styles.contentTitle}>{data.title}</Text>
-                        </View>
-
-                      </View>
-                      {/* <View>
-                        <Image source={data.arrow} style={styles.arrowIcon} />
-                      </View> */}
-                    </TouchableOpacity >
-                  ))
-                }
+                    <View>
+                      {data.Component ? <data.Component toggleTheme={toggleTheme} isDarkMode={isDarkMode} /> : <Image source={data.arrow} style={styles.arrowIcon} />}
+                    </View>
+                  </TouchableOpacity>
+                ))}
               </View>
 
 
+              <View style={[styles.mainCard, { backgroundColor: theme.cards }]}>
+              {support.map((data) => (
+                <View key={data.id} style={styles.dataCard}>
+                  <View style={styles.cardLeft}>
+                    <Image source={data.icon} style={styles.icons} />
+                    <View style={styles.content}>
+                      <Text style={[styles.contentTitle, { color: theme.white }]}>{data.title}</Text>
+                      <Text style={[styles.contentPara, { color: theme.white }]}>{data.data}</Text>
+                    </View>
+                  </View>
+                  <Image source={data.arrow} style={styles.arrowIcon} />
+                </View>
+              ))}
+              </View>
 
+              <View style={[styles.mainCard, { backgroundColor: theme.cards }]}>
+
+              {account.map((data) => (
+                <TouchableOpacity key={data.id} style={styles.dataCard} onPress={data.onPress}>
+                  <View style={styles.cardLeft}>
+                    <Image source={data.icon} style={styles.icons} />
+                    <Text style={[styles.contentTitle, { color: theme.white }]}>{data.title}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+              </View>
+              
             </View>
           </ScrollView>
         </View>
       </ScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default ProfileLists
+export default ProfileLists;
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: 30,
-    backgroundColor: colorTheme.bgColor
   },
-
-  topbar: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 15
-  },
-  settingsIcon: {
-    height: 40,
-    width: 40,
-  },
-  backIcon: {
-    height: 30,
-    width: 35
-  },
-
   profile: {
-    gap: 10
+    gap: 10,
   },
   topSection: {
     justifyContent: "center",
     alignItems: "center",
-    gap: 20
+    gap: 20,
   },
   profileImg: {
     height: 150,
     width: 150,
-    borderRadius: 100
+    borderRadius: 100,
   },
   name: {
     fontSize: 35,
     fontWeight: "400",
-    color: colorTheme.white
   },
   profilebtns: {
     display: "flex",
@@ -322,40 +226,36 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   profileText: {
-    color: colorTheme.white
+    fontSize: 16,
   },
-
   line: {
     height: 15,
     width: 1.5,
-    backgroundColor: colorTheme.white
   },
   mainWrapper: {
     paddingHorizontal: 10,
     flex: 20,
     borderRadius: 50,
-    paddingVertical: 20
+    paddingTop:20,
+    paddingBottom:75
   },
   main: {
-
     alignSelf: "stretch",
-
-    gap: 20
+    gap: 20,
   },
   mainCard: {
-    backgroundColor: colorTheme.cards,
     borderRadius: 20,
     paddingVertical: 10,
   },
   icons: {
     height: 30,
-    width: 30
+    width: 30,
   },
   cardLeft: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    gap: 25
+    gap: 25,
   },
   dataCard: {
     flexDirection: "row",
@@ -363,20 +263,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
     paddingVertical: 10,
-
   },
   arrowIcon: {
     height: 20,
-    width: 20
+    width: 20,
   },
   contentTitle: {
     fontSize: 16,
     fontWeight: "800",
-    color: colorTheme.white
   },
   contentPara: {
     width: 250,
-    fontSize: 16
-  }
-
-})
+    fontSize: 16,
+  },
+});

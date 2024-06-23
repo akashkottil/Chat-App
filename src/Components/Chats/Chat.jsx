@@ -1,23 +1,24 @@
 import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import img1 from '../../assets/ProfilePics/trainDp.jpg';
 import LinearGradient from 'react-native-linear-gradient';
-import colorTheme from '../../DarkMode/darkMode';
+import { ThemeContext } from '../../DarkMode/ThemeContext';
 
 
 const Chat = ({ navigation }) => {
+  const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
   return (
     <View>
       <TouchableOpacity style={styles.backIcon} onPress={() => navigation.navigate('personalChat')}>
-        <View style={styles.chats}>
+        <View style={[styles.chats,{backgroundColor: theme.cards}]}>
           <View style={styles.left}>
             <View style={styles.ProPic}>
               <Image source={img1} style={styles.PropicImg} />
               <View style={styles.active}></View>
             </View>
             <View style={styles.chatDetails}>
-              <Text style={styles.title}>Akash Kottil</Text>
-              <Text style={styles.message}>Hey, Whatsapp?</Text>
+              <Text style={[styles.title,{color: theme.white}]}>Akash Kottil</Text>
+              <Text style={[styles.message,{color: theme.white}]}>Hey, Whatsapp?</Text>
             </View>
           </View>
           <View>
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
   chats: {
     alignSelf: "stretch",
     height: 80,
-    backgroundColor: colorTheme.cards,
+    // backgroundColor: theme.cards,
     borderRadius: 25,
     shadowColor: 'black',
     elevation: 6,
@@ -78,11 +79,11 @@ const styles = StyleSheet.create({
   title: {
     color: "black",
     fontWeight: "600",
-    color: colorTheme.white,
+    // color: theme.white,
   },
-  message: {
-    color: colorTheme.white,
-  },
+  // message: {
+  //   color: theme.white,
+  // },
   left: {
     flexDirection: "row",
     alignItems: "center",
