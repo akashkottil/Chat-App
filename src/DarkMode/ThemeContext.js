@@ -11,6 +11,8 @@ const commonColor = {
 const lightTheme = {
   themeColor: '#FFFFFF',
   white: '#000000',
+  black: '#FFFFFF',
+  constWhite: '#FFFFFF',
   gray: 'gray',
   bgColor: '#f8f8ff',
   segmentTab: '#fff0f5',
@@ -28,6 +30,8 @@ const lightTheme = {
 const darkTheme = {
   themeColor: '#333333',
   white: '#FFFFFF',
+  black: '#000000',
+  constWhite: '#FFFFFF',
   gray: '#a9a9a9',
   bgColor: '#1e1e1e',
   segmentTab: '#383838',

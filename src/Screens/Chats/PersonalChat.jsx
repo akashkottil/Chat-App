@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, ScrollView, Image, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import backIcon from '../../assets/Icons/backicon.png'
-import proPIc from '../../assets/ProfilePics/trainDp.jpg'
 import menu from "../../assets/Icons/menu.png"
 import giftImg from '../../assets/Icons/gift.png'
 import sendImg from '../../assets/Icons/send.png'

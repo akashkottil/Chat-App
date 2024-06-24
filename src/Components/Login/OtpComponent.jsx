@@ -1,57 +1,80 @@
-import { StyleSheet, Text, View, Image,TextInput} from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, TextInput } from 'react-native'
+import React, { useState, useContext } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
 import { OtpInput } from 'react-native-otp-entry'
-
+import { ThemeContext } from '../../DarkMode/ThemeContext';
 
 
 
 import backIcon from "../../assets/Icons/backicon.png"
 import colorTheme from '../../DarkMode/darkMode';
-const OtpComponent = ({switchToCreatePassword,switchToForgotPassword}) => {
-    
-  return (
-    <View style={styles.container}>
+const OtpComponent = ({ switchToCreatePassword, switchToForgotPassword }) => {
+
+    const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+    const [otp, setOtp] = useState('');
+    const [error, setError] = useState('');
+
+    // Validation function to check if OTP is correctly filled
+    const validateOtp = () => {
+        if (otp.length <= 3) {
+            setError('Please fill all 4 digits of the OTP');
+            return false;
+        }
+        setError('');
+        return true;
+    };
+
+    const handleVerify = () => {
+        // if (validateOtp()) {
+            console.log('OTP is valid');
+            switchToCreatePassword();
+        // }
+    };
+
+    return (
+        <View style={[styles.container, { backgroundColor: theme.themeColor }]}>
             {/* <View style={styles.topbar}>
 
     </View> */}
             <View style={styles.wrapper}>
                 <TouchableOpacity onPress={switchToForgotPassword}>
-                    <View style={styles.backBtn}>
+                    <View style={[styles.backBtn, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]}>
                         <Image source={backIcon} style={styles.backIcon} />
                     </View>
                 </TouchableOpacity>
                 <View >
-                    <Text style={styles.note}>OTP Verification</Text>
+                    <Text style={[styles.note, { color: theme.white }]}>OTP Verification</Text>
                 </View>
                 <View >
-                    <Text style={styles.para}>Enter the verification code we just sent on your email address.</Text>
+                    <Text style={[styles.para, { color: theme.white }]}>Enter the verification code we just sent on your email address.</Text>
                 </View>
-               
+
 
                 <OtpInput
-                numberOfDigits={4}
-                focusColor={colorTheme.footerText}
-                focusStickBlinkingDuration={400}
-                containerStyle={styles.otpContainer}
-                inputsContainerStyle={styles.otpInputContainer}
-                inputStyle={styles.otpInput}
+                    numberOfDigits={4}
+                    focusColor={colorTheme.footerText}
+                    focusStickBlinkingDuration={400}
+                    containerStyle={styles.otpContainer}
+                    inputsContainerStyle={styles.otpInputContainer}
+                    inputStyle={styles.otpInput}
+                    onChange={setOtp}
                 />
+                {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
-                
-                <TouchableOpacity style={styles.btnContainer} onPress={switchToCreatePassword} >
+
+                <TouchableOpacity style={styles.btnContainer} onPress={handleVerify}>
                     <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
-                        <Text style={styles.btnText} >Verify</Text>
+                        <Text style={[styles.btnText, { color: theme.constWhite }]}>Verify</Text>
                     </LinearGradient>
                 </TouchableOpacity>
-                
+
                 <View >
-                    <Text style={styles.qstn}>Didn’t received code? Resend</Text>
+                    <Text style={[styles.qstn, { color: theme.white }]}>Didn’t received code? Resend</Text>
                 </View>
             </View>
         </View>
-  )
+    )
 }
 
 export default OtpComponent
@@ -60,17 +83,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: colorTheme.themeColor,
+        // backgroundColor: colorTheme.themeColor,
     },
     backBtn: {
         height: 50,
         width: 50,
         borderWidth: 0.5,
-        borderColor: colorTheme.inputBar,
-        backgroundColor:colorTheme.inputBar,
+        // borderColor: colorTheme.inputBar,
+        // backgroundColor: colorTheme.inputBar,
         borderRadius: 15,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        elevation: 10
     },
     backIcon: {
         height: 19,
@@ -90,20 +114,20 @@ const styles = StyleSheet.create({
         fontSize: 45,
         fontWeight: "600",
         alignItems: "flex-start",
-        color: colorTheme.white
+        // color: colorTheme.white
     },
-    para:{
-        fontSize:16,
-        color: colorTheme.white
+    para: {
+        fontSize: 16,
+        // color: colorTheme.white
     },
 
     // otpContainer: {
-        
+
     //     width: '100%', // Adjust the width
     //     height: 56, // Adjust the height
     //   },
     //   otpInputContainer: {
-        
+
     //     height: 56, // Adjust the height of each input
     //     width: 50, // Adjust the width of each input
     //     margin: 5, // Adjust the margin between inputs
@@ -128,7 +152,7 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontSize: 15,
-        color: colorTheme.white,
+        // color: colorTheme.white,
         fontWeight: "600"
     },
     qstn: {

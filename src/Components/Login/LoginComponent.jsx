@@ -1,70 +1,74 @@
 import { StyleSheet, Text, View, TextInput, Image } from 'react-native'
-import React from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import React, { useContext } from 'react'
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
+import { ThemeContext } from '../../DarkMode/ThemeContext';
 
 // icons
 
 import appleIcons from '../../assets/Icons/apple.png'
 import googleIcons from '../../assets/Icons/google.png'
-import fbIcons from '../../assets/Icons/fb.png' 
+import fbIcons from '../../assets/Icons/fb.png'
 
 import { useNavigation } from '@react-navigation/native'
-import colorTheme from '../../DarkMode/darkMode';
 
 
-const LoginComponent = ({switchToSignup, switchToForgotPassword, }) => {
+
+const LoginComponent = ({ switchToSignup, switchToForgotPassword, }) => {
+    const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
     const navigation = useNavigation();
-    const handleLogin= ()=>{
+    const handleLogin = () => {
         navigation.navigate('home')
     }
-    const handleBack =()=>{
+    const handleBack = () => {
         navigation.navigate('')
     }
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: theme.themeColor }]}>
             {/* <View style={styles.topbar}>
 
             </View> */}
+            <ScrollView>
             <View style={styles.wrapper}>
                 <View style={styles.backBtn}>
                     {/* <Image source={backIcon} style={styles.backIcon}/> */}
                 </View>
                 <View >
-                    <Text style={styles.note}>Welcome back! Glad to see you, Again!</Text>
+                    <Text style={[styles.note, { color: theme.white }]}>Welcome back! Glad to see you, Again!</Text>
                 </View>
                 <View style={styles.inputs}>
-                    <TextInput style={styles.textInput} placeholder="Enter Your Email" />
-                    <TextInput style={styles.textInput} placeholder="Password" secureTextEntry />
+                    <TextInput style={[styles.textInput, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]} placeholder="Enter Your Email" />
+                    <TextInput style={[styles.textInput, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]} placeholder="Password" secureTextEntry />
                     <TouchableOpacity style={styles.forgotPswrdBox}>
-                        <Text style={styles.forgotPswrd} onPress={switchToForgotPassword}>Forgot Password?</Text>
+                        <Text style={[styles.forgotPswrd, { color: theme.white }]} onPress={switchToForgotPassword}>Forgot Password?</Text>
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={styles.btnContainer} onPress={handleLogin}>
-                    <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
-                        <Text style={styles.btnText}>Login</Text>
+                    <LinearGradient colors={theme.gradient} style={styles.btnGradient}>
+                        <Text style={[styles.btnText, { color: theme.constWhite }]}>Login</Text>
                     </LinearGradient>
                 </TouchableOpacity>
                 <View style={styles.loginWithContainer}>
-                    <View style={styles.line}></View>
-                    <View><Text style={styles.orLoginText}>Or Login With</Text></View>
-                    <View style={styles.line}></View>
+                    <View style={[styles.line, { backgroundColor: theme.white }]}></View>
+                    <View><Text style={[styles.orLoginText, { color: theme.white }]}>Or Login With</Text></View>
+                    <View style={[styles.line, { backgroundColor: theme.white }]}></View>
                 </View>
                 <View style={styles.socialLoginContainer}>
-                    <View style={styles.socialButton}>
+                    <View style={[styles.socialButton, { backgroundColor: theme.cards, borderColor: theme.cards }]}>
                         <Image source={fbIcons} style={styles.socialIcon} />
                     </View>
-                    <View style={styles.socialButton}>
+                    <View style={[styles.socialButton, { backgroundColor: theme.cards, borderColor: theme.cards }]}>
                         <Image source={googleIcons} style={styles.socialIcon} />
                     </View>
-                    <View style={styles.socialButton}>
+                    <View style={[styles.socialButton, { backgroundColor: theme.cards, borderColor: theme.cards }]}>
                         <Image source={appleIcons} style={styles.socialIcon} />
                     </View>
                 </View>
                 <View >
-                    <Text style={styles.qstn} onPress={switchToSignup}>Don't have an account? Register Now</Text>
+                    <Text style={[styles.qstn, { color: theme.white }]} onPress={switchToSignup}>Don't have an account? Register Now</Text>
                 </View>
             </View>
+            </ScrollView>
         </View>
     )
 }
@@ -75,17 +79,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: colorTheme.themeColor,
+        // backgroundColor: colorTheme.themeColor,
     },
 
-    backIcon:{
-        height:19,
-        width:19
+    backIcon: {
+        height: 19,
+        width: 19
     },
     wrapper: {
         flex: 12,
         alignSelf: "stretch",
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         gap: 30,
         paddingVertical: 15,
         justifyContent: "space-around"
@@ -96,30 +100,31 @@ const styles = StyleSheet.create({
         fontSize: 45,
         fontWeight: "600",
         alignItems: "flex-start",
-        color: colorTheme.white
+        // color: colorTheme.white
     },
     inputs: {
-        gap: 12
+        gap: 12,
+
     },
     textInput: {
         height: 56,
         borderRadius: 8,
-        borderColor: colorTheme.inputBar,
-        backgroundColor: colorTheme.inputBar,
+        // borderColor: colorTheme.inputBar,
+        // backgroundColor: colorTheme.inputBar,
         borderWidth: 1,
         paddingLeft: 8,
-        fontSize: 20
+        fontSize: 20,
+        elevation: 6
     },
     forgotPswrdBox: {
         alignItems: "flex-end"
     },
     forgotPswrd: {
         fontSize: 14,
-        color: colorTheme.white,
+        // color: colorTheme.white,
     },
     btnContainer: {
         // width:250,
-
     },
     btnGradient: {
         alignContent: "center",
@@ -130,13 +135,13 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontSize: 15,
-        color: colorTheme.white,
+        // color: colorTheme.white,
         fontWeight: "600"
     },
     line: {
         height: 1,
         flex: 1,
-        backgroundColor: colorTheme.white,
+        // backgroundColor: colorTheme.white,
     },
 
     loginWithContainer: {
@@ -147,26 +152,28 @@ const styles = StyleSheet.create({
     },
     orLoginText: {
         fontSize: 14,
-        color: colorTheme.white,
+        // color: colorTheme.white,
     },
     socialLoginContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
+        
     },
     socialButton: {
-        borderColor: colorTheme.inputBar,
-        backgroundColor:colorTheme.inputBar,
+        // borderColor: colorTheme.inputBar,
+        // backgroundColor:colorTheme.inputBar,
         borderWidth: 1,
         width: 105,
         height: 56,
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 10
+        borderRadius: 10,
+        elevation:6
     },
     qstn: {
         alignSelf: "center",
         fontSize: 15,
-        color: colorTheme.white,
+        // color: colorTheme.white,
     },
     socialIcon: {
         height: 26,

@@ -9,7 +9,7 @@ const Chat = ({ navigation }) => {
   const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
   return (
     <View>
-      <TouchableOpacity style={styles.backIcon} onPress={() => navigation.navigate('personalChat')}>
+      <TouchableOpacity onPress={() => navigation.navigate('personalChat')}>
         <View style={[styles.chats,{backgroundColor: theme.cards}]}>
           <View style={styles.left}>
             <View style={styles.ProPic}>
