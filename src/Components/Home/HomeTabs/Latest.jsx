@@ -24,25 +24,25 @@ const Latest = () => {
             img:achu
         },
         {
-            id:1,
+            id:2,
             name: "bellie",
             nameTag: "Ai influencer",
             img:bellie
         },
         {
-            id:1,
+            id:3,
             name: "helen",
             nameTag: "Ai influencer",
             img:helen
         },
         {
-            id:1,
+            id:4,
             name: "keira",
             nameTag: "Ai influencer",
             img:keira
         },
         {
-            id:1,
+            id:5,
             name: "lilly",
             nameTag: "Ai influencer",
             img:lilly

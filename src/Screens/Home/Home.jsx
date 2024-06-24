@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   searchIcon: {
     height: 22,
-    width: 2018
+    width: 26
   },
   searchBox: {
     
