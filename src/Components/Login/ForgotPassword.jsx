@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, TextInput } from 'react-native'
 import React, { useState, useContext } from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
 import { ThemeContext } from '../../DarkMode/ThemeContext';
 import backIcon from "../../assets/Icons/backicon.png"
@@ -37,6 +37,7 @@ const ForgotPassword = ({ switchToOtpScreen, switchToLogin }) => {
             {/* <View style={styles.topbar}>
 
     </View> */}
+    <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.wrapper}>
                 <TouchableOpacity onPress={switchToLogin}>
                     <View style={[styles.backBtn, { backgroundColor: theme.inputBar, borderBlockColor: theme.inputBar }]}>
@@ -69,6 +70,7 @@ const ForgotPassword = ({ switchToOtpScreen, switchToLogin }) => {
                     <Text style={[styles.qstn, { color: theme.white }]} onPress={switchToLogin}>Remember Password? Login</Text>
                 </View>
             </View>
+            </ScrollView>
         </View>
     )
 }

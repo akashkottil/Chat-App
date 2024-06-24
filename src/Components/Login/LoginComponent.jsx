@@ -28,7 +28,7 @@ const LoginComponent = ({ switchToSignup, switchToForgotPassword, }) => {
             {/* <View style={styles.topbar}>
 
             </View> */}
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.wrapper}>
                 <View style={styles.backBtn}>
                     {/* <Image source={backIcon} style={styles.backIcon}/> */}

@@ -55,9 +55,10 @@ const OtpComponent = ({ switchToCreatePassword, switchToForgotPassword }) => {
                     numberOfDigits={4}
                     focusColor={colorTheme.footerText}
                     focusStickBlinkingDuration={400}
-                    containerStyle={styles.otpContainer}
-                    inputsContainerStyle={styles.otpInputContainer}
-                    inputStyle={styles.otpInput}
+                    containerStyle={[styles.otpContainer, ]}
+                    inputsContainerStyle={[styles.otpInputContainer, ]}
+                    inputStyle={[styles.otpInput, ]
+                    }
                     onChange={setOtp}
                 />
                 {error ? <Text style={styles.errorText}>{error}</Text> : null}

@@ -80,7 +80,8 @@ const support = [
     title: "Terms and Policies",
     data: "understand community guidelines, license agreements",
     icon: termImg,
-    arrow: arrowIcon
+    arrow: arrowIcon,
+    path: "terms"
   },
 ];
 
@@ -162,7 +163,7 @@ const ProfileLists = () => {
 
               <View style={[styles.mainCard, { backgroundColor: theme.cards }]}>
               {support.map((data) => (
-                <View key={data.id} style={styles.dataCard}>
+                <TouchableOpacity key={data.id} style={styles.dataCard} onPress={() => data.path && navigation.navigate(data.path)}>
                   <View style={styles.cardLeft}>
                     <Image source={data.icon} style={styles.icons} />
                     <View style={styles.content}>
@@ -171,7 +172,7 @@ const ProfileLists = () => {
                     </View>
                   </View>
                   <Image source={data.arrow} style={styles.arrowIcon} />
-                </View>
+                  </TouchableOpacity>
               ))}
               </View>
 

@@ -77,7 +77,7 @@ const SignupComponent = ({ switchToLogin, }) => {
             {/* <View style={styles.topbar}>
 
     </View> */}
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.wrapper}>
                 <TouchableOpacity style={[styles.backBtn, {backgroundColor: theme.inputBar, borderColor: colorTheme.inputBar}]} onPress={switchToLogin}>
                     <View >

@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
 
   },
   searchIcon: {
-    height: 24,
-    width: 20
+    height: 22,
+    width: 2018
   },
   searchBox: {
     
@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
   },
   topbarText:{
     fontSize:25,
-    
   }
 
 })

@@ -1,10 +1,20 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React , {useContext} from 'react'
+import { ScrollView } from 'react-native-gesture-handler'
+import { ThemeContext } from '../../DarkMode/ThemeContext'
+
 
 const Terms = () => {
+  const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
   return (
-    <View>
-      <Text>Terms</Text>
+    <View style={[styles.container, {backgroundColor: theme.tabActive}]}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View >
+          <Text>
+            1. Introduction
+          </Text>
+        </View>
+      </ScrollView>
     </View>
   )
 }
