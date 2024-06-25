@@ -55,7 +55,8 @@ const settingsData = [
     title: "Privacy",
     data: "manage who can contact you, block users",
     icon: privacyImg,
-    arrow: arrowIcon
+    arrow: arrowIcon,
+    path:"privacy"
   },
 ];
 

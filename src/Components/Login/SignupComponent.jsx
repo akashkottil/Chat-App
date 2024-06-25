@@ -13,10 +13,6 @@ import googleIcons from '../../assets/Icons/google.png'
 import fbIcons from '../../assets/Icons/fb.png'
 import backIcon from "../../assets/Icons/backicon.png"
 
-
-
-
-
 const SignupComponent = ({ switchToLogin, }) => {
 
     // state for setting themes
