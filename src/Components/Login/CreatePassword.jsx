@@ -7,7 +7,12 @@ import backIcon from "../../assets/Icons/backicon.png"
 import colorTheme from '../../DarkMode/darkMode';
 const CreatePassword = ({ switchToPasswordChanged, switchToForgotPassword }) => {
 
+    // state for setting themes
+
     const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+
+    // states for form validation
+
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
@@ -35,48 +40,59 @@ const CreatePassword = ({ switchToPasswordChanged, switchToForgotPassword }) => 
     };
 
     return (
-        <View style={[styles.container, {backgroundColor: theme.themeColor}]}>
-            {/* <View style={styles.topbar}>
-
-    </View> */}
-    <ScrollView showsVerticalScrollIndicator={false} >
-            <View style={styles.wrapper}>
+        <View style={[styles.container, { backgroundColor: theme.themeColor }]}>
+            <ScrollView showsVerticalScrollIndicator={false} >
+            <View style={styles.topbar}>
                 <TouchableOpacity onPress={switchToForgotPassword} >
-                    <View style={[styles.backBtn, {borderColor: theme.inputBar, backgroundColor: theme.inputBar }]}>
+                    <View style={[styles.backBtn, { borderColor: theme.inputBar, backgroundColor: theme.inputBar }]}>
                         <Image source={backIcon} style={styles.backIcon} />
                     </View>
                 </TouchableOpacity>
-                <View >
-                    <Text style={[styles.note, {color: theme.white}]}>Create new password</Text>
-                </View>
-                <View >
-                    <Text style={[styles.para,{color: theme.white}]}>Your new password must be unique from those previously used.</Text>
-                </View>
-                <View style={styles.inputs}>
-                    <TextInput
-                        style={[styles.textInput, {backgroundColor: theme.inputBar, borderColor:theme.inputBar}]}
-                        placeholder="New Password"
-                        secureTextEntry={true}
-                        value={password}
-                        onChangeText={setPassword}
-                    />
-                </View>
-                <View style={styles.inputs}>
-                    <TextInput
-                        style={[styles.textInput, {backgroundColor: theme.inputBar, borderColor:theme.inputBar}]}
-                        placeholder="Confirm Password"
-                        secureTextEntry={true}
-                        value={confirmPassword}
-                        onChangeText={setConfirmPassword}
-                    />
-                </View>
-                {error ? <Text style={styles.errorText}>{error}</Text> : null}
-                <TouchableOpacity style={styles.btnContainer} onPress={handleResetPassword}>
-                    <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
-                        <Text style={[styles.btnText, {color: theme.constWhite}]}>Reset Password</Text>
-                    </LinearGradient>
-                </TouchableOpacity>
             </View>
+
+            {/* wrapper */}
+
+                <View style={styles.wrapper}>
+
+                     {/* create password notes */}
+
+                    <View >
+                        <Text style={[styles.note, { color: theme.white }]}>Create new password</Text>
+                    </View>
+                    <View >
+                        <Text style={[styles.para, { color: theme.white }]}>Your new password must be unique from those previously used.</Text>
+                    </View>
+
+                    {/*password inputs */}
+
+                    <View style={styles.inputs}>
+                        <TextInput
+                            style={[styles.textInput, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]}
+                            placeholder="New Password"
+                            secureTextEntry={true}
+                            value={password}
+                            onChangeText={setPassword}
+                        />
+                    </View>
+                    <View style={styles.inputs}>
+                        <TextInput
+                            style={[styles.textInput, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]}
+                            placeholder="Confirm Password"
+                            secureTextEntry={true}
+                            value={confirmPassword}
+                            onChangeText={setConfirmPassword}
+                        />
+                    </View>
+                    {error ? <Text style={styles.errorText}>{error}</Text> : null}
+
+                    {/* reset password button */}
+
+                    <TouchableOpacity style={styles.btnContainer} onPress={handleResetPassword}>
+                        <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
+                            <Text style={[styles.btnText, { color: theme.constWhite }]}>Reset Password</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                </View>
             </ScrollView>
         </View>
 
@@ -89,17 +105,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        // backgroundColor: colorTheme.themeColor,
+    },
+    topbar:{
+        padding:20,
+        alignItems:"flex-start"
     },
     backBtn: {
         height: 50,
         width: 50,
         borderWidth: 0.5,
-        // borderColor: colorTheme.inputBar,
         borderRadius: 15,
         justifyContent: "center",
         alignItems: "center",
-        // backgroundColor: colorTheme.inputBar,
         elevation: 10
     },
     backIcon: {
@@ -113,38 +130,26 @@ const styles = StyleSheet.create({
         gap: 30,
         paddingVertical: 15,
         justifyContent: "flex-start"
-        // justifyContent: "center",
-        // alignItems:"center"
     },
     note: {
         fontSize: 45,
         fontWeight: "600",
         alignItems: "flex-start",
-        // color: colorTheme.white
     },
     para: {
         fontSize: 16,
-        // color: colorTheme.white
     },
     inputs: {
         gap: 12,
-        
+
     },
     textInput: {
         height: 56,
         borderRadius: 8,
-        // borderColor: colorTheme.inputBar,
-        // backgroundColor: colorTheme.inputBar,
         borderWidth: 1,
         paddingLeft: 8,
         fontSize: 20,
-        elevation:6
-    },
-
-
-    btnContainer: {
-        // width:250,
-
+        elevation: 6
     },
     btnGradient: {
         alignContent: "center",
@@ -155,8 +160,6 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontSize: 15,
-        // color: colorTheme.white,
         fontWeight: "600"
     },
-
 })

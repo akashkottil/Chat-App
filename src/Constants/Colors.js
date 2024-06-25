@@ -11,7 +11,7 @@ export const defaultT = {
 }
 
 
-export const commonColor = {
+const commonColor = {
     gradient:["#9673FF", "#522FDC"],
     activeTab: '#522FDC',
     defaultTab: '#DDD',

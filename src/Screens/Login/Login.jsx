@@ -9,27 +9,41 @@ import PasswordChanged from '../../Components/Login/PasswordChanged'
 
 
 const Login = () => {
+
     const [CurrentScreen, setCurrentScreen] = useState('login');
-    
+
+    // Navigate to signup component
 
     const  switchToSignup =() =>{
         setCurrentScreen('signup');
     }
+
+    // Navigate to login component
     
     const switchToLogin =()=>{
         setCurrentScreen('login');
     }
 
+    // Navigate to forgotpassword component
+
     const switchToForgotPassword =()=>{
         setCurrentScreen('forgotpassword');
     }
 
+    // Navigate to otpscreen component
+
     const switchToOtpScreen =()=>{
         setCurrentScreen('otpscreen')
     }
+
+    // Navigate to createpassword component
+
     const switchToCreatePassword =()=>{
         setCurrentScreen('createpassword')
     }
+
+    // Navigate to passwordchanged component
+
     const switchToPasswordChanged =()=>{
         setCurrentScreen('passwordchanged')
     }

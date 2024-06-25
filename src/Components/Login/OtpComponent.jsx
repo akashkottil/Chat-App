@@ -11,7 +11,12 @@ import backIcon from "../../assets/Icons/backicon.png"
 import colorTheme from '../../DarkMode/darkMode';
 const OtpComponent = ({ switchToCreatePassword, switchToForgotPassword }) => {
 
+    // state for setting themes
+
     const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+
+    // states for form validation
+
     const [otp, setOtp] = useState('');
     const [error, setError] = useState('');
 
@@ -27,22 +32,27 @@ const OtpComponent = ({ switchToCreatePassword, switchToForgotPassword }) => {
 
     const handleVerify = () => {
         // if (validateOtp()) {
-            console.log('OTP is valid');
-            switchToCreatePassword();
+        console.log('OTP is valid');
+        switchToCreatePassword();
         // }
     };
 
     return (
         <View style={[styles.container, { backgroundColor: theme.themeColor }]}>
-            {/* <View style={styles.topbar}>
-
-    </View> */}
-            <View style={styles.wrapper}>
+            <View style={styles.topbar}>
                 <TouchableOpacity onPress={switchToForgotPassword}>
                     <View style={[styles.backBtn, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]}>
                         <Image source={backIcon} style={styles.backIcon} />
                     </View>
                 </TouchableOpacity>
+            </View>
+
+            {/* wrapper */}
+
+            <View style={styles.wrapper}>
+
+                {/* verification notes */}
+
                 <View >
                     <Text style={[styles.note, { color: theme.white }]}>OTP Verification</Text>
                 </View>
@@ -50,25 +60,29 @@ const OtpComponent = ({ switchToCreatePassword, switchToForgotPassword }) => {
                     <Text style={[styles.para, { color: theme.white }]}>Enter the verification code we just sent on your email address.</Text>
                 </View>
 
+                {/* otp inputs */}
 
                 <OtpInput
                     numberOfDigits={4}
                     focusColor={colorTheme.footerText}
                     focusStickBlinkingDuration={400}
-                    containerStyle={[styles.otpContainer, ]}
-                    inputsContainerStyle={[styles.otpInputContainer, ]}
-                    inputStyle={[styles.otpInput, ]
+                    containerStyle={[styles.otpContainer,]}
+                    inputsContainerStyle={[styles.otpInputContainer,]}
+                    inputStyle={[styles.otpInput,]
                     }
                     onChange={setOtp}
                 />
                 {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
+                {/* verify button */}
 
                 <TouchableOpacity style={styles.btnContainer} onPress={handleVerify}>
                     <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
                         <Text style={[styles.btnText, { color: theme.constWhite }]}>Verify</Text>
                     </LinearGradient>
                 </TouchableOpacity>
+
+                {/* resend code button */}
 
                 <View >
                     <Text style={[styles.qstn, { color: theme.white }]}>Didn’t received code? Resend</Text>
@@ -83,15 +97,16 @@ export default OtpComponent
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center",
-        // backgroundColor: colorTheme.themeColor,
+    },
+    topbar:{
+        alignItems:"flex-start",
+        paddingHorizontal:20,
+        paddingVertical:20,
     },
     backBtn: {
         height: 50,
         width: 50,
         borderWidth: 0.5,
-        // borderColor: colorTheme.inputBar,
-        // backgroundColor: colorTheme.inputBar,
         borderRadius: 15,
         justifyContent: "center",
         alignItems: "center",
@@ -108,42 +123,16 @@ const styles = StyleSheet.create({
         gap: 30,
         paddingVertical: 15,
         justifyContent: "flex-start"
-        // justifyContent: "center",
-        // alignItems:"center"
     },
     note: {
         fontSize: 45,
         fontWeight: "600",
         alignItems: "flex-start",
-        // color: colorTheme.white
     },
     para: {
         fontSize: 16,
-        // color: colorTheme.white
     },
 
-    // otpContainer: {
-
-    //     width: '100%', // Adjust the width
-    //     height: 56, // Adjust the height
-    //   },
-    //   otpInputContainer: {
-
-    //     height: 56, // Adjust the height of each input
-    //     width: 50, // Adjust the width of each input
-    //     margin: 5, // Adjust the margin between inputs
-    //     borderRadius: 8, // Adjust the border radius if needed
-    //   },
-    //   otpInput: {
-    //     fontSize: 50, // Adjust the font size
-    //     textAlign: 'center', // Center align the text,
-    //     backgroundColor: colorTheme.footerText, // Adjust the background color of each input
-    //   },
-
-    btnContainer: {
-        // width:250,
-
-    },
     btnGradient: {
         alignContent: "center",
         alignItems: "center",
@@ -153,7 +142,6 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontSize: 15,
-        // color: colorTheme.white,
         fontWeight: "600"
     },
     qstn: {
@@ -161,5 +149,4 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: colorTheme.white
     },
-
 })

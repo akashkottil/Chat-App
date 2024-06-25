@@ -8,18 +8,26 @@ import { useNavigation } from '@react-navigation/native'
 import colorTheme from '../../DarkMode/darkMode';
 
 const PasswordChanged = ({switchToLogin}) => {
+
+    // state for setting themes
+
     const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+
+    // state for  navgation
+
     const navigation = useNavigation();
+
+    // function for login button
 
     const handleLogin = ()=>{
         navigation.navigate('login')
     }
   return (
     <View style={[styles.container, {backgroundColor: theme.themeColor}]}>
-    {/* <View style={styles.topbar}>
-
-</View> */}
     <View style={styles.wrapper}>
+
+        {/* lottie animation  */}
+
     <View style={styles.lottieContainer}>
           <LottieView
             source={require('../../assets/animations/success.json')}
@@ -29,12 +37,17 @@ const PasswordChanged = ({switchToLogin}) => {
           />
           
         </View>
+
+        {/* passsword changed notes */}
+
         <View >
             <Text style={[styles.note, {color: theme.white}]}>Password Changed!</Text>
         </View>
         <View >
             <Text style={[styles.para, {color: theme.white}]}>Your password has been changed successfully.</Text>
         </View>
+
+        {/* login button */}
         
         <TouchableOpacity style={styles.btnContainer} onPress={handleLogin}>
             <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
@@ -52,7 +65,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        // backgroundColor: colorTheme.themeColor,
     },
 
     backIcon: {
@@ -66,24 +78,18 @@ const styles = StyleSheet.create({
         gap: 30,
         paddingVertical: 15,
         justifyContent: "center",
-        // justifyContent: "center",
         alignItems:"center"
     },
     note: {
         fontSize: 45,
         fontWeight: "600",
         alignItems: "flex-start",
-        // color: colorTheme.white
     },
     para:{
         fontSize:16,
-        // color: colorTheme.white
     },
-
     btnContainer: {
         width:300,
-        
-
     },
     btnGradient: {
         alignContent: "center",
@@ -94,7 +100,6 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontSize: 15,
-        // color: colorTheme.white,
         fontWeight: "600"
     },
 

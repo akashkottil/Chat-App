@@ -6,6 +6,9 @@ const ChatData = [
         image: require('../../assets/Influencers/sreya.jpg'),
         lastMessage: "Hey, are you there?",
         unreadCount: 2,
+        allMsg : {'user' : 'saple',
+                    'bot' : 'sample',
+                    }
     },
     {
         id: '2',

@@ -7,7 +7,12 @@ import backIcon from "../../assets/Icons/backicon.png"
 import colorTheme from '../../DarkMode/darkMode'
 
 const ForgotPassword = ({ switchToOtpScreen, switchToLogin }) => {
+
+    // state for setting themes
+
     const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+
+    // states for form validation
 
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
@@ -34,42 +39,57 @@ const ForgotPassword = ({ switchToOtpScreen, switchToLogin }) => {
 
     return (
         <View style={[styles.container, { backgroundColor: theme.themeColor }]}>
-            {/* <View style={styles.topbar}>
+            <ScrollView showsVerticalScrollIndicator={false}>
 
-    </View> */}
-    <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.wrapper}>
-                <TouchableOpacity onPress={switchToLogin}>
-                    <View style={[styles.backBtn, { backgroundColor: theme.inputBar, borderBlockColor: theme.inputBar }]}>
-                        <Image source={backIcon} style={styles.backIcon} />
+                {/* top bar with back navigation button */}
+
+                <View style={styles.topbar}>
+                    <TouchableOpacity onPress={switchToLogin}>
+                        <View style={[styles.backBtn, { backgroundColor: theme.inputBar, borderBlockColor: theme.inputBar }]}>
+                            <Image source={backIcon} style={styles.backIcon} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+                {/* wrapper */}
+
+                <View style={styles.wrapper}>
+
+                    {/* forgot notes */}
+
+                    <View >
+                        <Text style={[styles.note, { color: theme.white }]}>Forgot Password?</Text>
                     </View>
-                </TouchableOpacity>
-                <View >
-                    <Text style={[styles.note, { color: theme.white }]}>Forgot Password?</Text>
-                </View>
-                <View >
-                    <Text style={[styles.para, { color: theme.white }]}>Don't worry! It occurs. Please enter the email address linked with your account.</Text>
-                </View>
-                <View style={[styles.inputs, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]}>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Enter your Email"
-                        value={email}
-                        onChangeText={setEmail}
-                        onBlur={validateEmail} // Validate on input loss of focus (optional)
-                    />
-                    {error ? <Text style={styles.errorText}>{error}</Text> : null}
-                </View>
-                <TouchableOpacity style={styles.btnContainer} onPress={handleSubmit}>
-                    <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
-                        <Text style={[styles.btnText, { color: theme.constWhite }]}>Send Code</Text>
-                    </LinearGradient>
-                </TouchableOpacity>
+                    <View >
+                        <Text style={[styles.para, { color: theme.white }]}>Don't worry! It occurs. Please enter the email address linked with your account.</Text>
+                    </View>
 
-                <View >
-                    <Text style={[styles.qstn, { color: theme.white }]} onPress={switchToLogin}>Remember Password? Login</Text>
+                    {/*inputs */}
+                    <View style={[styles.inputs, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]}>
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Enter your Email"
+                            value={email}
+                            onChangeText={setEmail}
+                            onBlur={validateEmail} // Validate on input loss of focus (optional)
+                        />
+                        {error ? <Text style={styles.errorText}>{error}</Text> : null}
+                    </View>
+
+                    {/* button */}
+
+                    <TouchableOpacity style={styles.btnContainer} onPress={handleSubmit}>
+                        <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
+                            <Text style={[styles.btnText, { color: theme.constWhite }]}>Send Code</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+
+                    {/* remember login */}
+
+                    <View >
+                        <Text style={[styles.qstn, { color: theme.white }]} onPress={switchToLogin}>Remember Password? Login</Text>
+                    </View>
                 </View>
-            </View>
             </ScrollView>
         </View>
     )
@@ -80,14 +100,15 @@ export default ForgotPassword
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center",
-        // backgroundColor: colorTheme.themeColor,
+    },
+    topbar: {
+        alignItems: "flex-start",
+        paddingHorizontal: 20,
+        paddingVertical: 20
     },
     backBtn: {
         height: 50,
         width: 50,
-        // borderColor: colorTheme.inputBar,
-        // backgroundColor: colorTheme.inputBar,
         borderRadius: 15,
         justifyContent: "center",
         alignItems: "center",
@@ -104,18 +125,14 @@ const styles = StyleSheet.create({
         gap: 30,
         paddingVertical: 15,
         justifyContent: "flex-start"
-        // justifyContent: "center",
-        // alignItems:"center"
     },
     note: {
         fontSize: 45,
         fontWeight: "600",
         alignItems: "flex-start",
-        // color: colorTheme.white
     },
     para: {
         fontSize: 16,
-        // color: colorTheme.white
     },
     inputs: {
         borderRadius: 8,
@@ -124,17 +141,8 @@ const styles = StyleSheet.create({
     },
     textInput: {
         height: 56,
-        // borderColor: colorTheme.inputBar,
-        // backgroundColor: colorTheme.inputBar,
-        // borderWidth: 1,
         paddingLeft: 8,
         fontSize: 20,
-
-    },
-
-
-    btnContainer: {
-        // width:250,
 
     },
     btnGradient: {
@@ -146,13 +154,10 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontSize: 15,
-        // color: colorTheme.white,
         fontWeight: "600"
     },
     qstn: {
         alignSelf: "center",
         fontSize: 15,
-        // color: colorTheme.white,b
     },
-
 })

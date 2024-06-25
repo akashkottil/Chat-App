@@ -10,6 +10,7 @@ import Login from './src/Screens/Login/Login';
 import EditProfile from './src/Components/Profile/EditProfile';
 import Profile from './src/Screens/Profile/Profile';
 import { ThemeProvider } from './src/DarkMode/ThemeContext'; 
+import Terms from './src/Components/Profile/Terms';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ const App = () => {
             <Stack.Screen name="personalChat" component={PersonalChat} options={{ headerShown: false }} />
             <Stack.Screen name="profile" component={Profile} options={{ headerShown: false }} />
             <Stack.Screen name="editprofile" component={EditProfile} options={{ headerShown: false }} />
+            <Stack.Screen name="terms" component={Terms} options={{ headerShown: false }} />
           </Stack.Navigator>
         </NavigationContainer>
       </GestureHandlerRootView>

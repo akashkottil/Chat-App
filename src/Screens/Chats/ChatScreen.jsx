@@ -15,6 +15,7 @@ const ChatScreen = ({ navigation }) => {
         hidden={false}
         backgroundColor="#f8f8f8"
       />
+
       <View style={[styles.topbar,{backgroundColor: theme.transparent}]}>
         <View style={[styles.searchbar,{backgroundColor: theme.cards}]}>
           <SearchIcon name="search" size={25} style={[styles.searchIcon ,{color: theme.white}]} />
@@ -25,10 +26,8 @@ const ChatScreen = ({ navigation }) => {
             placeholderTextColor={theme.white}
           />
         </View>
-        {/* <View style={styles.filter}>
-          <Image source={FilterIcon} style={styles.filterImg} />
-        </View> */}
       </View>
+
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.main}>
          {

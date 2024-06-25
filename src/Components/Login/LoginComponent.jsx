@@ -3,71 +3,98 @@ import React, { useContext } from 'react'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
 import { ThemeContext } from '../../DarkMode/ThemeContext';
+import { useNavigation } from '@react-navigation/native'
 
-// icons
+// importing Icons
 
 import appleIcons from '../../assets/Icons/apple.png'
 import googleIcons from '../../assets/Icons/google.png'
 import fbIcons from '../../assets/Icons/fb.png'
 
-import { useNavigation } from '@react-navigation/native'
 
 
 
 const LoginComponent = ({ switchToSignup, switchToForgotPassword, }) => {
+
+    // state for setting themes
+
     const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+
+    // navigation state
+
     const navigation = useNavigation();
+
+    // function for login button
+
     const handleLogin = () => {
         navigation.navigate('home')
     }
+
+    
+
     const handleBack = () => {
         navigation.navigate('')
     }
     return (
         <View style={[styles.container, { backgroundColor: theme.themeColor }]}>
-            {/* <View style={styles.topbar}>
-
-            </View> */}
+            
             <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.wrapper}>
-                <View style={styles.backBtn}>
-                    {/* <Image source={backIcon} style={styles.backIcon}/> */}
-                </View>
-                <View >
-                    <Text style={[styles.note, { color: theme.white }]}>Welcome back! Glad to see you, Again!</Text>
-                </View>
-                <View style={styles.inputs}>
-                    <TextInput style={[styles.textInput, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]} placeholder="Enter Your Email" />
-                    <TextInput style={[styles.textInput, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]} placeholder="Password" secureTextEntry />
-                    <TouchableOpacity style={styles.forgotPswrdBox}>
-                        <Text style={[styles.forgotPswrd, { color: theme.white }]} onPress={switchToForgotPassword}>Forgot Password?</Text>
+                <View style={styles.wrapper}>
+                    
+                    {/* Welcome Note */}
+
+                    <View >
+                        <Text style={[styles.note, { color: theme.white }]}>Welcome back! Glad to see you, Again!</Text>
+                    </View>
+
+                    {/* Login Inputs */}
+
+                    <View style={styles.inputs}>
+                        <TextInput style={[styles.textInput, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]} placeholder="Enter Your Email" />
+                        <TextInput style={[styles.textInput, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]} placeholder="Password" secureTextEntry />
+
+                        {/* forgot password */}
+
+                        <TouchableOpacity style={styles.forgotPswrdBox}>
+                            <Text style={[styles.forgotPswrd, { color: theme.white }]} onPress={switchToForgotPassword}>Forgot Password?</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* Login button */}
+
+                    <TouchableOpacity style={styles.btnContainer} onPress={handleLogin}>
+                        <LinearGradient colors={theme.gradient} style={styles.btnGradient}>
+                            <Text style={[styles.btnText, { color: theme.constWhite }]}>Login</Text>
+                        </LinearGradient>
                     </TouchableOpacity>
-                </View>
-                <TouchableOpacity style={styles.btnContainer} onPress={handleLogin}>
-                    <LinearGradient colors={theme.gradient} style={styles.btnGradient}>
-                        <Text style={[styles.btnText, { color: theme.constWhite }]}>Login</Text>
-                    </LinearGradient>
-                </TouchableOpacity>
-                <View style={styles.loginWithContainer}>
-                    <View style={[styles.line, { backgroundColor: theme.white }]}></View>
-                    <View><Text style={[styles.orLoginText, { color: theme.white }]}>Or Login With</Text></View>
-                    <View style={[styles.line, { backgroundColor: theme.white }]}></View>
-                </View>
-                <View style={styles.socialLoginContainer}>
-                    <View style={[styles.socialButton, { backgroundColor: theme.cards, borderColor: theme.cards }]}>
-                        <Image source={fbIcons} style={styles.socialIcon} />
+
+                    
+                    <View style={styles.loginWithContainer}>
+                        <View style={[styles.line, { backgroundColor: theme.white }]}></View>
+                        <View><Text style={[styles.orLoginText, { color: theme.white }]}>Or Login With</Text></View>
+                        <View style={[styles.line, { backgroundColor: theme.white }]}></View>
                     </View>
-                    <View style={[styles.socialButton, { backgroundColor: theme.cards, borderColor: theme.cards }]}>
-                        <Image source={googleIcons} style={styles.socialIcon} />
+
+                    {/* Social media login buttons */}
+
+                    <View style={styles.socialLoginContainer}>
+                        <View style={[styles.socialButton, { backgroundColor: theme.cards, borderColor: theme.cards }]}>
+                            <Image source={fbIcons} style={styles.socialIcon} />
+                        </View>
+                        <View style={[styles.socialButton, { backgroundColor: theme.cards, borderColor: theme.cards }]}>
+                            <Image source={googleIcons} style={styles.socialIcon} />
+                        </View>
+                        <View style={[styles.socialButton, { backgroundColor: theme.cards, borderColor: theme.cards }]}>
+                            <Image source={appleIcons} style={styles.socialIcon} />
+                        </View>
                     </View>
-                    <View style={[styles.socialButton, { backgroundColor: theme.cards, borderColor: theme.cards }]}>
-                        <Image source={appleIcons} style={styles.socialIcon} />
+
+                    {/* Register now button */}
+
+                    <View >
+                        <Text style={[styles.qstn, { color: theme.white }]} onPress={switchToSignup}>Don't have an account? Register Now</Text>
                     </View>
                 </View>
-                <View >
-                    <Text style={[styles.qstn, { color: theme.white }]} onPress={switchToSignup}>Don't have an account? Register Now</Text>
-                </View>
-            </View>
             </ScrollView>
         </View>
     )
@@ -79,7 +106,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        // backgroundColor: colorTheme.themeColor,
     },
 
     backIcon: {
@@ -93,14 +119,11 @@ const styles = StyleSheet.create({
         gap: 30,
         paddingVertical: 15,
         justifyContent: "space-around"
-        // justifyContent: "center",
-        // alignItems:"center"
     },
     note: {
         fontSize: 45,
         fontWeight: "600",
         alignItems: "flex-start",
-        // color: colorTheme.white
     },
     inputs: {
         gap: 12,
@@ -109,8 +132,6 @@ const styles = StyleSheet.create({
     textInput: {
         height: 56,
         borderRadius: 8,
-        // borderColor: colorTheme.inputBar,
-        // backgroundColor: colorTheme.inputBar,
         borderWidth: 1,
         paddingLeft: 8,
         fontSize: 20,
@@ -121,10 +142,8 @@ const styles = StyleSheet.create({
     },
     forgotPswrd: {
         fontSize: 14,
-        // color: colorTheme.white,
     },
     btnContainer: {
-        // width:250,
     },
     btnGradient: {
         alignContent: "center",
@@ -135,13 +154,11 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontSize: 15,
-        // color: colorTheme.white,
         fontWeight: "600"
     },
     line: {
         height: 1,
         flex: 1,
-        // backgroundColor: colorTheme.white,
     },
 
     loginWithContainer: {
@@ -152,32 +169,27 @@ const styles = StyleSheet.create({
     },
     orLoginText: {
         fontSize: 14,
-        // color: colorTheme.white,
     },
     socialLoginContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        
+
     },
     socialButton: {
-        // borderColor: colorTheme.inputBar,
-        // backgroundColor:colorTheme.inputBar,
         borderWidth: 1,
         width: 105,
         height: 56,
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 10,
-        elevation:6
+        elevation: 6
     },
     qstn: {
         alignSelf: "center",
         fontSize: 15,
-        // color: colorTheme.white,
     },
     socialIcon: {
         height: 26,
         width: 26
     }
-
 })
