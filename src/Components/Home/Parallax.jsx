@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { View, Text, Dimensions, StyleSheet, Image, TouchableOpacity } from "react-native";
-import Animated, {
-    Extrapolate,
-    interpolate,
-    useAnimatedStyle,
-    useSharedValue,
-} from "react-native-reanimated";
+import  {useSharedValue,} from "react-native-reanimated";
 import Carousel from "react-native-reanimated-carousel";
 import { useNavigation } from "@react-navigation/native";
 
