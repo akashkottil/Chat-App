@@ -63,7 +63,7 @@ const termsData = [
 
 
 
-const Terms = () => {
+const Terms = ({switchToList}) => {
 
   // state for theme
 
@@ -75,14 +75,11 @@ const Terms = () => {
 
   const navigation = useNavigation();
 
-  const navigationBack = ()=>{
-    navigation.navigate('profile')
-  }
 
   return (
     <ScrollView >
       <View style={[styles.topbar,{backgroundColor: theme.themeColor}]}>
-        <TouchableOpacity style={[styles.backBtn, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]} onPress={navigationBack} >
+        <TouchableOpacity style={[styles.backBtn, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]} onPress={switchToList} >
           <View >
             <Image source={backIcon} style={styles.backIcon} />
           </View>

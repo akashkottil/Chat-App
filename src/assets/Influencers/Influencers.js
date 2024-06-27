@@ -10,7 +10,10 @@ const users= [
         name: "Aswathy Achu",
         nameTag: "Ai influencer",
         img:achu,
-        message:"hey",
+        messages: [
+            { text: "hey", sender: "ai", timestamp: new Date().toISOString() },
+            { text: "hi, how are you?", sender: "user", timestamp: new Date().toISOString() }
+        ],
         unread:4
     },
     {
@@ -18,7 +21,10 @@ const users= [
         name: "bellie",
         nameTag: "Ai influencer",
         img:bellie,
-        message:"hai",
+        messages: [
+            { text: "hai", sender: "ai", timestamp: new Date().toISOString() },
+            { text: "hello there!", sender: "user", timestamp: new Date().toISOString() }
+        ],
         unread:6
     },
     {
@@ -26,7 +32,10 @@ const users= [
         name: "helen",
         nameTag: "Ai influencer",
         img:helen,
-        message:"hello",
+        messages: [
+            { text: "hello", sender: "ai", timestamp: new Date().toISOString() },
+            { text: "how's it going?", sender: "user", timestamp: new Date().toISOString() }
+        ],
         unread:9
     },
     {
@@ -34,7 +43,10 @@ const users= [
         name: "keira",
         nameTag: "Ai influencer",
         img:keira,
-        message:"evdeya??",
+        messages: [
+            { text: "evdeya??", sender: "ai", timestamp: new Date().toISOString() },
+            { text: "I'm not home right now.", sender: "user", timestamp: new Date().toISOString() }
+        ],
         unread:43
     },
     {
@@ -42,7 +54,10 @@ const users= [
         name: "lilly",
         nameTag: "Ai influencer",
         img:lilly,
-        message:"call me",
+        messages: [
+            { text: "call me", sender: "ai", timestamp: new Date().toISOString() },
+            { text: "Will do!", sender: "user", timestamp: new Date().toISOString() }
+        ],
         unread:2
     },
 ]

@@ -47,7 +47,6 @@ export default Home
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: colorTheme.bgColor,
   },
   topbar: {
     flexDirection: "row",

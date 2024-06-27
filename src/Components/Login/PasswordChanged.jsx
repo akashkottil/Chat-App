@@ -5,7 +5,6 @@ import LinearGradient from 'react-native-linear-gradient'
 import LottieView from 'lottie-react-native';
 import { ThemeContext } from '../../DarkMode/ThemeContext';
 import { useNavigation } from '@react-navigation/native'
-import colorTheme from '../../DarkMode/darkMode';
 
 const PasswordChanged = ({switchToLogin}) => {
 
@@ -50,7 +49,7 @@ const PasswordChanged = ({switchToLogin}) => {
         {/* login button */}
         
         <TouchableOpacity style={styles.btnContainer} onPress={handleLogin}>
-            <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
+            <LinearGradient colors={theme.gradient} style={styles.btnGradient}>
                 <Text style={[styles.btnText, {color: theme.constWhite}]} onPress={switchToLogin}>Back to Login</Text>
             </LinearGradient>
         </TouchableOpacity>

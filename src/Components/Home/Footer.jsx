@@ -1,19 +1,22 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {useContext} from 'react'
 import Heart from 'react-native-vector-icons/Entypo'
 import Fb from 'react-native-vector-icons/Ionicons'
 import Whatsapp from 'react-native-vector-icons/Ionicons'
 import Insta from 'react-native-vector-icons/Ionicons'
 
 import LottieView from 'lottie-react-native';
-import colorTheme from '../../DarkMode/darkMode'
+import { ThemeContext } from '../../DarkMode/ThemeContext'
 
 const Footer = () => {
+   // state for theme
+
+   const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: theme.footerBgColor}]}>
       <View style={styles.wrapper}>
         <View style={styles.content}>
-          <Text style={styles.title}>Alforia</Text>
+          <Text style={[styles.title,{color: theme.footerText}]}>Alforia</Text>
           <View style={styles.madeWith}>
             <View><Text style={styles.text}>Made with</Text></View>
             <View>
@@ -53,8 +56,6 @@ export default Footer
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colorTheme.footerBgColor,
-
   },
   wrapper: {
     justifyContent: "center",
@@ -74,14 +75,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: "600",
-    color: colorTheme.footerText
   },
   text: {
     fontSize: 18,
     fontWeight: "600",
     justifyContent: "center",
     alignItems: "center",
-    color: colorTheme.footerText
   },
   madeWith:{
     justifyContent:"center",

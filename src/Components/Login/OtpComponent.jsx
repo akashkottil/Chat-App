@@ -4,11 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
 import { OtpInput } from 'react-native-otp-entry'
 import { ThemeContext } from '../../DarkMode/ThemeContext';
-
-
-
 import backIcon from "../../assets/Icons/backicon.png"
-import colorTheme from '../../DarkMode/darkMode';
 const OtpComponent = ({ switchToCreatePassword, switchToForgotPassword }) => {
 
     // state for setting themes
@@ -64,7 +60,7 @@ const OtpComponent = ({ switchToCreatePassword, switchToForgotPassword }) => {
 
                 <OtpInput
                     numberOfDigits={4}
-                    focusColor={colorTheme.footerText}
+                    focusColor={theme.footerText}
                     focusStickBlinkingDuration={400}
                     containerStyle={[styles.otpContainer,]}
                     inputsContainerStyle={[styles.otpInputContainer,]}
@@ -77,7 +73,7 @@ const OtpComponent = ({ switchToCreatePassword, switchToForgotPassword }) => {
                 {/* verify button */}
 
                 <TouchableOpacity style={styles.btnContainer} onPress={handleVerify}>
-                    <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
+                    <LinearGradient colors={theme.gradient} style={styles.btnGradient}>
                         <Text style={[styles.btnText, { color: theme.constWhite }]}>Verify</Text>
                     </LinearGradient>
                 </TouchableOpacity>
@@ -147,6 +143,6 @@ const styles = StyleSheet.create({
     qstn: {
         alignSelf: "center",
         fontSize: 15,
-        color: colorTheme.white
+        
     },
 })

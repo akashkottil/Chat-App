@@ -2,7 +2,6 @@
 import React, { useContext } from 'react';
 import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, Alert, Switch } from 'react-native';
 import { ThemeContext } from '../../DarkMode/ThemeContext'; // Adjust the path accordingly
-import { useNavigation } from '@react-navigation/native';
 
 import profileDp from '../../assets/ProfilePics/trainDp.jpg';
 import arrowIcon from '../../assets/SettingsIcons/arrow.png';
@@ -16,8 +15,8 @@ import termImg from "../../assets/SettingsIcons/terms.png";
 import logout from "../../assets/SettingsIcons/logout.png";
 import del from "../../assets/SettingsIcons/delete.png";
 
-
-//Personal and Security Settings icons data
+const ProfileLists = ({switchToPrivacy,switchToEdit,switchToNotification,switchToSubscribtion,switchToHelp,switchToTerms}) => {
+  //Personal and Security Settings icons data
 const settingsData = [
   {
     id: 1,
@@ -25,7 +24,7 @@ const settingsData = [
     data: "Change personal details, update photos",
     icon: profileImg,
     arrow: arrowIcon,
-    path: "editprofile"
+    onPress: switchToEdit
   },
   {
     id: 3,
@@ -33,7 +32,7 @@ const settingsData = [
     data: "toggle push notifications, app sounds",
     icon: notificationImg,
     arrow: arrowIcon,
-    path: "notification"
+    onPress: switchToNotification
   },
   {
     id: 4,
@@ -56,7 +55,7 @@ const settingsData = [
     data: "manage who can contact you, block users",
     icon: privacyImg,
     arrow: arrowIcon,
-    path:"privacy"
+    onPress:switchToPrivacy
   },
 ];
 
@@ -67,14 +66,16 @@ const support = [
     title: "My subscription",
     data: "current plan, renew or upgrade subscription, billing history, manage payment methods",
     icon: subscriptionImg,
-    arrow: arrowIcon
+    arrow: arrowIcon,
+    onPress: switchToSubscribtion
   },
   {
     id: 2,
     title: "Help & Support",
     data: "contact support, feedback, report a problem",
     icon: helpImg,
-    arrow: arrowIcon
+    arrow: arrowIcon,
+    onPress: switchToHelp
   },
   {
     id: 3,
@@ -82,7 +83,7 @@ const support = [
     data: "understand community guidelines, license agreements",
     icon: termImg,
     arrow: arrowIcon,
-    path: "terms"
+    onPress: switchToTerms
   },
 ];
 
@@ -121,9 +122,9 @@ const showLogoutAlert = () => {
   );
 };
 
-const ProfileLists = () => {
-  const navigation = useNavigation();
+  
   const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+  
 
   return (
     <View style={[styles.container, { backgroundColor: theme.bgColor }]}>
@@ -146,7 +147,7 @@ const ProfileLists = () => {
             <View style={styles.main}>
               <View style={[styles.mainCard, { backgroundColor: theme.cards }]}>
                 {settingsData.map((data) => (
-                  <TouchableOpacity key={data.id} style={styles.dataCard} onPress={() => data.path && navigation.navigate(data.path)}>
+                  <TouchableOpacity key={data.id} style={styles.dataCard} onPress={data.onPress}>
                     <View style={styles.cardLeft}>
                       <Image source={data.icon} style={styles.icons} />
                       <View style={styles.content}>
@@ -164,7 +165,7 @@ const ProfileLists = () => {
 
               <View style={[styles.mainCard, { backgroundColor: theme.cards }]}>
               {support.map((data) => (
-                <TouchableOpacity key={data.id} style={styles.dataCard} onPress={() => data.path && navigation.navigate(data.path)}>
+                <TouchableOpacity key={data.id} style={styles.dataCard} onPress={data.onPress}>
                   <View style={styles.cardLeft}>
                     <Image source={data.icon} style={styles.icons} />
                     <View style={styles.content}>

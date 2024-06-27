@@ -47,7 +47,7 @@ const termsData = [
   },
 ]
 
-const Privacy = () => {
+const Privacy = ({switchToList}) => {
   // state for theme
 
   const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
@@ -58,13 +58,13 @@ const Privacy = () => {
 
   const navigation = useNavigation();
 
-  const navigationBack = () => {
-    navigation.navigate('profile')
-  }
+  // const navigationBack = () => {
+  //   navigation.navigate('profilelist')
+  // }
   return (
     <ScrollView >
       <View style={[styles.topbar, { backgroundColor: theme.themeColor }]}>
-        <TouchableOpacity style={[styles.backBtn, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]} onPress={navigationBack} >
+        <TouchableOpacity style={[styles.backBtn, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]} onPress={switchToList} >
           <View >
             <Image source={backIcon} style={styles.backIcon} />
           </View>

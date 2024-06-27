@@ -32,9 +32,7 @@ const LoginComponent = ({ switchToSignup, switchToForgotPassword, }) => {
 
     
 
-    const handleBack = () => {
-        navigation.navigate('')
-    }
+  
     return (
         <View style={[styles.container, { backgroundColor: theme.themeColor }]}>
             

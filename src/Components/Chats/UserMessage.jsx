@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
         paddingHorizontal:15,
         paddingVertical:15
     },
-
     messageBox:{
         width:243,
         backgroundColor:"#F2F2F2",
@@ -35,7 +34,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    // Shadow for Android
     elevation: 4,
     },
     messageText:{

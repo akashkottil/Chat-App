@@ -9,11 +9,10 @@ import Help from '../../Components/Profile/Help';
 import Terms from '../../Components/Profile/Terms';
 
 const Profile = () => {
-  const [currentScreen, setCurrentScreen] = useState("profilelist");
-
+  const [currentScreen, setCurrentScreen] = useState("profile");
 
   const switchToList = () => {
-    setCurrentScreen('profilelist');
+    setCurrentScreen('profile');
   }
   const switchToEdit = () => {
     setCurrentScreen('editprofile');
@@ -36,11 +35,11 @@ const Profile = () => {
 
 
   return (
-    <View>
+    <View style={styles.container}>
       {/* <ProfileLists/> */}
 
     {
-      currentScreen === "profilelist" && (
+      currentScreen === "profile" && (
         <ProfileLists 
         switchToEdit={switchToEdit}
         switchToNotification={switchToNotification}
@@ -63,12 +62,12 @@ const Profile = () => {
     }
     {
       currentScreen === "privacy" && (
-        <Privacy/>
+        <Privacy switchToList={switchToList}/>
       )
     }
     {
       currentScreen === "subscribtion" && (
-        <Subscribtion/>
+        <Subscribtion switchToList={switchToList}/>
       )
     }
     {
@@ -78,7 +77,7 @@ const Profile = () => {
     }
     {
       currentScreen === "terms" && (
-        <Terms/>
+        <Terms switchToList={switchToList}/>
       )
     }
 
@@ -90,4 +89,8 @@ const Profile = () => {
 
 export default Profile
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container:{
+    flex:1
+  }
+})

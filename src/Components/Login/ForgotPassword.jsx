@@ -4,7 +4,7 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
 import { ThemeContext } from '../../DarkMode/ThemeContext';
 import backIcon from "../../assets/Icons/backicon.png"
-import colorTheme from '../../DarkMode/darkMode'
+
 
 const ForgotPassword = ({ switchToOtpScreen, switchToLogin }) => {
 
@@ -79,7 +79,7 @@ const ForgotPassword = ({ switchToOtpScreen, switchToLogin }) => {
                     {/* button */}
 
                     <TouchableOpacity style={styles.btnContainer} onPress={handleSubmit}>
-                        <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
+                        <LinearGradient colors={theme.gradient} style={styles.btnGradient}>
                             <Text style={[styles.btnText, { color: theme.constWhite }]}>Send Code</Text>
                         </LinearGradient>
                     </TouchableOpacity>

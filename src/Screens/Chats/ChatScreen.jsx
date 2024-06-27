@@ -1,13 +1,12 @@
 import { StyleSheet, Text, StatusBar, ScrollView, View, TextInput, Image, TouchableOpacity} from 'react-native';
 import React, { useContext } from 'react';
 import SearchIcon from 'react-native-vector-icons/Feather';
-// import Chat from '../../Components/Chats/Chat';
 import { ThemeContext } from '../../DarkMode/ThemeContext';
 import users from '../../assets/Influencers/Influencers';
 import LinearGradient from 'react-native-linear-gradient';
 
 const ChatScreen = ({ navigation }) => {
-  const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   return (
     <View style={[styles.container,{backgroundColor: theme.bgColor}]}>
       <StatusBar
@@ -23,6 +22,7 @@ const ChatScreen = ({ navigation }) => {
           <TextInput
             style={[styles.searchInput,]}
             placeholder="Search Messages, Profiles"
+            clearButtonMode='always'
             placeholderTextColor={theme.white}
           />
         </View>
@@ -33,7 +33,11 @@ const ChatScreen = ({ navigation }) => {
          {
 
           users.map((user)=>(
-            <TouchableOpacity key={user.id} onPress={() => navigation.navigate('personalChat')}>
+            <TouchableOpacity key={user.id} onPress={() => navigation.navigate('personalChat', {
+              userId: user.id,
+              userName: user.name,
+              userImage: user.img
+            })}>
         <View style={[styles.chats,{backgroundColor: theme.cards}]}>
           <View style={styles.left}>
             <View style={styles.ProPic}>
@@ -42,7 +46,7 @@ const ChatScreen = ({ navigation }) => {
             </View>
             <View style={styles.chatDetails}>
               <Text style={[styles.title,{color: theme.white}]}>{user.name}</Text>
-              <Text style={[styles.message,{color: theme.white}]}> {user.message} </Text>
+              <Text style={[styles.message,{color: theme.white}]}> {user.messages[user.messages.length - 1].text} </Text>
             </View>
           </View>
           <View>
@@ -79,6 +83,9 @@ const styles = StyleSheet.create({
     gap: 10,
     alignItems: "center",
     zIndex: 10,
+  },
+  searchInput:{
+    zIndex:10
   },
   
   searchbar: {

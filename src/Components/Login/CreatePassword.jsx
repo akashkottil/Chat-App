@@ -4,7 +4,7 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
 import { ThemeContext } from '../../DarkMode/ThemeContext';
 import backIcon from "../../assets/Icons/backicon.png"
-import colorTheme from '../../DarkMode/darkMode';
+
 const CreatePassword = ({ switchToPasswordChanged, switchToForgotPassword }) => {
 
     // state for setting themes
@@ -88,7 +88,7 @@ const CreatePassword = ({ switchToPasswordChanged, switchToForgotPassword }) => 
                     {/* reset password button */}
 
                     <TouchableOpacity style={styles.btnContainer} onPress={handleResetPassword}>
-                        <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
+                        <LinearGradient colors={theme.gradient} style={styles.btnGradient}>
                             <Text style={[styles.btnText, { color: theme.constWhite }]}>Reset Password</Text>
                         </LinearGradient>
                     </TouchableOpacity>

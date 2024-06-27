@@ -2,51 +2,13 @@ import { Button, View, StyleSheet, Text, Image } from 'react-native';
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 
-
-
 // influencers images
 
-import achu from '../../assets/Influencers/Achu.png'
-import bellie from '../../assets/Influencers/bellie.png'
-import helen from '../../assets/Influencers/helen.png'
-import keira from '../../assets/Influencers/keira.png'
-import lilly from '../../assets/Influencers/lilly.png'
+import users from '../../assets/Influencers/Influencers';
 
 
 const TrendingSlides = () => {
 
-  const influencers = [
-    {
-        id:1,
-        name: "Aswathy Achu",
-        nameTag: "Ai influencer",
-        img:achu
-    },
-    {
-        id:2,
-        name: "bellie",
-        nameTag: "Ai influencer",
-        img:bellie
-    },
-    {
-        id:3,
-        name: "helen",
-        nameTag: "Ai influencer",
-        img:helen
-    },
-    {
-        id:4,
-        name: "keira",
-        nameTag: "Ai influencer",
-        img:keira
-    },
-    {
-        id:5,
-        name: "lilly",
-        nameTag: "Ai influencer",
-        img:lilly
-    },
-]
 
 
   return (
@@ -57,15 +19,15 @@ const TrendingSlides = () => {
 
 {
 
-  influencers.map((influencer) => (
+  users.map((user) => (
     <View style={styles.card}>
       <View>
-        <Image source={influencer.img} style={styles.images} />
+        <Image source={user.img} style={styles.images} />
         <View style={styles.blackShade}></View>
         <View style={styles.cardDetails}>
           <View style={styles.text}>
-            <Text style={styles.cardName}>{influencer.name}</Text>
-            <Text style={styles.cardTag}>{influencer.nameTag}</Text>
+            <Text style={styles.cardName}>{user.name}</Text>
+            <Text style={styles.cardTag}>{user.nameTag}</Text>
           </View>
           {/* <View style={styles.cardButton}>
       <Image source={frwd}/>

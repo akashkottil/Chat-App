@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState} from 'react'
 import {
   View,
   Text,
@@ -16,9 +16,7 @@ import * as ImagePicker from 'react-native-image-picker';
 import LinearGradient from 'react-native-linear-gradient'
 import profileDp from '../../assets/ProfilePics/trainDp.jpg'
 import backIcon from "../../assets/Icons/backicon.png"
-import colorTheme from '../../DarkMode/darkMode';
-
-
+import { ThemeContext } from '../../DarkMode/ThemeContext';
 
 
 const EditProfile = () => {
@@ -56,8 +54,12 @@ const EditProfile = () => {
     Alert.alert('Profile Updated', 'Your profile details have been updated.');
   };
 
+    // state for theme
+
+    const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={[styles.container, {backgroundColor: theme.themeColor}]}>
       {/* <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
       {profilePhoto ? (
         <Image source={profilePhoto} style={styles.profileImage} />
@@ -67,7 +69,7 @@ const EditProfile = () => {
     </TouchableOpacity> */}
 
       <TouchableOpacity >
-        <View style={styles.backBtn}>
+        <View style={[styles.backBtn,{borderColor: theme.inputBar,backgroundColor: theme.inputBar}]}>
           <Image source={backIcon} style={styles.backIcon} />
         </View>
       </TouchableOpacity>
@@ -81,19 +83,19 @@ const EditProfile = () => {
       </View>
       <View style={styles.inputs}>
         <TextInput
-          style={styles.textInput}
+          style={[styles.textInput, {borderColor: theme.inputBar, backgroundColor: theme.inputBar}]}
           placeholder="Full Name"
           value={fullName}
           onChangeText={setFullName}
         />
         <TextInput
-          style={styles.textInput}
+          style={[styles.textInput, {borderColor: theme.inputBar, backgroundColor: theme.inputBar}]}
           placeholder="Username"
           value={username}
           onChangeText={setUsername}
         />
         <TextInput
-          style={styles.textInput}
+          style={[styles.textInput, {borderColor: theme.inputBar, backgroundColor: theme.inputBar}]}
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
@@ -101,7 +103,7 @@ const EditProfile = () => {
         />
         <View style={styles.rowInput}>
           <TextInput
-            style={styles.number}
+            style={[styles.number, {borderColor: theme.inputBar, backgroundColor: theme.inputBar}]}
             placeholder="Phone Number"
             value={phone}
             onChangeText={setPhone}
@@ -109,7 +111,7 @@ const EditProfile = () => {
           />
           <Picker
             selectedValue={gender}
-            style={styles.gender}
+            style={[styles.gender,{borderColor: theme.inputBar, backgroundColor: theme.inputBar}]}
             onValueChange={(itemValue) => setGender(itemValue)}
           >
 
@@ -122,8 +124,8 @@ const EditProfile = () => {
 
         {/* <Button title="Submit" onPress={updateProfile} /> */}
         <TouchableOpacity onPress={updateProfile}>
-          <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
-            <Text style={styles.btnText}>Submit</Text>
+          <LinearGradient colors={theme.gradient} style={styles.btnGradient}>
+            <Text style={[styles.btnText, {color: theme.white}]}>Submit</Text>
           </LinearGradient>
         </TouchableOpacity>
       </View>
@@ -135,8 +137,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: colorTheme.themeColor,
-
   },
   imagePicker: {
     alignItems: 'center',
@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: colorTheme.inputBar,
     borderWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 10,
@@ -167,8 +166,6 @@ const styles = StyleSheet.create({
   textInput: {
     height: 56,
     borderRadius: 8,
-    borderColor: colorTheme.inputBar,
-    backgroundColor: colorTheme.inputBar,
     borderWidth: 1,
     paddingLeft: 8,
     fontSize: 20,
@@ -177,8 +174,6 @@ const styles = StyleSheet.create({
   gender: {
     height: 56,
     borderRadius: 8,
-    borderColor: colorTheme.inputBar,
-    backgroundColor: colorTheme.inputBar,
     borderWidth: 1,
     paddingLeft: 8,
     fontSize: 20,
@@ -188,8 +183,6 @@ const styles = StyleSheet.create({
   number: {
     height: 56,
     borderRadius: 8,
-    borderColor: colorTheme.inputBar,
-    backgroundColor: colorTheme.inputBar,
     borderWidth: 1,
     paddingLeft: 8,
     fontSize: 20,
@@ -208,7 +201,6 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 15,
-    color: colorTheme.white,
     fontWeight: "600"
   },
   topSection: {
@@ -226,8 +218,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderWidth: 0.5,
-    borderColor: colorTheme.inputBar,
-    backgroundColor: colorTheme.inputBar,
     borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",

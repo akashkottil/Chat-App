@@ -4,7 +4,7 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
 import { ThemeContext } from '../../DarkMode/ThemeContext';
 import { useNavigation } from '@react-navigation/native'
-import colorTheme from '../../DarkMode/darkMode';
+
 
 // importing Icons
 
@@ -88,7 +88,7 @@ const SignupComponent = ({ switchToLogin, }) => {
 
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.topbar}>
-                    <TouchableOpacity style={[styles.backBtn, { backgroundColor: theme.inputBar, borderColor: colorTheme.inputBar }]} onPress={switchToLogin}>
+                    <TouchableOpacity style={[styles.backBtn, { backgroundColor: theme.inputBar, borderColor: theme.inputBar }]} onPress={switchToLogin}>
                         <View >
                             <Image source={backIcon} style={styles.backIcon} />
                         </View>
@@ -146,7 +146,7 @@ const SignupComponent = ({ switchToLogin, }) => {
                     {/* Register button */}
 
                     <TouchableOpacity style={styles.btnContainer} onPress={handleRegister}>
-                        <LinearGradient colors={colorTheme.gradient} style={styles.btnGradient}>
+                        <LinearGradient colors={theme.gradient} style={styles.btnGradient}>
                             <Text style={[styles.btnText, { color: theme.constWhite }]}>Register</Text>
                         </LinearGradient>
                     </TouchableOpacity>

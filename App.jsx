@@ -26,9 +26,9 @@ const App = () => {
             <Stack.Screen name="home" component={TabNavigator} options={{ headerShown: false }} />
             <Stack.Screen name="personalChat" component={PersonalChat} options={{ headerShown: false }} />
             <Stack.Screen name="profile" component={Profile} options={{ headerShown: false }} />
-            <Stack.Screen name="editprofile" component={EditProfile} options={{ headerShown: false }} />
+            {/* <Stack.Screen name="editprofile" component={EditProfile} options={{ headerShown: false }} />
             <Stack.Screen name="terms" component={Terms} options={{ headerShown: false }} />
-            <Stack.Screen name="privacy" component={Privacy} options={{ headerShown: false }} />
+            <Stack.Screen name="privacy" component={Privacy} options={{ headerShown: false }} /> */}
           </Stack.Navigator>
         </NavigationContainer>
       </GestureHandlerRootView>
