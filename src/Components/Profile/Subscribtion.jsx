@@ -2,10 +2,24 @@ import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image } from 'rea
 import React, { useContext, useState } from 'react';
 import tick from '../../assets/Icons/tick.png'
 import { ThemeContext } from '../../DarkMode/ThemeContext';
+import close from '../../assets/Icons/close.png'
+import LinearGradient from 'react-native-linear-gradient';
+import FirstPlan from './Plans/FirstPlan';
+import SecondPlan from './Plans/SecondPlan';
+import ThirdPlan from './Plans/ThirdPlan';
+import CloseIcon from 'react-native-vector-icons/Ionicons'
 
 const Subscribtion = ({ switchToList }) => {
+
+  // state for managing the plans
+
   const [selectedPlan, setSelectedPlan] = useState(1);
+
+  // theme
+
   const { theme } = useContext(ThemeContext)
+
+  // function for change the plan
 
   const handleSelectPlan = (index) => {
     setSelectedPlan(index);
@@ -28,11 +42,52 @@ const Subscribtion = ({ switchToList }) => {
     },
   ]
 
-
   return (
+    <View style={[styles.container, { backgroundColor: theme.bgColor }]}>
 
-    <View style={styles.container}>
-      <View style={styles.content}></View>
+      {/* conntent section where plan features displays */}
+
+      <View style={[styles.content,]}>
+        <TouchableOpacity style={styles.topBar} onPress={switchToList}>
+          
+          {/* <Image source={close} style={styles.closeImg} /> */}
+          <CloseIcon name="close" size={30} color={theme.constWhite}/>
+
+        </TouchableOpacity>
+        <LinearGradient
+          colors={['#522FDC', 'transparent']}
+          style={styles.blackShade}
+          start={{ x: 0, y: 0.1 }}
+          end={{ x: 0, y: 1 }}
+
+        >
+          <View style={styles.planFeatures}>
+            <Text style={[styles.headingText, { color: theme.constWhite }]}>Level up Your moments</Text>
+
+            {/* rendering plans conponents */}
+
+            {
+              selectedPlan === 0 && (
+                <FirstPlan />
+              )
+            }
+            {
+              selectedPlan === 1 && (
+                <SecondPlan />
+              )
+            }
+            {
+              selectedPlan === 2 && (
+                <ThirdPlan />
+              )
+            }
+
+          </View>
+        </LinearGradient>
+      </View>
+
+      {/* bottom section */}
+
       <View style={[styles.plans, { backgroundColor: theme.bgColor, }]}>
         {
           planDetails.map((plan, index) => (
@@ -41,7 +96,7 @@ const Subscribtion = ({ switchToList }) => {
             }]}>
               {plan.tag ? (
                 <View style={[styles.recommended, { backgroundColor: theme.tabActive }]}>
-                  <Text style={[styles.text, { color: theme.white }]}>{plan.tag}</Text>
+                  <Text style={[styles.text, { color: theme.constWhite }]}>{plan.tag}</Text>
                 </View>
               ) : null}
               <View style={styles.planContent}>
@@ -81,6 +136,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    position: "relative"
   },
   plan: {
     height: 80,
@@ -98,6 +154,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     gap: 20,
     justifyContent: "center",
+    elevation: 80
   },
   selected: {
     height: 20,
@@ -147,5 +204,35 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "600"
+  },
+  closeImg: {
+    height: 40,
+    width: 40
+  },
+  topBar: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: 50,
+    width: 50,
+    zIndex: 10,
+    position: "absolute"
+  },
+  blackShade: {
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  planFeatures: {
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "stretch",
+    paddingHorizontal: 20,
+    gap: 10
+  },
+  headingText: {
+    fontSize: 45,
+    fontWeight: "600",
   }
+
+
 });

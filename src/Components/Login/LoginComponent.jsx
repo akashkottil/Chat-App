@@ -36,7 +36,7 @@ const LoginComponent = ({ switchToSignup, switchToForgotPassword, }) => {
     return (
         <View style={[styles.container, { backgroundColor: theme.themeColor }]}>
             
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} >
                 <View style={styles.wrapper}>
                     
                     {/* Welcome Note */}
@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
+        justifyContent:"center"
     },
 
     backIcon: {
