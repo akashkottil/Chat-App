@@ -4,14 +4,13 @@ import backIcon from '../../assets/Icons/backicon.png'
 import menu from "../../assets/Icons/menu.png"
 import giftImg from '../../assets/Icons/gift.png'
 import sendImg from '../../assets/Icons/send.png'
-import UserMessage from '../../Components/Chats/UserMessage'
-import AiMessage from '../../Components/Chats/AiMessage'
-
 import { useRoute } from '@react-navigation/native'
+import LinearGradient from 'react-native-linear-gradient'
+import LottieView from 'lottie-react-native'
 
 const PersonalChat = ({ navigation }) => {
   const route = useRoute();
-  const { userId, userName, userImage } = route.params;
+  const { userId, userName, userMessage, userImage } = route.params;
   return (
     <View style={styles.container}>
       <View style={styles.topbar}>
@@ -19,6 +18,7 @@ const PersonalChat = ({ navigation }) => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={backIcon} style={styles.backIcon} />
           </TouchableOpacity>
+
           <View style={styles.proDetails}>
             <Image source={userImage} style={styles.propicimg}></Image>
             <View>
@@ -34,27 +34,36 @@ const PersonalChat = ({ navigation }) => {
       </View>
       <View style={styles.main}>
         <ScrollView>
-          <UserMessage />
-          <UserMessage />
-          <UserMessage />
-          <UserMessage />
-          <UserMessage />
-          <UserMessage />
-          <UserMessage />
-          <UserMessage />
-          <UserMessage />
-          <UserMessage />
-          <AiMessage />
-          <AiMessage />
-          <UserMessage />
-          <AiMessage />
-          <AiMessage />
-          <AiMessage />
-          <AiMessage />
-          <AiMessage />
-          <AiMessage />
-          <AiMessage />
-          <AiMessage />
+        {userMessage && userMessage.length > 0 ? (
+            userMessage.map((message, index) => (
+              <View key={index} style={styles.msgWrapper}>
+                {message.sender === "ai" ? (
+                  <LinearGradient
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                    colors={['#522FDC', '#9673FF']}
+                    style={styles.messageBox}
+                  >
+                    <Text style={styles.messageText}>{message.text}</Text>
+                  </LinearGradient>
+                ) : (
+                  <View style={styles.messageBox}>
+                    <Text style={styles.messageText}>{message.text}</Text>
+                  </View>
+                )}
+              </View>
+            ))
+          ) : (
+            <View style={[styles.noTextView, {justifyContent:"center", alignItems:"center", flex:1}]}>
+            <Text style={[styles.noMessagesText, {}]}>No messages yet</Text>
+            <LottieView
+            source={require('../../assets/animations/heart.json')}
+            autoPlay
+            loop={true}
+            style={styles.lottie}
+          />
+            </View>
+          )}
         </ScrollView>
       </View>
       <View style={styles.bottombar}>
@@ -108,7 +117,8 @@ const styles = StyleSheet.create({
   left: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 15
+    // Removed gap and added margin for compatibility in React Native
+    marginRight: 15,
   },
   backIcon: {
     height: 18,
@@ -122,7 +132,8 @@ const styles = StyleSheet.create({
   proDetails: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 15
+    // Removed gap and added margin for compatibility in React Native
+    marginRight: 15,
   },
   name: {
     fontWeight: "800",
@@ -201,6 +212,52 @@ const styles = StyleSheet.create({
     right: 0
   },
   statusbar: {
-    justifyContent: "center",
-  }
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+  messageBox: {
+    width: 243,
+    backgroundColor: "#F2F2F2",
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    shadowColor: "black",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  messageText: {
+    fontSize: 17,
+    fontWeight: "400",
+    color: "black",
+  },
+  msgWrapper: {
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    alignSelf:"stretch",
+  },
+  usermessageBox: {
+    width: 243,
+    backgroundColor: "#F2F2F2",
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    shadowColor: "black",
+    alignItems:"flex-end",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    lottie: {
+      width: 50,
+      height: 50,
+    },
+  },
 });
+
+

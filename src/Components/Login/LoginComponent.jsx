@@ -10,11 +10,9 @@ import { useNavigation } from '@react-navigation/native'
 import appleIcons from '../../assets/Icons/apple.png'
 import googleIcons from '../../assets/Icons/google.png'
 import fbIcons from '../../assets/Icons/fb.png'
+import { windowHeight, windowWidth } from '../../Constants/Dimension';
 
-
-
-
-const LoginComponent = ({ switchToSignup, switchToForgotPassword, }) => {
+const LoginComponent = ({ switchToSignup,navigation, switchToForgotPassword, }) => {
 
     // state for setting themes
 
@@ -22,7 +20,6 @@ const LoginComponent = ({ switchToSignup, switchToForgotPassword, }) => {
 
     // navigation state
 
-    const navigation = useNavigation();
 
     // function for login button
 
@@ -30,9 +27,6 @@ const LoginComponent = ({ switchToSignup, switchToForgotPassword, }) => {
         navigation.navigate('home')
     }
 
-    
-
-  
     return (
         <View style={[styles.container, { backgroundColor: theme.themeColor }]}>
             
@@ -60,7 +54,7 @@ const LoginComponent = ({ switchToSignup, switchToForgotPassword, }) => {
 
                     {/* Login button */}
 
-                    <TouchableOpacity style={styles.btnContainer} onPress={handleLogin}>
+                    <TouchableOpacity style={styles.btnContainer} onPress={()=>navigation.navigate('home')}>
                         <LinearGradient colors={theme.gradient} style={styles.btnGradient}>
                             <Text style={[styles.btnText, { color: theme.constWhite }]}>Login</Text>
                         </LinearGradient>
@@ -123,13 +117,14 @@ const styles = StyleSheet.create({
         fontSize: 45,
         fontWeight: "600",
         alignItems: "flex-start",
+        fontFamily:"PlaywriteESDeco-ExtraLight"
     },
     inputs: {
         gap: 12,
 
     },
     textInput: {
-        height: 56,
+        height: windowHeight *0.07,
         borderRadius: 8,
         borderWidth: 1,
         paddingLeft: 8,

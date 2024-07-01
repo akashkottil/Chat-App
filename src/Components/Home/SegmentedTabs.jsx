@@ -59,36 +59,14 @@ const SegmentedTabs = () => {
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
-
-
-                <SegmentControl segments={segments}
-                    style={styles.tab}
-                />
-
+                <SegmentControl segments={segments}/>
             </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    text: {
-        alignSelf: 'center',
-        margin: 50
-    },
-    tab: {
-        width: "auto",
-        height: 40,
-        borderRadius: 20,
-        paddingHorizontal: 25,
-        justifyContent: "center",
-        alignItems: "center",
-        marginHorizontal: 5,
-        marginVertical: 5,
-        elevation: 6,
-    },
+    
 });
 
 export default SegmentedTabs

@@ -1,5 +1,5 @@
 // ProfileLists.js
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, Alert, Switch } from 'react-native';
 import { ThemeContext } from '../../DarkMode/ThemeContext'; // Adjust the path accordingly
 
@@ -14,8 +14,12 @@ import helpImg from "../../assets/SettingsIcons/help.png";
 import termImg from "../../assets/SettingsIcons/terms.png";
 import logout from "../../assets/SettingsIcons/logout.png";
 import del from "../../assets/SettingsIcons/delete.png";
+import LogoutAlert from '../Modals/LogoutAlert';
 
 const ProfileLists = ({switchToPrivacy,switchToEdit,switchToNotification,switchToSubscribtion,switchToHelp,switchToTerms}) => {
+
+  const [modal,setModal] =useState(false);
+
   //Personal and Security Settings icons data
 const settingsData = [
   {
@@ -105,21 +109,8 @@ const account = [
 ];
 
 const showLogoutAlert = () => {
-  Alert.alert(
-    "Logout",
-    "Are you sure you want to logout?",
-    [
-      {
-        text: "Cancel",
-        onPress: () => console.log("Logout cancelled"),
-        style: "cancel"
-      },
-      {
-        text: "Logout",
-        onPress: () => console.log("User logged out"),
-      }
-    ]
-  );
+console.log("Hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+  setModal(true)
 };
 
   
@@ -181,7 +172,7 @@ const showLogoutAlert = () => {
               <View style={[styles.mainCard, { backgroundColor: theme.cards }]}>
 
               {account.map((data) => (
-                <TouchableOpacity key={data.id} style={styles.dataCard} onPress={data.onPress}>
+                <TouchableOpacity key={data.id} style={styles.dataCard} onPress={showLogoutAlert}>
                   <View style={styles.cardLeft}>
                     <Image source={data.icon} style={styles.icons} />
                     <Text style={[styles.contentTitle, { color: theme.white }]}>{data.title}</Text>
@@ -194,6 +185,9 @@ const showLogoutAlert = () => {
           </ScrollView>
         </View>
       </ScrollView>
+      {
+        modal && (<LogoutAlert/>)
+      }
     </View>
   );
 };

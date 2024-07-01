@@ -8,7 +8,7 @@ import CreatePassword from '../../Components/Login/CreatePassword'
 import PasswordChanged from '../../Components/Login/PasswordChanged'
 
 
-const Login = () => {
+const Login = ({navigation}) => {
 
     const [CurrentScreen, setCurrentScreen] = useState('login');
 
@@ -53,7 +53,7 @@ const Login = () => {
 
         {
             CurrentScreen === 'login' && (
-                <LoginComponent switchToSignup={switchToSignup} switchToForgotPassword={switchToForgotPassword} />
+                <LoginComponent switchToSignup={switchToSignup} switchToForgotPassword={switchToForgotPassword} navigation={navigation} />
             )
         }
         {

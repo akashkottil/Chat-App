@@ -7,10 +7,11 @@ import {
     TouchableOpacity
 } from "react-native";
 import { ThemeContext } from '../../DarkMode/ThemeContext';
+import { windowHeight, windowWidth } from "../../Constants/Dimension";
 
 // Functional component to wrap the class component and pass color scheme as prop
 const SegmentControlWrapper = (props) => {
-    const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+    const { theme, isDarkMode } = useContext(ThemeContext);
     return <SegmentControl {...props} isDarkMode={isDarkMode} theme={theme} />;
 };
 
@@ -142,11 +143,11 @@ const styles = StyleSheet.create({
     headerItem: {
         flex: 1,
         alignItems: "center",
-        paddingVertical: 16,
+        paddingVertical: windowWidth*0.04,
     },
     segmentTabText: {
         fontWeight: "600",
-        fontSize: 16,
+        fontSize: windowWidth*0.04,
         textAlign: "center",
     },
     animatedSeparator: {
@@ -154,12 +155,12 @@ const styles = StyleSheet.create({
     },
     segmentTab: {
         width: "auto",
-        height: 40,
-        borderRadius: 20,
-        paddingHorizontal: 25,
+        height: windowHeight*0.05,
+        borderRadius: windowWidth*0.04,
+        paddingHorizontal: windowWidth*0.05,
         justifyContent: "center",
         alignItems: "center",
-        marginHorizontal: 5,
+        marginHorizontal: windowWidth*0.02,
         elevation: 6,
     }
 });

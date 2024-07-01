@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+// import LogoutAlert from '../Modals/LogoutAlert'
 
 const Help = () => {
   return (
     <View>
-      <Text>Help</Text>
+      {/* <LogoutAlert/> */}
+      <Text>
+        help
+      </Text>
     </View>
   )
 }

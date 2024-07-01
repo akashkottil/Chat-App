@@ -1,56 +1,19 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
-
-
-// influencers images
-
-import achu from '../../../assets/Influencers/Achu.png'
-import bellie from '../../../assets/Influencers/bellie.png'
-import helen from '../../../assets/Influencers/helen.png'
-import keira from '../../../assets/Influencers/keira.png'
-import lilly from '../../../assets/Influencers/lilly.png'
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import users from '../../../assets/Influencers/Influencers'
+import { windowHeight, windowWidth } from '../../../Constants/Dimension'
 
 
 const ActiveNow = () => {
-    const influencers = [
-        {
-            id:1,
-            name: "Aswathy Achu",
-            nameTag: "Ai influencer",
-            img:achu
-        },
-        {
-            id:2,
-            name: "bellie",
-            nameTag: "Ai influencer",
-            img:bellie
-        },
-        {
-            id:3,
-            name: "helen",
-            nameTag: "Ai influencer",
-            img:helen
-        },
-        {
-            id:4,
-            name: "keira",
-            nameTag: "Ai influencer",
-            img:keira
-        },
-        {
-            id:5,
-            name: "lilly",
-            nameTag: "Ai influencer",
-            img:lilly
-        },
-    ]
 
     const navigation =useNavigation();
 
+    // handleClick function for navigate
+
     const handleProfileClick = (profile)=>{
-      navigation.navigate('personalChat',{userId: profile.id, userName: profile.name, userImage: profile.img});
+      navigation.navigate('personalChat',{userId: profile.id, userName: profile.name, userImage: profile.img,userMessage: profile.messages});
     };
 
 
@@ -60,20 +23,27 @@ const ActiveNow = () => {
 
 {
 
-  influencers.map((influencer) => (
-    <TouchableOpacity key={influencer.id} onPress={()=>handleProfileClick(influencer)}>
+  users.map((user) => (
+    <TouchableOpacity key={user.id} onPress={()=>handleProfileClick(user)}>
+
+      {/* Cards */}
+
     <View style={styles.card}>
       <View>
-        <Image source={influencer.img} style={styles.images} />
+        <Image source={user.img} style={styles.images} />
+
+        {/* Black shade opacity */}
+
         <View style={styles.blackShade}></View>
+
+        {/* Card details/ name */}
+
+        
         <View style={styles.cardDetails}>
           <View style={styles.text}>
-            <Text style={styles.cardName}>{influencer.name}</Text>
-            <Text style={styles.cardTag}>{influencer.nameTag}</Text>
+            <Text style={styles.cardName}>{user.name}</Text>
+            <Text style={styles.cardTag}>{user.nameTag}</Text>
           </View>
-          {/* <View style={styles.cardButton}>
-    <Image source={frwd}/>
-  </View> */}
         </View>
       </View>
     </View>
@@ -89,62 +59,57 @@ const ActiveNow = () => {
   )
 }
 
-export default ActiveNow
-
 const styles = StyleSheet.create({
     container:{
         flex:1
     },
     cardWrapper: {
         flexWrap: "wrap",
-        gap: 20,
+        gap:windowWidth*0.05,
         flexDirection: "row",
         justifyContent: "center",
-        paddingVertical: 40,
-        alignItems: "center"
+        alignItems: "center",
+        paddingVertical: windowWidth*0.05
+        
       },
       card: {
-        width: 164,
-        height: 218,
-        borderRadius: 30,
-        position: "relative"
+        width: windowWidth*0.39,
+        height: windowHeight*0.26,
+        borderRadius: windowWidth*0.07,
+        position: "relative",
+        backgroundColor:"red"
       },
       cardDetails: {
         position: "absolute",
-        bottom: 12,
-        left: 12,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        zIndex: 20
-    
-    
+        zIndex: 20,
+        bottom:windowHeight*0.02,
+        left:windowWidth*0.04
       },
       cardName: {
         color: "white",
         fontWeight: "600",
-        fontSize: 16
+        fontSize: windowWidth*0.05
       },
       cardTag: {
         color: "white",
+        fontSize:windowWidth*0.04
       },
       images: {
-        width: 164,
-        height: 218,
-        borderRadius: 30,
+        width: windowWidth*0.39,
+        height: windowHeight*0.26,
+        borderRadius: windowWidth*0.07,
       },
       blackShade: {
-        width: 164,
-        height: 218,
+        width: windowWidth*0.39,
+        height: windowHeight*0.26,
         position: "absolute",
         zIndex: 10,
         backgroundColor: "black",
-        borderRadius: 30,
+        borderRadius: windowWidth*0.07,
         opacity: 0.3
       },
-      topbarText:{
-        fontSize:25,
-        fontWeight:"600",
-        color:"black"
-      }
 })
+export default ActiveNow
