@@ -1,35 +1,36 @@
-import { View, StyleSheet, Text, Image, useColorScheme } from 'react-native';
+import { View, StyleSheet, Text,} from 'react-native';
 import React, { useContext } from 'react';
-import searchIcon from '../../assets/Icons/search.png'
-import TrendingSlides from '../../Components/Home/TrendingSlides';
-import LinearGradient from 'react-native-linear-gradient';
-
 import { ScrollView } from 'react-native-gesture-handler';
 import SegmentedTabs from '../../Components/Home/SegmentedTabs';
 import Footer from '../../Components/Home/Footer';
 import Parallax from '../../Components/Home/Parallax';
-
-import { useTheme } from '@react-navigation/native';
 import { ThemeContext } from '../../DarkMode/ThemeContext';
+import LottieView from 'lottie-react-native';
 
 const Home = () => {
   
-const colors = useTheme().colors
-const { theme, toggleTheme, isDarkMode } = useContext(ThemeContext);
+const { theme,} = useContext(ThemeContext);
 
 
   return (
     <View style={[styles.container,{backgroundColor:theme.bgColor}]}>
+
+      {/*  top bar */}
+      
       <View style={styles.topbar}>
         <Text style={[styles.topbarText , { color: theme.white }]}>Alforia</Text>
-        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={theme.gradient} style={styles.searchBox}>
-          <Image source={searchIcon} style={styles.searchIcon} />
-        </LinearGradient>
+        
+              <LottieView
+            source={theme.bgColor === '#f8f8ff' ? require('../../assets/animations/coinlight.json'): require('../../assets/animations/coindark.json') }
+            autoPlay
+            loop={true}
+            style={styles.lottie}
+          />
+        
         
       </View>
       <ScrollView vertical={true} showsVerticalScrollIndicator={false} >
         <View>
-          {/* <TrendingSlides /> */}
           <Parallax/>
         </View>
         <View>
@@ -70,6 +71,12 @@ const styles = StyleSheet.create({
   },
   topbarText:{
     fontSize:25,
-  }
+  },
+  lottie: {
+    width: 50,
+    height: 50,
+    backgroundColor:"red"
+  },
+
 
 })

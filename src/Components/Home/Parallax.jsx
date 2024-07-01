@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     card: {
-        width: PAGE_WIDTH - 60,
+        width: PAGE_WIDTH,
         height: PAGE_WIDTH * 0.6,
         borderRadius: 30,
         position: "relative",
@@ -117,7 +117,9 @@ const styles = StyleSheet.create({
     images: {
         width: '100%',
         height: '100%',
-        resizeMode: 'cover',
+        // resizeMode: 'cover',
+        resizeMode:"cover"
+        
     },
     blackShade: {
         position: "absolute",
